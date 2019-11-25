@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "509823683285",
+    "firebase_url": "https://sensitive-buying-2e419.firebaseio.com",
+    "project_id": "sensitive-buying-2e419",
+    "storage_bucket": "sensitive-buying-2e419.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509823683285:android:fd58e79fe295b591f5705c",
+        "android_client_info": {
+          "package_name": "com.example.sensitivebuying"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "509823683285-5kpb59in0bieqp1a3vbmfrnhvvu5hlg4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sensitivebuying",
+            "certificate_hash": "c39118cb68491df428d3de605f09de48e720be82"
+          }
+        },
+        {
+          "client_id": "509823683285-902s1i1ngkih8dgmtsg4cgv8orae00ir.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCC3YkkGmnDi4fymPgsiEsIEU6n2RhQhjQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "509823683285-902s1i1ngkih8dgmtsg4cgv8orae00ir.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
