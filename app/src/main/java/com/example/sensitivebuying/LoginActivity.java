@@ -37,11 +37,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        EditTextEmail =  findViewById(R.id.email_editTxt);
-        EditTextPassword =  findViewById(R.id.password_editTxt);
-        ButtonLogin =  findViewById(R.id.login_button);
-        mProgressBar =  findViewById(R.id.pb_loading);
-        TextViewRegister = findViewById(R.id.register_txtView);
+        EditTextEmail =  (EditText) findViewById(R.id.email_editTxt);
+        EditTextPassword =  (EditText) findViewById(R.id.password_editTxt);
+        ButtonLogin =  (Button) findViewById(R.id.login_button);
+        mProgressBar = (ProgressBar) findViewById(R.id.pb_loading);
+        TextViewRegister = (TextView) findViewById(R.id.register_txtView);
 
         // if the user already login
         if(firebaseAuth.getCurrentUser()!=null ) {

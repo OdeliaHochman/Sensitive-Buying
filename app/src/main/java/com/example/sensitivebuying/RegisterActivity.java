@@ -38,11 +38,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_register);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        EditTextEmail =  findViewById(R.id.emailRegister_editTxt);
-        EditTextPassword =  findViewById(R.id.passwordRegister_editTxt);
-        ButtonRegister =  findViewById(R.id.register_button);
-        mProgressBar =  findViewById(R.id.pb_loading);
-        TextViewLogin = findViewById(R.id.login_txtView);
+        EditTextEmail =  (EditText) findViewById(R.id.emailRegister_editTxt);
+        EditTextPassword =  (EditText) findViewById(R.id.passwordRegister_editTxt);
+        ButtonRegister =  (Button) findViewById(R.id.register_button);
+        mProgressBar =  (ProgressBar)findViewById(R.id.pb_loading);
+        TextViewLogin = (TextView) findViewById(R.id.login_txtView);
 
         // if the user already login
         if(firebaseAuth.getCurrentUser()==null ) {
