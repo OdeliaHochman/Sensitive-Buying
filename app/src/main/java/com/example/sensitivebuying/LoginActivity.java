@@ -22,11 +22,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private EditText EditTextEmail;
     private EditText EditTextPassword;
-
     private Button ButtonLogin;
-
     private TextView TextViewRegister;
-
     private FirebaseAuth firebaseAuth;
     private ProgressBar mProgressBar;
 
@@ -43,14 +40,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mProgressBar = (ProgressBar) findViewById(R.id.pb_loading);
         TextViewRegister = (TextView) findViewById(R.id.register_txtView);
 
-        // if the user already login
+        // if the user already login go to search activity
         if(firebaseAuth.getCurrentUser()!=null ) {
+            Intent intent = new Intent(this, CustomerSearchActivity.class);
+            startActivity(intent);
+            finish(); return;
         }
 
         ButtonLogin.setOnClickListener(this);
         TextViewRegister.setOnClickListener(this);
 
-        }
+    }
 
     @Override
     public void onClick(View v) {
