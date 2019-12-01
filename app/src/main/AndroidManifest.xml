@@ -11,6 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".RepresentativeStatistics"></activity>
+        <activity android:name=".RepresentativeProductDetails" />
+        <activity android:name=".RepresentativeAddProduct" />
+        <activity android:name=".RepresentativeSearch" />
+        <activity android:name=".RepresentativeHome" />
         <activity android:name=".CustomerSearchActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".FavoritesActivity" />
