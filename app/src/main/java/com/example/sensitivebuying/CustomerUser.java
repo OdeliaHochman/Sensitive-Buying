@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public class CustomerUser extends User {
 
-    public ArrayList<String> sensitiveList =  new ArrayList<>();
+    public ArrayList<Sensitive> sensitiveList =  new ArrayList<>();
     public ArrayList<Products> favoriteList =  new ArrayList<>();
 
     public CustomerUser()
@@ -15,7 +15,7 @@ public class CustomerUser extends User {
     }
 
 
-    public CustomerUser(String name, String mail, ArrayList<String> sensitiveList, ArrayList<Products> favoriteList)
+    public CustomerUser(String name, String mail, ArrayList<Sensitive> sensitiveList, ArrayList<Products> favoriteList)
     {
         super(name, mail);
         for ( int i=0; i<sensitiveList.size();i++)
@@ -29,12 +29,12 @@ public class CustomerUser extends User {
 
     }
 
-    public ArrayList<String> getSensitiveList()
+    public ArrayList<Sensitive> getSensitiveList()
     {
         return sensitiveList;
     }
 
-    public void setSensitiveList(ArrayList<String> sensitiveList)
+    public void setSensitiveList(ArrayList<Sensitive> sensitiveList)
     {
         for ( int i=0; i<sensitiveList.size();i++)
         {

@@ -7,7 +7,19 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
+    <string name="favorites">favorite</string>
+    <string name="contact_us">contact</string>
+    <string name="update">update_sensitive</string>
     <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_favorites_fragment">Hello favorites fragment</string>
+    <string name="hello_contact_fragment">Hello contact fragment</string>
+    <string name="hello_update_fragment">Hello update fragment</string>
+    <string name="hello_bank_fragment">Hello blank fragment</string>
+
+
+
 
 
 </resources>

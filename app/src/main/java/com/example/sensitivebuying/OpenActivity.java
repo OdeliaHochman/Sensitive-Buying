@@ -1,9 +1,9 @@
 package com.example.sensitivebuying;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class OpenActivity extends AppCompatActivity {
 
@@ -18,7 +18,7 @@ public class OpenActivity extends AppCompatActivity {
                 try {
                     synchronized (this) {
                         wait(2000);
-                        Intent intent = new Intent (OpenActivity.this,LoginActivity.class);
+                        Intent intent = new Intent (OpenActivity.this, LoginActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent);
                         finish();

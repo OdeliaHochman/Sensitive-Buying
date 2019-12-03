@@ -10,21 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".RepresentativeStatistics"></activity>
-        <activity android:name=".RepresentativeProductDetails" />
-        <activity android:name=".RepresentativeAddProduct" />
-        <activity android:name=".RepresentativeSearch" />
-        <activity android:name=".RepresentativeHome" />
-        <activity android:name=".CustomerSearchActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".FavoritesActivity" />
-        <activity android:name=".ContactActivity" />
-        <activity android:name=".UpdateSensitivesActivity" />
-        <activity android:name=".CustomerDetailsActivity" />
-        <activity android:name=".SensitiveRegisterActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
+        android:theme="@style/AppTheme.NoActionBar">
+
         <activity android:name=".OpenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,6 +19,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".HostNavigationActivity" />
+        <activity android:name=".CustomerDetailsActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".SensitiveRegisterActivity" />
+        <activity android:name=".RepresentativeStatisticsActivity"></activity>
+        <activity android:name=".RepresentativeProductDetailsActivity" />
+        <activity android:name=".RepresentativeAddProductActivity" />
+        <activity android:name=".RepresentativeSearchActivity" />
+        <activity android:name=".RepresentativeHomeActivity" />
+
+
     </application>
 
 </manifest>

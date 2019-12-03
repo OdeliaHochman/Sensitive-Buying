@@ -1,7 +1,5 @@
 package com.example.sensitivebuying;
 
-import java.util.ArrayList;
-
 public class Sensitive {
 
     String sensitiveType;

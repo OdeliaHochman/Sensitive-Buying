@@ -4,20 +4,25 @@
     tools:showIn="navigation_view">
 
     <item
-        android:id="@+id/sensitiveUpdate"
+        android:id="@+id/search_page"
+        android:title="דף הבית" />
+
+    <item
+        android:id="@+id/sensitive_update"
         android:icon="@drawable/menu_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:title="עדכון רגישיות"/>
-    <item
-        android:id="@+id/favorits"
-        android:icon="@drawable/menu_favorits"
-        android:title="מועדפים" />
+        android:title="עדכון רגישויות"/>
     <item
         android:id="@+id/contact_us"
         android:icon="@drawable/menu_contact_us"
         android:title="צור קשר" />
+    <item
+        android:id="@+id/favorites"
+        android:icon="@drawable/menu_favorits"
+        android:title="מועדפים" />
+
     <item
         android:id="@+id/logout"
         android:icon="@drawable/menu_logout"

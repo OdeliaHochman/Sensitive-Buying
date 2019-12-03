@@ -1,8 +1,5 @@
 package com.example.sensitivebuying;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,6 +9,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         // if the user already login go to search activity
         if(firebaseAuth.getCurrentUser()!=null ) {
-            Intent intent = new Intent(this, CustomerSearchActivity.class);
+            Intent intent = new Intent(this, HostNavigationActivity.class);
             startActivity(intent);
             finish(); return;
         }
@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(LoginActivity.this,"התחברת בהצלחה", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(LoginActivity.this, CustomerSearchActivity.class);
+                Intent intent = new Intent(LoginActivity.this, HostNavigationActivity.class);
                 startActivity(intent);
                 finish(); return;
             }

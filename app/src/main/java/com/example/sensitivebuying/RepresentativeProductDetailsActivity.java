@@ -1,10 +1,10 @@
 package com.example.sensitivebuying;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class RepresentativeProductDetails extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class RepresentativeProductDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
