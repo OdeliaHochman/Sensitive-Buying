@@ -1,11 +1,15 @@
 package com.example.sensitivebuying;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.ViewParent;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -13,14 +17,19 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 
-public class HostNavigationActivity extends AppCompatActivity {
+public class HostNavigationActivity extends AppCompatActivity  {
 
     private AppBarConfiguration mAppBarConfiguration;
 
 
     DrawerLayout drawer;
+    NavController navController;
+    NavigationView navigationView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +39,8 @@ public class HostNavigationActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-         drawer = findViewById(R.id.nav_main);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        drawer = findViewById(R.id.nav_main);
+         navigationView = findViewById(R.id.nav_view);
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -40,9 +49,29 @@ public class HostNavigationActivity extends AppCompatActivity {
                 .setDrawerLayout(drawer)
                 .build();
 
-        NavController navController = Navigation.findNavController(this, R.id.fragment);
+        navController = Navigation.findNavController(this, R.id.fragment);
         NavigationUI.setupWithNavController(navigationView,navController);
         NavigationUI.setupActionBarWithNavController(this, navController,drawer);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                if (id == R.id.logout) {
+            FirebaseAuth.getInstance().signOut();
+            Intent loginActivity = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(loginActivity);
+            finish();
+        }
+                boolean handled = NavigationUI.onNavDestinationSelected(menuItem, navController);
+                if (handled) {
+                    ViewParent parent = navigationView.getParent();
+                    if (parent instanceof DrawerLayout) {
+                        ((DrawerLayout) parent).closeDrawer(navigationView);
+                    }
+                }
+
+                return handled;            }
+        });
 
     }
 
@@ -52,7 +81,6 @@ public class HostNavigationActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, drawer);
 
     }
-
 
 
 }
