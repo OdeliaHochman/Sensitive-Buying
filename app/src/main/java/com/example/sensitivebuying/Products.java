@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 public class Products {
 
+
+
     public String companyName;
     public String productName;
     public String barcode;
-    public double weight;
+    public String weight;
     public String typeWeight;
     public String productDescription;
     public String urlImage;
@@ -16,11 +18,11 @@ public class Products {
 
 
     public Products() {
-        this.weight = 0;
+
         this.sensitiveList = new ArrayList<>();
     }
 
-    public Products(String companyName, String productName, String barcode, double weight, String typeWeight, String productDescription, String urlImage, ArrayList<Sensitive> sensitiveList)
+    public Products(String companyName, String productName, String barcode,String weight, String typeWeight, String productDescription, String urlImage, ArrayList<Sensitive> sensitiveList)
     {
         this.companyName = companyName;
         this.productName = productName;
@@ -51,7 +53,7 @@ public class Products {
         return barcode;
     }
 
-    public double getWeight()
+    public String getWeight()
     {
         return weight;
     }
@@ -76,6 +78,36 @@ public class Products {
         return sensitiveList;
     }
 
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
 
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public void setTypeWeight(String typeWeight) {
+        this.typeWeight = typeWeight;
+    }
+
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
+
+    public void setSensitiveList(ArrayList<Sensitive> sensitiveList) {
+        this.sensitiveList = sensitiveList;
+    }
 
 }

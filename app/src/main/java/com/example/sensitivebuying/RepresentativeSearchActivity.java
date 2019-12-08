@@ -10,16 +10,18 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RepresentativeSearchActivity extends AppCompatActivity {
 
 private SearchView mySearchView;
-private ListView myListView;
-private ArrayList<Products> productsList;
-private ArrayAdapter<Products> adapter; /////////????? or string
-//private ProductsAdapter adapter;
+
+private RecyclerView mRecyclerview;
+
+
 
 
     @Override
@@ -28,8 +30,31 @@ private ArrayAdapter<Products> adapter; /////////????? or string
         setContentView(R.layout.activity_representative_search);
 
         mySearchView = (SearchView)findViewById(R.id.searchLine);
-        myListView = (ListView) findViewById(R.id.list_item);
- //      adapter = new ProductsAdapter(this, productsList);
+
+        mRecyclerview = (RecyclerView)findViewById(R.id.recyclerView_products);
+        new FirebaseDatabaseHelper().readProducts(new FirebaseDatabaseHelper.DataStatus() {
+            @Override
+            public void DataIsLoaded(List<Products> productsList, List<String> keys) {
+                findViewById(R.id.loading_products).setVisibility(View.GONE);
+                new RecyclerView_config().setConfig(mRecyclerview,RepresentativeSearchActivity.this,productsList,keys);
+            }
+
+            @Override
+            public void DataIsInserted() {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+        });
+
 //        adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,productsList);
  //       myListView.setAdapter(adapter);
 

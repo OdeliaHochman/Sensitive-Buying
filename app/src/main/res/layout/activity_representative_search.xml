@@ -56,14 +56,19 @@
             android:backgroundTint="@android:color/darker_gray"
             android:text="@string/חפש" />
 
-        <ListView
-            android:id="@+id/list_item"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-        </ListView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_products"
+            android:layout_width="match_parent"
+            android:layout_height="232dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </LinearLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
