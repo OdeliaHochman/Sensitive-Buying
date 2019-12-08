@@ -24,13 +24,13 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".SensitiveRegisterActivity" />
-        <activity android:name=".RepresentativeStatisticsActivity"></activity>
+        <activity android:name=".RepresentativeStatisticsActivity" />
         <activity android:name=".RepresentativeProductDetailsActivity" />
         <activity android:name=".RepresentativeAddProductActivity" />
         <activity android:name=".RepresentativeSearchActivity" />
         <activity android:name=".RepresentativeHomeActivity" />
 
-
+        <activity android:name=".RepresentativeContactUsActivity"/>
     </application>
 
 </manifest>

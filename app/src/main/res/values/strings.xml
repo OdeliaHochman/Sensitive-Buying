@@ -12,14 +12,15 @@
     <string name="update">update_sensitive</string>
     <string name="action_settings">Settings</string>
 
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_favorites_fragment">Hello favorites fragment</string>
     <string name="hello_contact_fragment">Hello contact fragment</string>
     <string name="hello_update_fragment">Hello update fragment</string>
     <string name="hello_bank_fragment">Hello blank fragment</string>
-
-
-
+    <string name="חפש">חפש</string>
+    <string name="todo2">todo2</string>
+    <string name="todo">todo</string>
 
 
 </resources>
