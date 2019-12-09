@@ -14,14 +14,15 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:title="עדכון רגישויות"/>
-    <item
-        android:id="@+id/contact_us"
-        android:icon="@drawable/menu_contact_us"
-        android:title="צור קשר" />
+
     <item
         android:id="@+id/favorites"
         android:icon="@drawable/menu_favorits"
         android:title="מועדפים" />
+    <item
+        android:id="@+id/contact_us"
+        android:icon="@drawable/menu_contact_us"
+        android:title="צור קשר" />
 
     <item
         android:id="@+id/logout"
