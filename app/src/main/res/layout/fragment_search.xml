@@ -15,7 +15,7 @@
         tools:context=".RepresentativeSearchActivity">
 
         <ImageView
-            android:id="@+id/clover"
+            android:id="@+id/clover2"
             android:layout_width="158dp"
             android:layout_height="113dp"
             android:layout_marginEnd="308dp"
@@ -26,7 +26,7 @@
             android:contentDescription="@string/todo" />
 
         <ImageView
-            android:id="@+id/bgapp1"
+            android:id="@+id/bgapp4"
             android:layout_width="526dp"
             android:layout_height="115dp"
             android:layout_marginStart="8dp"
@@ -40,7 +40,7 @@
             android:contentDescription="@string/todo2" />
 
         <LinearLayout
-            android:id="@+id/topPageSearch"
+            android:id="@+id/topPageSearch_customer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
@@ -48,7 +48,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <SearchView
-                android:id="@+id/searchLine"
+                android:id="@+id/searchLine_customer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
@@ -57,7 +57,7 @@
 
 
             <Button
-                android:id="@+id/btnSearch"
+                android:id="@+id/btnSearch_customer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -66,7 +66,7 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_products"
+                android:id="@+id/recyclerView_products_customer"
                 android:layout_width="match_parent"
                 android:layout_height="232dp"
                 app:layout_constraintBottom_toBottomOf="parent"
