@@ -2,11 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
-
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
-    android:background="@drawable/side_nav_bar"
+    android:background="@drawable/backgroundsidebar"
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingLeft="16dp"
@@ -16,33 +14,27 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="87dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="98dp"
-            android:layout_marginTop="-3dp"
-            android:layout_marginRight="10dp"
-            android:background="#00DA1818"
-            android:contentDescription="@string/nav_header_desc"
-
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingTop="7dp"
-            app:srcCompat="@drawable/myspace" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="87dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="155dp"
+        android:layout_marginTop="-3dp"
+        android:layout_marginRight="10dp"
+        android:background="#00DA1818"
+        android:contentDescription="@string/nav_header_desc"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="7dp"
+        app:srcCompat="@drawable/myspace" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="ברוכים הבאים"
+        android:text="שלום לקוח"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-    <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/nav_header_subtitle" />
+
 
 </LinearLayout>
