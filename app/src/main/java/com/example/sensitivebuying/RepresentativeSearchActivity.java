@@ -17,9 +17,9 @@ import java.util.List;
 
 public class RepresentativeSearchActivity extends AppCompatActivity {
 
-private SearchView mySearchView;
+  private SearchView mySearchView;
 
-private RecyclerView mRecyclerview;
+ private RecyclerView mRecycler;
 
 
 
@@ -31,12 +31,13 @@ private RecyclerView mRecyclerview;
 
         mySearchView = (SearchView)findViewById(R.id.searchLine);
 
-        mRecyclerview = (RecyclerView)findViewById(R.id.recyclerView_products);
+        mRecycler = (RecyclerView)findViewById(R.id.recyclerView_products);
+
         new FirebaseDatabaseHelper().readProducts(new FirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<Products> productsList, List<String> keys) {
                 findViewById(R.id.loading_products).setVisibility(View.GONE);
-                new RecyclerView_config().setConfig(mRecyclerview,RepresentativeSearchActivity.this,productsList,keys);
+                new RecyclerView_config().setConfig(mRecycler,RepresentativeSearchActivity.this,productsList,keys);
             }
 
             @Override
@@ -55,31 +56,30 @@ private RecyclerView mRecyclerview;
             }
         });
 
-//        adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,productsList);
- //       myListView.setAdapter(adapter);
+/*
+         adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,productsList);
+        myListView.setAdapter(adapter);
+         mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+             @Override
+             public boolean onQueryTextSubmit(String query) {
+                 return false;
+             }
 
-//        mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                adapter.getFilter().filter(newText);
-//                return false;
-//            }
-//        });
-
-// To link to an item click we will add the following function:
-
-//        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(this, Activity3.class);
-//                startActivity(intent);
-//            }
-//        });
+             @Override
+             public boolean onQueryTextChange(String newText) {
+                 adapter.getFilter().filter(newText);
+                 return false;
+             }
+         });
+  To link to an item click we will add the following function:
+         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+             @Override
+             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                 Intent intent = new Intent(this, Activity3.class);
+                 startActivity(intent);
+             }
+         });
+ */
 
     }
 
