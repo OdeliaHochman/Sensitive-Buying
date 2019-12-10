@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,12 +31,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private FirebaseAuth firebaseAuth;
     private ProgressBar mProgressBar;
+    private DatabaseReference usersReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        usersReference= FirebaseDatabase.getInstance().getReference("User");
         firebaseAuth = FirebaseAuth.getInstance();
         EditTextEmail = (EditText) findViewById(R.id.emailRegister_editTxt);
         EditTextPassword = (EditText) findViewById(R.id.passwordRegister_editTxt);
@@ -65,14 +69,20 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         if(isEmpty()) return;
         inProgress(true);
-        String email = EditTextEmail.getText().toString();
+        final String email = EditTextEmail.getText().toString();
         String password = EditTextPassword.getText().toString();
 
         firebaseAuth.createUserWithEmailAndPassword(email,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(RegisterActivity.this,"ההרשמה הצליחה", Toast.LENGTH_LONG).show();
+                CustomerUser user = new CustomerUser(null, email,null,null);
+                usersReference.child(firebaseAuth.getCurrentUser().getUid()).setValue(user);
+                Intent intent = new Intent(RegisterActivity.this,SensitiveRegisterActivity.class);
+                intent.putExtra("CustomerUser", user);
+                startActivity(intent);
                 inProgress(false);
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

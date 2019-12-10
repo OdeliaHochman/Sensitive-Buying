@@ -16,7 +16,7 @@ public class RecyclerView_config {
     private Context mContext;
     private ProductsAdapter mproductsAdapter;
 
-    public void setConfig(RecyclerView recyclerView,Context context, List<Products> products ,List<String> keys)
+    public void setConfig(RecyclerView recyclerView,Context context, List<Product> products ,List<String> keys)
     {
         mContext=context;
         mproductsAdapter= new ProductsAdapter(products,keys);
@@ -43,11 +43,11 @@ public class RecyclerView_config {
             mBarcode =(TextView)itemView.findViewById(R.id.barcode);
         }
 
-        public void bind(Products product , String key)
+        public void bind(Product product , String key)
         {
             mNamePro.setText(product.getProductName());
             mSOME.setText(product.getCompanyName());
-            mWeight.setText(product.getWeight());
+            mWeight.setText(product.getWeightAndType());
             mBarcode.setText(product.getBarcode());
             this.key=key;
         }
@@ -56,10 +56,10 @@ public class RecyclerView_config {
 
     class ProductsAdapter extends  RecyclerView.Adapter<ProductItemView>
     {
-        private List<Products> mproductsList;
+        private List<Product> mproductsList;
         private List<String> mKeys;
 
-        public ProductsAdapter(List<Products> mproductsList, List<String> mKeys)
+        public ProductsAdapter(List<Product> mproductsList, List<String> mKeys)
         {
             this.mproductsList = mproductsList;
             this.mKeys = mKeys;

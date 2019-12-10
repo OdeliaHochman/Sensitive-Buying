@@ -57,6 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintTop_toBottomOf="@+id/marker_registersens" />
 
     <CheckBox
@@ -72,6 +73,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintTop_toBottomOf="@+id/checkBox_gluten__registersens" />
 
     <CheckBox
@@ -87,6 +89,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintTop_toBottomOf="@+id/checkBox_eggs__registersens" />
 
     <CheckBox
@@ -102,6 +105,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintTop_toBottomOf="@+id/checkBox_peants_registersens" />
 
     <CheckBox
@@ -117,6 +121,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintTop_toBottomOf="@+id/checkBox_lactose_registersens" />
 
     <CheckBox
@@ -132,6 +137,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintTop_toBottomOf="@+id/checkBox_nuts_registersens" />
 
     <CheckBox
@@ -147,6 +153,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintTop_toBottomOf="@+id/checkBox_soya_registersens" />
 
     <Button

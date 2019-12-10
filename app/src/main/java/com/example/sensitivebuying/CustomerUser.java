@@ -20,8 +20,8 @@ public class CustomerUser extends User implements Serializable {
     public CustomerUser(String name, String mail, ArrayList<Sensitive> sensitiveList, ArrayList<Product> favoriteList)
     {
         super(name, mail, false);
-       this.favoriteList=new  ArrayList<>(favoriteList);
-        this.sensitiveList = new ArrayList<>(sensitiveList);
+        this.favoriteList=favoriteList;
+        this.sensitiveList =sensitiveList;
 
     }
     public ArrayList<Product> getFavoriteList()
@@ -31,7 +31,7 @@ public class CustomerUser extends User implements Serializable {
 
 
     public void setFavoriteList(ArrayList<Product> favoriteList) {
-        this.favoriteList=new  ArrayList<>(favoriteList);
+        this.favoriteList=favoriteList;
     }
 
     public ArrayList<Sensitive> getSensitiveList()

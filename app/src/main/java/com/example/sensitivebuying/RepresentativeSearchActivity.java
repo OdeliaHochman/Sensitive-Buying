@@ -35,7 +35,7 @@ public class RepresentativeSearchActivity extends AppCompatActivity {
 
         new FirebaseDatabaseHelper().readProducts(new FirebaseDatabaseHelper.DataStatus() {
             @Override
-            public void DataIsLoaded(List<Products> productsList, List<String> keys) {
+            public void DataIsLoaded(List<Product> productsList, List<String> keys) {
                 findViewById(R.id.loading_products).setVisibility(View.GONE);
                 new RecyclerView_config().setConfig(mRecycler,RepresentativeSearchActivity.this,productsList,keys);
             }

@@ -2,7 +2,7 @@
 <resources>
 
     <string name="gluten">גלוטן</string>
-    <string name="eggs">גלוטן</string>
+    <string name="eggs">ביצים</string>
     <string name="peanuts">בוטנים</string>
     <string name="lactose">לקטוז</string>
     <string name="nuts">אגוזים</string>
