@@ -20,6 +20,15 @@
             android:text="הרשמה"
             android:textSize="22dp"/>
 
+
+        <EditText
+            android:id="@+id/nameRegister_editTxt"
+            android:inputType="textPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="הכנס שם" />
+
         <EditText
             android:id="@+id/emailRegister_editTxt"
             android:inputType="textEmailAddress"

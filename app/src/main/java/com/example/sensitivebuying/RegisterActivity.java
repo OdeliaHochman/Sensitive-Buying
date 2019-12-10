@@ -28,9 +28,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Button ButtonRegister;
 
     private TextView TextViewLogin;
+    private EditText editViewName;
+    private ProgressBar mProgressBar;
 
     private FirebaseAuth firebaseAuth;
-    private ProgressBar mProgressBar;
     private DatabaseReference usersReference;
 
 
@@ -38,13 +39,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        usersReference= FirebaseDatabase.getInstance().getReference("User");
+        usersReference= FirebaseDatabase.getInstance().getReference("Users");
         firebaseAuth = FirebaseAuth.getInstance();
         EditTextEmail = (EditText) findViewById(R.id.emailRegister_editTxt);
         EditTextPassword = (EditText) findViewById(R.id.passwordRegister_editTxt);
         ButtonRegister = (Button) findViewById(R.id.register_button);
         mProgressBar =(ProgressBar)  findViewById(R.id.pb_loading);
         TextViewLogin = (TextView) findViewById(R.id.login_txtView);
+        editViewName = findViewById(R.id.nameRegister_editTxt);
 
         // if the user already login
         if(firebaseAuth.getCurrentUser()==null ) {
@@ -71,12 +73,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         inProgress(true);
         final String email = EditTextEmail.getText().toString();
         String password = EditTextPassword.getText().toString();
+        final String name = editViewName.getText().toString();
 
         firebaseAuth.createUserWithEmailAndPassword(email,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(RegisterActivity.this,"ההרשמה הצליחה", Toast.LENGTH_LONG).show();
-                CustomerUser user = new CustomerUser(null, email,null,null);
+                CustomerUser user = new CustomerUser(name, email,null,null);
                 usersReference.child(firebaseAuth.getCurrentUser().getUid()).setValue(user);
                 Intent intent = new Intent(RegisterActivity.this,SensitiveRegisterActivity.class);
                 intent.putExtra("CustomerUser", user);
@@ -120,6 +123,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         if (TextUtils.isEmpty(EditTextPassword.getText().toString())) {
             Toast.makeText(this, "לא הוכנסה סיסמה", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        if (TextUtils.isEmpty(editViewName.getText().toString())) {
+            Toast.makeText(this, "לא הוכנס שם", Toast.LENGTH_SHORT).show();
             return true;
         }
 
