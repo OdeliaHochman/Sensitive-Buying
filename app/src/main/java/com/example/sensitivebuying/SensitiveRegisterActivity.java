@@ -21,6 +21,7 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
     private Button ButtonSave;
     private FirebaseAuth firebaseAuth;
     private CustomerUser user;
+    private  TextView skipT;
 
 
 
@@ -34,6 +35,7 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
         setContentView(R.layout.activity_sensitive_register);
         ButtonSave= findViewById(R.id.btnsave_registersens_registersens);
         ButtonSave.setOnClickListener(this);
+        skipT = (TextView) findViewById(R.id.skip_registersens);
     }
 
     @Override
