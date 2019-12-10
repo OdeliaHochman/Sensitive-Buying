@@ -15,11 +15,11 @@ public class FirebaseDatabaseHelper {
 
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
-    private List<Products> productsList = new ArrayList<>();
+    private List<Product> productsList = new ArrayList<>();
 
     public interface DataStatus
     {
-        void DataIsLoaded(List<Products> productsList , List<String> keys);
+        void DataIsLoaded(List<Product> productsList , List<String> keys);
         void DataIsInserted();
         void DataIsUpdated();
         void DataIsDeleted();
@@ -44,7 +44,7 @@ public class FirebaseDatabaseHelper {
                 for(DataSnapshot keyNode:dataSnapshot.getChildren())
                 {
                     keys.add(keyNode.getKey());
-                    Products product = keyNode.getValue(Products.class);
+                    Product product = keyNode.getValue(Product.class);
                     productsList.add(product);
                 }
                 dataStatus.DataIsLoaded(productsList,keys);

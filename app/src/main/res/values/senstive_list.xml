@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="gluten">גלוטן</string>
+    <string name="eggs">גלוטן</string>
+    <string name="peanuts">בוטנים</string>
+    <string name="lactose">לקטוז</string>
+    <string name="nuts">אגוזים</string>
+    <string name="sesame">שומשום</string>
+    <string name="soya">סויה</string>
+
+
+</resources>
+
