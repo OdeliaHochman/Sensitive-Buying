@@ -1,12 +1,13 @@
 package com.example.sensitivebuying;
 
-public class Sensitive {
+import java.io.Serializable;
 
-    String sensitiveType;
+public class Sensitive implements Serializable {
+
+    private String sensitiveType;
 
     public Sensitive()
     {
-
     }
 
     public Sensitive(String sensitiveType)
@@ -18,4 +19,9 @@ public class Sensitive {
     {
         return sensitiveType;
     }
+
+    public void setSensitiveType(String sensitiveType) {
+        this.sensitiveType = sensitiveType;
+    }
+
 }

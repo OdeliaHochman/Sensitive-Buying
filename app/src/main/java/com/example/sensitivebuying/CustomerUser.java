@@ -1,32 +1,37 @@
 package com.example.sensitivebuying;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Vector;
 
-public class CustomerUser extends User {
+public class CustomerUser extends User implements Serializable {
 
-    public ArrayList<Sensitive> sensitiveList =  new ArrayList<>();
-    public ArrayList<Products> favoriteList =  new ArrayList<>();
+    private ArrayList<Sensitive> sensitiveList;
+    private ArrayList<Product> favoriteList;
 
     public CustomerUser()
     {
+        super();
         this.sensitiveList =new ArrayList<>();
         this.favoriteList =new ArrayList<>();
     }
 
 
-    public CustomerUser(String name, String mail, ArrayList<Sensitive> sensitiveList, ArrayList<Products> favoriteList)
+    public CustomerUser(String name, String mail, ArrayList<Sensitive> sensitiveList, ArrayList<Product> favoriteList)
     {
-        super(name, mail);
-        for ( int i=0; i<sensitiveList.size();i++)
-        {
-            this.sensitiveList.add(sensitiveList.get(i));
-        }
-        for ( int i=0; i<favoriteList.size();i++)
-        {
-            this.favoriteList.add(favoriteList.get(i));
-        }
+        super(name, mail, false);
+       this.favoriteList=new  ArrayList<>(favoriteList);
+        this.sensitiveList = new ArrayList<>(sensitiveList);
 
+    }
+    public ArrayList<Product> getFavoriteList()
+    {
+        return favoriteList;
+    }
+
+
+    public void setFavoriteList(ArrayList<Product> favoriteList) {
+        this.favoriteList=new  ArrayList<>(favoriteList);
     }
 
     public ArrayList<Sensitive> getSensitiveList()
@@ -34,24 +39,11 @@ public class CustomerUser extends User {
         return sensitiveList;
     }
 
-    public void setSensitiveList(ArrayList<Sensitive> sensitiveList)
-    {
-        for ( int i=0; i<sensitiveList.size();i++)
-        {
-            this.sensitiveList.add(sensitiveList.get(i));
-        }
-    }
+    public void setSensitiveList(ArrayList<Sensitive> sensitiveList) {
+        this.sensitiveList = new ArrayList<>(sensitiveList);
 
-    public ArrayList<Products> getFavoriteList()
-    {
-        return favoriteList;
-    }
+}
 
-    public void setFavoriteList(Vector<Products> favoriteList)
-    {
-        for ( int i=0; i<favoriteList.size();i++)
-        {
-            this.favoriteList.add(favoriteList.get(i));
-        }
-    }
+
+
 }
