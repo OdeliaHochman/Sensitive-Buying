@@ -42,7 +42,7 @@ public class UpdateFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_update, container, false);
 
-      //  user = (CustomerUser) getIntent().getSerializableExtra("CustomerUser");
+       // user = (CustomerUser) getIntent().getSerializableExtra("CustomerUser");
         firebaseAuth = FirebaseAuth.getInstance();
         usersReference = FirebaseDatabase.getInstance().getReference("Users");
 

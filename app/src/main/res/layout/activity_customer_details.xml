@@ -88,7 +88,15 @@
     app:layout_constraintTop_toTopOf="@+id/company_name_Adetails"
     app:layout_constraintVertical_bias="0.375"/>
 
-
+    <Button
+        android:id="@+id/btn_contact_rep_customerDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="36dp"
+        android:text="צור קשר עם נציג החברה"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
