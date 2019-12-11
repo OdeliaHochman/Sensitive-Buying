@@ -47,6 +47,8 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
         if(v==ButtonSave) {
             user.setSensitiveList(updateSensitive);
             usersReference.child(firebaseAuth.getCurrentUser().getUid()).setValue(user);
+            Intent intent =new Intent(SensitiveRegisterActivity.this,LoginActivity.class);
+            startActivity(intent);
         }
         if(v==skipT)
         {
