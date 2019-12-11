@@ -1,5 +1,6 @@
 package com.example.sensitivebuying;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,9 +34,12 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
         firebaseAuth = FirebaseAuth.getInstance();
         usersReference = FirebaseDatabase.getInstance().getReference("Users");
         setContentView(R.layout.activity_sensitive_register);
+
         ButtonSave= findViewById(R.id.btnsave_registersens_registersens);
         ButtonSave.setOnClickListener(this);
-        skipT = (TextView) findViewById(R.id.skip_registersens);
+
+        skipT = (TextView)findViewById(R.id.skip_registersens);
+        skipT.setOnClickListener(this);
     }
 
     @Override
@@ -43,6 +47,11 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
         if(v==ButtonSave) {
             user.setSensitiveList(updateSensitive);
             usersReference.child(firebaseAuth.getCurrentUser().getUid()).setValue(user);
+        }
+        if(v==skipT)
+        {
+            Intent intent =new Intent(SensitiveRegisterActivity.this,LoginActivity.class);
+            startActivity(intent);
         }
 
     }
