@@ -74,6 +74,7 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
                 if (checked){
                     updateSensitive.add(s);}
                 else {
+                    Log.d("in egg ",activity);
                     updateSensitive.remove(s); }
                 break;
             }
@@ -84,6 +85,7 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
                 if (checked) {
                     updateSensitive.add(s); }
                 else {
+                    Log.d("in gluten ",activity);
                     updateSensitive.remove(s);
                 }
                 break;
@@ -94,6 +96,7 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
                 if (checked) {
                     updateSensitive.add(s); }
                 else {
+                    Log.d("in lactoz ",activity);
                     updateSensitive.remove(s);
                 }
                 break;
@@ -104,6 +107,7 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
                 if (checked) {
                     updateSensitive.add(s); }
                 else {
+                    Log.d("in agoz ",activity);
                     updateSensitive.remove(s);
                 }
                 break;
@@ -114,6 +118,7 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
                 if (checked) {
                     updateSensitive.add(s); }
                 else {
+                    Log.d("in botnim ",activity);
                     updateSensitive.remove(s);
                 }
                 break;
@@ -124,6 +129,7 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
                 if (checked) {
                     updateSensitive.add(s); }
                 else {
+                    Log.d("in soya ",activity);
                     updateSensitive.remove(s);
                 }
                 break;
@@ -134,7 +140,8 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
                 if (checked) {
                     updateSensitive.add(s); }
                  else {
-                updateSensitive.remove(s);
+                    Log.d("in somsom ",activity);
+                    updateSensitive.remove(s);
                 }
                 break;
             }

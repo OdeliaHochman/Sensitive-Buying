@@ -42,12 +42,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mProgressBar = (ProgressBar) findViewById(R.id.pb_loading);
         TextViewRegister = (TextView) findViewById(R.id.register_txtView);
 
-//        // if the user already login go to search activity
-//        if(firebaseAuth.getCurrentUser()!=null ) {
-//            Intent intent = new Intent(this, HostNavigationActivity.class);
-//            startActivity(intent);
-//            finish(); return;
-//        }
+        // if the user already login go to search activity
+        if(firebaseAuth.getCurrentUser()!=null ) {
+            Intent intent = new Intent(this, HostNavigationActivity.class);
+            startActivity(intent);
+            finish(); return;
+        }
 
         ButtonLogin.setOnClickListener(this);
         TextViewRegister.setOnClickListener(this);
