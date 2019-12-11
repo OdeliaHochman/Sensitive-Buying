@@ -3,6 +3,7 @@ package com.example.sensitivebuying;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,11 +27,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private TextView TextViewRegister;
     private FirebaseAuth firebaseAuth;
     private ProgressBar mProgressBar;
-
+    final String activity = " LoginActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("debug",activity);
         setContentView(R.layout.activity_login);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -40,12 +42,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mProgressBar = (ProgressBar) findViewById(R.id.pb_loading);
         TextViewRegister = (TextView) findViewById(R.id.register_txtView);
 
-        // if the user already login go to search activity
-        if(firebaseAuth.getCurrentUser()!=null ) {
-            Intent intent = new Intent(this, HostNavigationActivity.class);
-            startActivity(intent);
-            finish(); return;
-        }
+//        // if the user already login go to search activity
+//        if(firebaseAuth.getCurrentUser()!=null ) {
+//            Intent intent = new Intent(this, HostNavigationActivity.class);
+//            startActivity(intent);
+//            finish(); return;
+//        }
 
         ButtonLogin.setOnClickListener(this);
         TextViewRegister.setOnClickListener(this);

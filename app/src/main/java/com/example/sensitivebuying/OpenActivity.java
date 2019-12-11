@@ -2,14 +2,18 @@ package com.example.sensitivebuying;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class OpenActivity extends AppCompatActivity {
 
+    final String activity = " OpenActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("debug",activity);
         setContentView(R.layout.activity_open);
 
         new Thread(new Runnable() {

@@ -2,6 +2,7 @@ package com.example.sensitivebuying;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.ViewParent;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class HostNavigationActivity extends AppCompatActivity  {
 
     private AppBarConfiguration mAppBarConfiguration;
+    final String activity = " HostNavigationActivity";
 
 
     DrawerLayout drawer;
@@ -33,6 +35,7 @@ public class HostNavigationActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("debug",activity);
         setContentView(R.layout.activity_host_navigation);
 
         Toolbar toolbar = findViewById(R.id.toolbar);

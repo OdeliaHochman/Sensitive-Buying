@@ -3,6 +3,7 @@ package com.example.sensitivebuying;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,11 +34,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference usersReference;
-
+    final String activity = "RegisterActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("debug",activity);
         setContentView(R.layout.activity_register);
         usersReference= FirebaseDatabase.getInstance().getReference("Users");
         firebaseAuth = FirebaseAuth.getInstance();

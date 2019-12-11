@@ -2,6 +2,7 @@ package com.example.sensitivebuying;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 
 public class SensitiveRegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
+    final String activity = " SensitiveRegisterActivity";
+
     private ArrayList<Sensitive> updateSensitive= new ArrayList<Sensitive>();
     private DatabaseReference usersReference;
     private Button ButtonSave;
@@ -29,8 +32,9 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
     //    private DatabaseReference reference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("debug",activity);
         super.onCreate(savedInstanceState);
-        user = (CustomerUser) getIntent().getSerializableExtra("CustomerUser");
+        user = (CustomerUser) getIntent().getSerializableExtra("CustomerUser"); // recive obj from last activity
         firebaseAuth = FirebaseAuth.getInstance();
         usersReference = FirebaseDatabase.getInstance().getReference("Users");
         setContentView(R.layout.activity_sensitive_register);

@@ -2,6 +2,7 @@ package com.example.sensitivebuying;
 import android.content.Intent;
 //import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,12 +22,13 @@ public class RepresentativeSearchActivity extends AppCompatActivity {
 
  private RecyclerView mRecycler;
 
-
+    final String activity = "RepresentativeSearchActivity";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("debug",activity);
         setContentView(R.layout.activity_representative_search);
 
         mySearchView = (SearchView)findViewById(R.id.searchLine);

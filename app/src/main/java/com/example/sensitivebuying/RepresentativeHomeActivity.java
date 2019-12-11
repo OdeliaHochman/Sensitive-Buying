@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 //import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -24,9 +25,12 @@ public class RepresentativeHomeActivity extends AppCompatActivity implements Vie
    // private TextView companyProT , statT ,contactT ,logOutT;
 
 
+    final String activity = " RepresentativeHomeActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("debug",activity);
         setContentView(R.layout.activity_representative_home);
 
 
