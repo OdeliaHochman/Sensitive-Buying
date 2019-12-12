@@ -9,16 +9,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepresentativeSearchActivity extends AppCompatActivity {
+public class RepresentativeSearchActivity extends AppCompatActivity  {
 
-  private SearchView mySearchView;
+    private SearchView mySearchView;
 
  private RecyclerView mRecycler;
 
@@ -38,7 +38,7 @@ public class RepresentativeSearchActivity extends AppCompatActivity {
         new FirebaseDatabaseHelper().readProducts(new FirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<Product> productsList, List<String> keys) {
-                findViewById(R.id.loading_products).setVisibility(View.GONE);
+               findViewById(R.id.progressBar).setVisibility(View.GONE);
                 new RecyclerView_config().setConfig(mRecycler,RepresentativeSearchActivity.this,productsList,keys);
             }
 

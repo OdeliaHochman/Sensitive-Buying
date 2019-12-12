@@ -140,7 +140,7 @@
 
                 <ImageView
                     android:id="@+id/logOutImage"
-                    android:layout_width="98dp"
+                    android:layout_width="140dp"
                     android:layout_height="101dp"
                     android:layout_marginBottom="4dp"
                     android:src="@drawable/exit" />
