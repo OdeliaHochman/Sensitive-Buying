@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -20,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -41,7 +44,7 @@ public class UpdateFragment extends Fragment  {
     CheckBox eggsCheckBox;
     CheckBox sesameCheckBox;
     CheckBox soyaCheckBox;
-
+    ProgressBar progressBarUpdate;
 
     public UpdateFragment() {
         // Required empty public constructor
@@ -61,124 +64,189 @@ public class UpdateFragment extends Fragment  {
         ButtonSave = v.findViewById(R.id.btnsave_registersens_menu);
         peantsCheckBox=(CheckBox)v.findViewById(R.id.checkBox_peants_menu);
         nutsCheckBox=(CheckBox)v.findViewById(R.id.checkBox_nuts_menu);
-
         lactoseCheckBox=(CheckBox)v.findViewById(R.id.checkBox_lactose_menu);
         glutenCheckBox=(CheckBox)v.findViewById(R.id.checkBox_gluten_menu);
         eggsCheckBox=(CheckBox)v.findViewById(R.id.checkBox_eggs_menu);
         sesameCheckBox=(CheckBox)v.findViewById(R.id.checkBox_sesame_menu);
         soyaCheckBox=(CheckBox)v.findViewById(R.id.checkBox_soya_menu);
 
+        progressBarUpdate = v.findViewById(R.id.pb_update_senstive);
 
-        usersReference .child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        user = dataSnapshot.getValue(CustomerUser.class);
+        final Sensitive eggs = new Sensitive(getString(R.string.eggs),"0");
+        final Sensitive peants = new Sensitive(getString(R.string.peanuts),"1");
+        final Sensitive gluten = new Sensitive(getString(R.string.gluten),"2");
+        final Sensitive nuts = new Sensitive(getString(R.string.nuts),"3");
+        final Sensitive soya = new Sensitive(getString(R.string.soya),"4");
+        final Sensitive lactose = new Sensitive(getString(R.string.lactose),"5");
+        final Sensitive sesame = new Sensitive(getString(R.string.sesame),"6");
+
+        new FirebaseSenstiveUserHelper().readSensitive(new FirebaseSenstiveUserHelper.DataStatus() {
+            @Override
+            public void DataIsLoaded(ArrayList<Sensitive> sensitives, ArrayList<String> keys) {
+
+                if ( sensitives!=null) {
+                    updateSensitive=new ArrayList<>(sensitives);
+
+                    for (Sensitive s : updateSensitive) {
+                        Log.d("debugInToggle",""+s);
+
+                        if (s.equals(eggs)) {
+                            eggsCheckBox.toggle();
+                        }
+
+                        if (s.equals(peants)) {
+                            peantsCheckBox.toggle();
+                        }
+
+                        if (s.equals(gluten)) {
+                            glutenCheckBox.toggle();
+                        }
+
+                        if (s.equals(nuts)) {
+                            nutsCheckBox.toggle();
+                        }
+
+                        if (s.equals(lactose)) {
+                            lactoseCheckBox.toggle();
+                        }
+
+                        if (s.equals(soya)) {
+                            soyaCheckBox.toggle();
+                        }
+
+                        if (s.equals(sesame)) {
+                            sesameCheckBox.toggle();
+                        }
                     }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Log.w("DbError", "loadPost:onCancelled", databaseError.toException());
-
-                    }
-
-                });
-
-        final Sensitive eggs = new Sensitive(getString(R.string.eggs));
-        final Sensitive peants = new Sensitive(getString(R.string.peanuts));
-        final Sensitive gluten = new Sensitive(getString(R.string.gluten));
-        final Sensitive nuts = new Sensitive(getString(R.string.nuts));
-        final Sensitive soya = new Sensitive(getString(R.string.soya));
-        final Sensitive lactose = new Sensitive(getString(R.string.lactose));
-        final Sensitive sesame = new Sensitive(getString(R.string.sesame));
-
-        if( user.getSensitiveList()!=null) {
-            ArrayList<Sensitive> currSenstiveFireBase = user.getSensitiveList();
-            for(Sensitive s: currSenstiveFireBase) {
-                if (s==eggs){
-                    eggsCheckBox.toggle();
                 }
+                inProgress(false);
 
-                if(s==peants){
-                    peantsCheckBox.toggle();
-                }
 
-                if(s==gluten){
-                    peantsCheckBox.toggle();
-                }
-
-                if (s==nuts) {
-                    nutsCheckBox.toggle();
-                }
-
-                if (s==lactose){
-                    lactoseCheckBox.toggle();
-                }
-
-                if (s==soya){
-                    soyaCheckBox.toggle();
-                }
-
-                if (s==sesame){
-                    sesameCheckBox.toggle();
-                }
             }
-        }
+
+            @Override
+            public void DataIsInserted() {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+        }); inProgress(true);
+
 
 
         ButtonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+              //  inProgress(false);
 
 
+                ArrayList<Sensitive> userCheckBoxSensitive= new ArrayList<>();
 
                 if (peantsCheckBox.isChecked()) {
-                    updateSensitive.add(peants);
+                    userCheckBoxSensitive.add(peants);
                 } else {
-                    updateSensitive.remove(peants);
+                    userCheckBoxSensitive.remove(peants);
                 }
 
                 if (eggsCheckBox.isChecked()) {
-                    updateSensitive.add(eggs);
+                    userCheckBoxSensitive.add(eggs);
                 } else {
-                    updateSensitive.remove(eggs);
+                    userCheckBoxSensitive.remove(eggs);
                 }
 
                 if (glutenCheckBox.isChecked()) {
-                    updateSensitive.add(gluten);
+                    userCheckBoxSensitive.add(gluten);
                 } else {
-                    updateSensitive.remove(gluten);
+                    userCheckBoxSensitive.remove(gluten);
                 }
 
                 if (lactoseCheckBox.isChecked()) {
-                    updateSensitive.add(lactose);
+                    userCheckBoxSensitive.add(lactose);
                 } else {
-                    updateSensitive.remove(lactose);
+                    userCheckBoxSensitive.remove(lactose);
                 }
 
                 if (nutsCheckBox.isChecked()) {
-                    updateSensitive.add(nuts);
+                    userCheckBoxSensitive.add(nuts);
                 } else {
-                    updateSensitive.remove(nuts);
+                    userCheckBoxSensitive.remove(nuts);
                 }
 
                 if (soyaCheckBox.isChecked()) {
-                    updateSensitive.add(soya);
+                    userCheckBoxSensitive.add(soya);
                 } else {
-                    updateSensitive.remove(soya);
+                    userCheckBoxSensitive.remove(soya);
                 }
 
                 if (sesameCheckBox.isChecked()) {
-                    updateSensitive.add(sesame);
+                    userCheckBoxSensitive.add(sesame);
                 } else {
-                    updateSensitive.remove(sesame);
+                    userCheckBoxSensitive.remove(sesame);
                 }
 
+                ArrayList<Sensitive> needToDelete = new ArrayList<>(updateSensitive);
+               needToDelete.removeAll(userCheckBoxSensitive);
+
+               for (Sensitive del:needToDelete) {
+    new FirebaseSenstiveUserHelper().deleteData(del.getKey(), new FirebaseSenstiveUserHelper.DataStatus() {
+        @Override
+        public void DataIsLoaded(ArrayList<Sensitive> sensitives, ArrayList<String> keys) {
+
+        }
+
+        @Override
+        public void DataIsInserted() {
+
+        }
+
+        @Override
+        public void DataIsUpdated() {
+
+        }
+
+        @Override
+        public void DataIsDeleted() {
 
 
-                user.setSensitiveList(updateSensitive);
-                usersReference.child(firebaseAuth.getCurrentUser().getUid()).setValue(user);
 
+        }
+    });
+               }
+
+                    for (Sensitive s:userCheckBoxSensitive ) {
+                   new  FirebaseSenstiveUserHelper().addSensitive(s, new FirebaseSenstiveUserHelper.DataStatus() {
+                       @Override
+                       public void DataIsLoaded(ArrayList<Sensitive> sensitives, ArrayList<String> keys) {
+
+                       }
+
+                       @Override
+                       public void DataIsInserted() {
+                           inProgress(false);
+
+                       }
+
+                       @Override
+                       public void DataIsUpdated() {
+
+                       }
+
+                       @Override
+                       public void DataIsDeleted() {
+
+                       }
+                   });
+                }
+                userCheckBoxSensitive.clear();
             }
         });
 
@@ -187,8 +255,18 @@ public class UpdateFragment extends Fragment  {
 
     }
 
+
+    private void  inProgress ( boolean flag) {
+
+        if(flag){
+
+            progressBarUpdate.setVisibility(View.VISIBLE);
         }
 
+        else {
 
+            progressBarUpdate.setVisibility(View.GONE);
+        }
+    }
 
-
+}

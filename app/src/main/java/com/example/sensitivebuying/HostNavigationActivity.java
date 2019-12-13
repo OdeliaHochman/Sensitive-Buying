@@ -43,7 +43,7 @@ public class HostNavigationActivity extends AppCompatActivity  {
 
 
         drawer = findViewById(R.id.nav_main);
-         navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -60,11 +60,11 @@ public class HostNavigationActivity extends AppCompatActivity  {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
                 if (id == R.id.logout) {
-            FirebaseAuth.getInstance().signOut();
-            Intent loginActivity = new Intent(getApplicationContext(), LoginActivity.class);
-            startActivity(loginActivity);
-            finish();
-        }
+                    FirebaseAuth.getInstance().signOut();
+                    Intent loginActivity = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(loginActivity);
+                    finish();
+                }
                 boolean handled = NavigationUI.onNavDestinationSelected(menuItem, navController);
                 if (handled) {
                     ViewParent parent = navigationView.getParent();

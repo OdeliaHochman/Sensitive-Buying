@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -49,8 +50,32 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
     @Override
     public void onClick(View v) {
         if(v==ButtonSave) {
-            user.setSensitiveList(updateSensitive);
-            usersReference.child(firebaseAuth.getCurrentUser().getUid()).setValue(user);
+            for (Sensitive s:updateSensitive ) {
+                new  FirebaseSenstiveUserHelper().addSensitive(s, new FirebaseSenstiveUserHelper.DataStatus() {
+                    @Override
+                    public void DataIsLoaded(ArrayList<Sensitive> sensitives, ArrayList<String> keys) {
+
+                    }
+
+                    @Override
+                    public void DataIsInserted() {
+
+                        Toast.makeText(SensitiveRegisterActivity.this,"הרגישיות עודכנו",Toast.LENGTH_LONG).show();
+
+                    }
+
+                    @Override
+                    public void DataIsUpdated() {
+
+                    }
+
+                    @Override
+                    public void DataIsDeleted() {
+
+                    }
+                });
+            }
+            updateSensitive.clear();
             Intent intent =new Intent(SensitiveRegisterActivity.this,LoginActivity.class);
             startActivity(intent);
         }
@@ -70,7 +95,7 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
         switch(view.getId()) {
             case R.id.checkBox_eggs__registersens:
             {
-                Sensitive s= new Sensitive(getString(R.string.eggs));
+                Sensitive s= new Sensitive(getString(R.string.eggs),"0");
                 if (checked){
                     updateSensitive.add(s);}
                 else {
@@ -80,7 +105,7 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
             }
             case R.id.checkBox_gluten__registersens:
             {
-                Sensitive s= new Sensitive(getString(R.string.gluten));
+                Sensitive s= new Sensitive(getString(R.string.gluten),"2");
 
                 if (checked) {
                     updateSensitive.add(s); }
@@ -91,7 +116,7 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
                 break;
             }
             case R.id.checkBox_lactose_registersens: {
-                Sensitive s= new Sensitive(getString(R.string.lactose));
+                Sensitive s= new Sensitive(getString(R.string.lactose),"5");
 
                 if (checked) {
                     updateSensitive.add(s); }
@@ -102,7 +127,7 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
                 break;
             }
             case R.id.checkBox_nuts_registersens: {
-                Sensitive s= new Sensitive(getString(R.string.nuts));
+                Sensitive s= new Sensitive(getString(R.string.nuts),"3");
 
                 if (checked) {
                     updateSensitive.add(s); }
@@ -113,7 +138,7 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
                 break;
             }
             case R.id.checkBox_peants_registersens: {
-                Sensitive s= new Sensitive(getString(R.string.peanuts));
+                Sensitive s= new Sensitive(getString(R.string.peanuts),"1");
 
                 if (checked) {
                     updateSensitive.add(s); }
@@ -124,7 +149,7 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
                 break;
             }
             case R.id.checkBox_soya_registersens: {
-                Sensitive s= new Sensitive(getString(R.string.soya));
+                Sensitive s= new Sensitive(getString(R.string.soya),"4");
 
                 if (checked) {
                     updateSensitive.add(s); }
@@ -135,7 +160,7 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
                 break;
             }
             case R.id.checkBox_sesame_registersens: {
-                Sensitive s= new Sensitive(getString(R.string.sesame));
+                Sensitive s= new Sensitive(getString(R.string.sesame),"6");
 
                 if (checked) {
                     updateSensitive.add(s); }
