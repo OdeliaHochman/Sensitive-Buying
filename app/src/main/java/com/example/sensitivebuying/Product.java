@@ -3,7 +3,7 @@ package com.example.sensitivebuying;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Product implements Serializable {
+public class Product implements Serializable  {
 
     private String companyName;
     private String productName;
@@ -11,15 +11,15 @@ public class Product implements Serializable {
     private String weightAndType;
     private String productDescription;
     private String urlImage;
-    private ArrayList<Sensitive> sensitiveList;
+    private String sensitiveList;
 
 
 
     public Product() {
-        this.sensitiveList = new ArrayList<>();
+
     }
 
-    public Product(String companyName, String productName, String barcode, String weightAndType, String productDescription, String urlImage, ArrayList<Sensitive> sensitiveList)
+    public Product(String companyName, String productName, String barcode, String weightAndType, String productDescription, String urlImage, String sensitiveList)
     {
         this.companyName = companyName;
         this.productName = productName;
@@ -27,7 +27,7 @@ public class Product implements Serializable {
         this.weightAndType = weightAndType;
         this.productDescription = productDescription;
         this.urlImage = urlImage;
-        this.sensitiveList= new ArrayList<> (sensitiveList);
+        this.sensitiveList=sensitiveList;
 
     }
 
@@ -56,7 +56,7 @@ public class Product implements Serializable {
         this.urlImage = urlImage;
     }
 
-    public void setSensitiveList(ArrayList<Sensitive> sensitiveList) {
+    public void setSensitiveList(String sensitiveList) {
         this.sensitiveList = sensitiveList;
     }
 
@@ -91,7 +91,7 @@ public class Product implements Serializable {
         return urlImage;
     }
 
-    public ArrayList<Sensitive> getSensitiveList()
+    public String getSensitiveList()
     {
         return sensitiveList;
     }

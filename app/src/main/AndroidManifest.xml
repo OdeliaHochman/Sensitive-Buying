@@ -13,12 +13,12 @@
         android:theme="@style/AppTheme.NoActionBar">
 
         <activity android:name=".OpenActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".HostNavigationActivity" />
         <activity android:name=".CustomerDetailsActivity" />
@@ -30,6 +30,7 @@
         <activity android:name=".RepresentativeAddProductActivity" />
         <activity android:name=".RepresentativeSearchActivity" />
         <activity android:name=".RepresentativeHomeActivity" >
+
         </activity>
 
         <activity android:name=".RepresentativeContactUsActivity"/>

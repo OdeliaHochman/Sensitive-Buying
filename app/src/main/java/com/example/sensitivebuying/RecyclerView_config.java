@@ -9,9 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class RecyclerView_config {
+public class RecyclerView_config implements Serializable {
 
     private Context mContext;
     private ProductsAdapter mproductsAdapter;
