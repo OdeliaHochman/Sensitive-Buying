@@ -27,7 +27,7 @@ public class Product implements Serializable  {
         this.weightAndType = weightAndType;
         this.productDescription = productDescription;
         this.urlImage = urlImage;
-        this.sensitiveList=sensitiveList;
+        this.sensitiveList=sensitiveList ;
 
     }
 

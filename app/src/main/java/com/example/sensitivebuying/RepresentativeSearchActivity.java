@@ -12,15 +12,18 @@ import android.widget.SearchView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepresentativeSearchActivity extends AppCompatActivity  {
+public class RepresentativeSearchActivity extends AppCompatActivity implements View.OnClickListener  {
 
     private SearchView mySearchView;
 
  private RecyclerView mRecycler;
+ private FloatingActionButton floatingButton;
 
     final String activity = "RepresentativeSearchActivity";
 
@@ -34,6 +37,9 @@ public class RepresentativeSearchActivity extends AppCompatActivity  {
         mySearchView = (SearchView)findViewById(R.id.searchLine);
 
         mRecycler = (RecyclerView)findViewById(R.id.recyclerView_products);
+
+        floatingButton = (FloatingActionButton)findViewById(R.id.floating_button_search);
+        floatingButton.setOnClickListener(this);
 
         new FirebaseDatabaseHelper().readProducts(new FirebaseDatabaseHelper.DataStatus() {
             @Override
@@ -85,5 +91,13 @@ public class RepresentativeSearchActivity extends AppCompatActivity  {
 
     }
 
+    @Override
+    public void onClick(View v) {
 
+        if(v == floatingButton)
+        {
+            Intent intent = new Intent(RepresentativeSearchActivity.this,RepresentativeAddProductActivity.class);
+            startActivity(intent);
+        }
+    }
 }
