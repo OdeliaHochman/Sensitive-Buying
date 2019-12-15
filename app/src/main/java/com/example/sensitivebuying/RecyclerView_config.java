@@ -39,7 +39,7 @@ public class RecyclerView_config implements Serializable {
         private TextView mBarcode;
         private String key;
         private ImageView productIm;
-     
+
 
         public ProductItemView (ViewGroup parent)
         {
