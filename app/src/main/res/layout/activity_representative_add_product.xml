@@ -1,23 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".RepresentativeAddProductActivity">
 
-    <ImageView
-        android:id="@+id/bgapp4"
-        android:layout_width="411dp"
-        android:layout_height="729dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/orangeback"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+    <LinearLayout
+        android:gravity="right"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
 
+        <TextView
+            android:id="@+id/titleLogin_txtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="הכנס מוצר חדש"
+            android:textSize="22dp"/>
+
+        <EditText
+            android:id="@+id/barcode_editTxt"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="קוד-בר:" />
+
+        <EditText
+            android:id="@+id/company_editTxt"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="right"
+            android:hint="שם חברה:" />
+
+        <EditText
+            android:id="@+id/information_editTxt"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="right"
+            android:hint="מידע על המוצר:" />
+
+        <EditText
+            android:id="@+id/nameProduct_editTxt"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="right"
+            android:hint="שם המוצר:" />
+
+        <EditText
+            android:id="@+id/senstive_editTxt"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="right"
+            android:hint="רגישויות המוצר:" />
+
+        <EditText
+            android:id="@+id/image_editTxt"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="right"
+            android:hint="תמונה:" />
+
+        <EditText
+            android:id="@+id/weight_editTxt"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="right"
+            android:hint="משקל מוצר:" />
+
+
+        <Button
+            android:id="@+id/update_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="הוסף מוצר" />
+
+
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_height="250dp"
+            android:layout_width="60dp"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            />
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
