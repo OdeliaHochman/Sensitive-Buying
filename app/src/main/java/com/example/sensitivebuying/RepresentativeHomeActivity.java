@@ -20,7 +20,7 @@ public class RepresentativeHomeActivity extends AppCompatActivity implements Vie
 
     private ImageView companyProI , statI ,contactI ,logOutI;
    private ImageView bgapp, clover;
-    private LinearLayout textsplash, texthome, menus;
+    private LinearLayout textsplash,menus;
     private Animation frombottom;
    // private TextView companyProT , statT ,contactT ,logOutT;
 
