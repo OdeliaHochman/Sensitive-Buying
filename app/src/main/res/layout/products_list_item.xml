@@ -10,8 +10,8 @@
         android:id="@+id/productName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="76dp"
         android:text="productName"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,12 +22,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="76dp"
         android:layout_marginBottom="8dp"
         android:text="weight"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productName" />
+        app:layout_constraintTop_toBottomOf="@+id/productName"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/companyName"
@@ -54,7 +55,15 @@
         app:layout_constraintTop_toBottomOf="@+id/companyName"
         app:layout_constraintVertical_bias="0.375" />
 
-
+    <ImageView
+        android:id="@+id/imageView_productsList"
+        android:layout_width="59dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

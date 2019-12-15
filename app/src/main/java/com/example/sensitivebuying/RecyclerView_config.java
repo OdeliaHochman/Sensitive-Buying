@@ -1,13 +1,18 @@
 package com.example.sensitivebuying;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+
+import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
 import java.util.List;
@@ -30,9 +35,11 @@ public class RecyclerView_config implements Serializable {
 
         private TextView mNamePro;
         private TextView mWeight;
-        private TextView mSOME;
+        private TextView mCompanyName;
         private TextView mBarcode;
         private String key;
+        private ImageView productIm;
+     
 
         public ProductItemView (ViewGroup parent)
         {
@@ -40,16 +47,20 @@ public class RecyclerView_config implements Serializable {
 
             mNamePro =(TextView)itemView.findViewById(R.id.productName);
             mWeight =(TextView)itemView.findViewById(R.id.weight);
-            mSOME =(TextView)itemView.findViewById(R.id.companyName);
+            mCompanyName =(TextView)itemView.findViewById(R.id.companyName);
             mBarcode =(TextView)itemView.findViewById(R.id.barcode);
+            productIm = (ImageView)itemView.findViewById(R.id.imageView_productsList);
+
+
         }
 
         public void bind(Product product , String key)
         {
             mNamePro.setText(product.getProductName());
-            mSOME.setText(product.getCompanyName());
+            mCompanyName.setText(product.getCompanyName());
             mWeight.setText(product.getWeightAndType());
             mBarcode.setText(product.getBarcode());
+            Picasso.get().load(product.getUrlImage()).into(productIm);
             this.key=key;
         }
 
