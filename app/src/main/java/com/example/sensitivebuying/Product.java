@@ -11,7 +11,7 @@ public class Product implements Serializable  {
     private String weightAndType;
     private String productDescription;
     private String urlImage;
-    private String sensitiveList;
+    private ArrayList<Sensitive> sensitiveList;
 
 
 
@@ -19,7 +19,7 @@ public class Product implements Serializable  {
 
     }
 
-    public Product(String companyName, String productName, String barcode, String weightAndType, String productDescription, String urlImage, String sensitiveList)
+    public Product(String companyName, String productName, String barcode, String weightAndType, String productDescription, String urlImage, ArrayList<Sensitive> sensitiveList)
     {
         this.companyName = companyName;
         this.productName = productName;
@@ -56,8 +56,8 @@ public class Product implements Serializable  {
         this.urlImage = urlImage;
     }
 
-    public void setSensitiveList(String sensitiveList) {
-        this.sensitiveList = sensitiveList;
+    public void setSensitiveList(ArrayList<Sensitive> sensitiveList) {
+        this.sensitiveList = new ArrayList<>(sensitiveList);
     }
 
     public String getCompanyName()
@@ -91,7 +91,7 @@ public class Product implements Serializable  {
         return urlImage;
     }
 
-    public String getSensitiveList()
+    public ArrayList<Sensitive> getSensitiveList()
     {
         return sensitiveList;
     }

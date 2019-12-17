@@ -15,16 +15,16 @@ import com.google.firebase.database.FirebaseDatabase;
 public class RepresentativeAddProductActivity extends AppCompatActivity{
 
     private Button ButtonUpdateProduct;
-    FirebaseDatabaseHelper addFirebase;
-    EditText codebar;
-    EditText nameCompany;
-    EditText infoProduct;
-    EditText nameProduct;
-    EditText sensitives;
-    EditText urlImage;
-    EditText weightSen;
+    private  FirebaseDatabaseHelper addFirebase;
+    private EditText codebar;
+    private EditText nameCompany;
+    private EditText infoProduct;
+    private EditText nameProduct;
+    private EditText sensitives;
+    private EditText urlImage;
+    private EditText weightSen;
 
-    DatabaseReference reference;
+    private DatabaseReference reference;
 
     final String activity = " RepresentativeAddProductActivity";
 

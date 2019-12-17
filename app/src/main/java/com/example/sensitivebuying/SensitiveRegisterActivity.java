@@ -171,6 +171,42 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
                 break;
             }
 
+            case R.id.checkBox_pine_nut_registersens: {
+                Sensitive s= new Sensitive(getString(R.string.pine_nut),"7");
+
+                if (checked) {
+                    updateSensitive.add(s); }
+                else {
+                    Log.d("in pine_nut ",activity);
+                    updateSensitive.remove(s);
+                }
+                break;
+            }
+
+            case R.id.checkBox_sinapis_registersens: {
+                Sensitive s= new Sensitive(getString(R.string.sinapis),"8");
+
+                if (checked) {
+                    updateSensitive.add(s); }
+                else {
+                    Log.d("in sinapis ",activity);
+                    updateSensitive.remove(s);
+                }
+                break;
+            }
+
+            case R.id.checkBox_celery_registersens: {
+                Sensitive s= new Sensitive(getString(R.string.celery),"9");
+
+                if (checked) {
+                    updateSensitive.add(s); }
+                else {
+                    Log.d("in celery ",activity);
+                    updateSensitive.remove(s);
+                }
+                break;
+            }
+
         }
     }
 

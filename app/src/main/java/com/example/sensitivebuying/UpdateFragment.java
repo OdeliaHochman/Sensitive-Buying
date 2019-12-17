@@ -38,14 +38,11 @@ public class UpdateFragment extends Fragment  {
     private CustomerUser user;
     private View v;
     final String activity = "  UpdateFragment";
-    CheckBox peantsCheckBox;
-    CheckBox nutsCheckBox;
-    CheckBox lactoseCheckBox;
-    CheckBox glutenCheckBox;
-    CheckBox eggsCheckBox;
-    CheckBox sesameCheckBox;
-    CheckBox soyaCheckBox;
-    ProgressBar progressBarUpdate;
+    private CheckBox peantsCheckBox,nutsCheckBox,lactoseCheckBox,glutenCheckBox;
+    private CheckBox eggsCheckBox,sesameCheckBox,soyaCheckBox;
+    private CheckBox pine_nutCheckBox,sinapisCheckBox,celeryCheckBox ;
+
+    private ProgressBar progressBarUpdate;
     final Sensitive eggs = new Sensitive("ביצים","0");
     final Sensitive peants = new Sensitive("בוטנים","1");
     final Sensitive gluten = new Sensitive("גלוטן","2");
@@ -53,6 +50,9 @@ public class UpdateFragment extends Fragment  {
     final Sensitive soya = new Sensitive("סויה","4");
     final Sensitive lactose = new Sensitive("לקטוז","5");
     final Sensitive sesame = new Sensitive("שומשום","6");
+    final Sensitive pine_nut = new Sensitive("צנובר","7");
+    final Sensitive sinapis = new Sensitive("חרדל","8");
+    final Sensitive celery = new Sensitive("סלרי","9");
 
     public UpdateFragment() {
         // Required empty public constructor
@@ -77,6 +77,9 @@ public class UpdateFragment extends Fragment  {
         eggsCheckBox=(CheckBox)v.findViewById(R.id.checkBox_eggs_menu);
         sesameCheckBox=(CheckBox)v.findViewById(R.id.checkBox_sesame_menu);
         soyaCheckBox=(CheckBox)v.findViewById(R.id.checkBox_soya_menu);
+        pine_nutCheckBox=(CheckBox)v.findViewById(R.id.checkBox_pine_nut_menu);
+        sinapisCheckBox=(CheckBox)v.findViewById(R.id.checkBox_sinapis_menu);
+        celeryCheckBox=(CheckBox)v.findViewById(R.id.checkBox_celery_menu);
 
         progressBarUpdate = v.findViewById(R.id.pb_update_senstive);
 
@@ -134,6 +137,22 @@ public class UpdateFragment extends Fragment  {
                     userCheckBoxSensitive.add(sesame);
                 } else {
                     userCheckBoxSensitive.remove(sesame);
+                }
+
+                if (pine_nutCheckBox.isChecked()) {
+                    userCheckBoxSensitive.add(pine_nut);
+                } else {
+                    userCheckBoxSensitive.remove(pine_nut);
+                }
+                if (sinapisCheckBox.isChecked()) {
+                    userCheckBoxSensitive.add(sinapis);
+                } else {
+                    userCheckBoxSensitive.remove(sinapis);
+                }
+                if (celeryCheckBox.isChecked()) {
+                    userCheckBoxSensitive.add(celery);
+                } else {
+                    userCheckBoxSensitive.remove(celery);
                 }
 
                 deleteUnChecked(userCheckBoxSensitive);
@@ -283,6 +302,20 @@ private void addSensitive( ArrayList<Sensitive> userCheckBoxSensitive)  {
                 sesameCheckBox.setChecked(true);
             }
 
+            if (s.equals(pine_nut)) {
+            pine_nutCheckBox.setChecked(true);
+
+            }
+
+            if (s.equals(sinapis)) {
+            sinapisCheckBox.setChecked(true);
+
+            }
+            if (s.equals(celery)) {
+            celeryCheckBox.setChecked(true);
+
+            }
+
     }
 
     private void unCheck (Sensitive s) {
@@ -313,6 +346,18 @@ private void addSensitive( ArrayList<Sensitive> userCheckBoxSensitive)  {
 
         if (s.equals(sesame)) {
             sesameCheckBox.setChecked(false);
+        }
+
+        if (s.equals(pine_nut)) {
+            pine_nutCheckBox.setChecked(false);
+        }
+
+        if (s.equals(sinapis)) {
+            sinapisCheckBox.setChecked(false);
+        }
+
+        if (s.equals(celery)) {
+            celeryCheckBox.setChecked(false);
         }
 
     }
