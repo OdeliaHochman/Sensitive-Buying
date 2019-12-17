@@ -61,7 +61,7 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
                     @Override
                     public void DataIsInserted() {
 
-                        Toast.makeText(SensitiveRegisterActivity.this,"הרגישיות עודכנו",Toast.LENGTH_LONG).show();
+                        Toast.makeText(SensitiveRegisterActivity.this,"הרגישויות עודכנו",Toast.LENGTH_LONG).show();
 
                     }
 
