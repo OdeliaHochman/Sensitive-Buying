@@ -27,6 +27,7 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
     private FirebaseAuth firebaseAuth;
     private CustomerUser user;
     private  TextView skipT;
+    private final SenstivieListFinal sensList = new SenstivieListFinal ();
 
 
 
@@ -95,114 +96,104 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
         switch(view.getId()) {
             case R.id.checkBox_eggs__registersens:
             {
-                Sensitive s= new Sensitive(getString(R.string.eggs),"0");
                 if (checked){
-                    updateSensitive.add(s);}
+                    updateSensitive.add(sensList.eggs);}
                 else {
                     Log.d("in egg ",activity);
-                    updateSensitive.remove(s); }
+                    updateSensitive.remove(sensList.eggs); }
                 break;
             }
             case R.id.checkBox_gluten__registersens:
             {
-                Sensitive s= new Sensitive(getString(R.string.gluten),"2");
 
                 if (checked) {
-                    updateSensitive.add(s); }
+                    updateSensitive.add(sensList.gluten); }
                 else {
                     Log.d("in gluten ",activity);
-                    updateSensitive.remove(s);
+                    updateSensitive.remove(sensList.gluten);
                 }
                 break;
             }
             case R.id.checkBox_lactose_registersens: {
-                Sensitive s= new Sensitive(getString(R.string.lactose),"5");
 
                 if (checked) {
-                    updateSensitive.add(s); }
+                    updateSensitive.add(sensList.lactose); }
                 else {
                     Log.d("in lactoz ",activity);
-                    updateSensitive.remove(s);
+                    updateSensitive.remove(sensList.lactose);
                 }
                 break;
             }
             case R.id.checkBox_nuts_registersens: {
-                Sensitive s= new Sensitive(getString(R.string.nuts),"3");
 
                 if (checked) {
-                    updateSensitive.add(s); }
+                    updateSensitive.add(sensList.nuts); }
                 else {
                     Log.d("in agoz ",activity);
-                    updateSensitive.remove(s);
+                    updateSensitive.remove(sensList.nuts);
                 }
                 break;
             }
             case R.id.checkBox_peants_registersens: {
-                Sensitive s= new Sensitive(getString(R.string.peanuts),"1");
 
                 if (checked) {
-                    updateSensitive.add(s); }
+                    updateSensitive.add(sensList.peants); }
                 else {
                     Log.d("in botnim ",activity);
-                    updateSensitive.remove(s);
+                    updateSensitive.remove(sensList.peants);
                 }
                 break;
             }
             case R.id.checkBox_soya_registersens: {
-                Sensitive s= new Sensitive(getString(R.string.soya),"4");
 
                 if (checked) {
-                    updateSensitive.add(s); }
+                    updateSensitive.add(sensList.soya); }
                 else {
                     Log.d("in soya ",activity);
-                    updateSensitive.remove(s);
+                    updateSensitive.remove(sensList.soya);
                 }
                 break;
             }
             case R.id.checkBox_sesame_registersens: {
-                Sensitive s= new Sensitive(getString(R.string.sesame),"6");
 
                 if (checked) {
-                    updateSensitive.add(s); }
+                    updateSensitive.add(sensList.sesame); }
                  else {
                     Log.d("in somsom ",activity);
-                    updateSensitive.remove(s);
+                    updateSensitive.remove(sensList.sesame);
                 }
                 break;
             }
 
             case R.id.checkBox_pine_nut_registersens: {
-                Sensitive s= new Sensitive(getString(R.string.pine_nut),"7");
 
                 if (checked) {
-                    updateSensitive.add(s); }
+                    updateSensitive.add(sensList.pine_nut); }
                 else {
                     Log.d("in pine_nut ",activity);
-                    updateSensitive.remove(s);
+                    updateSensitive.remove(sensList.pine_nut);
                 }
                 break;
             }
 
             case R.id.checkBox_sinapis_registersens: {
-                Sensitive s= new Sensitive(getString(R.string.sinapis),"8");
 
                 if (checked) {
-                    updateSensitive.add(s); }
+                    updateSensitive.add(sensList.sinapis); }
                 else {
                     Log.d("in sinapis ",activity);
-                    updateSensitive.remove(s);
+                    updateSensitive.remove(sensList.sinapis);
                 }
                 break;
             }
 
             case R.id.checkBox_celery_registersens: {
-                Sensitive s= new Sensitive(getString(R.string.celery),"9");
 
                 if (checked) {
-                    updateSensitive.add(s); }
+                    updateSensitive.add(sensList.celery); }
                 else {
                     Log.d("in celery ",activity);
-                    updateSensitive.remove(s);
+                    updateSensitive.remove(sensList.celery);
                 }
                 break;
             }

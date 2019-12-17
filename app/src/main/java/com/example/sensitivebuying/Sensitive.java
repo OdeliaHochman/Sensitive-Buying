@@ -7,25 +7,25 @@ import java.io.Serializable;
 
 public class Sensitive implements Serializable {
 
-    private String key;
+    private String sensitiveKey;
     private String sensitiveType;
 
     public Sensitive()
     {
     }
 
-    public Sensitive(String sensitiveType, String key)
+    public Sensitive(String sensitiveType, String sensitiveKey)
     {
         this.sensitiveType = sensitiveType;
-        this.key=key;
+        this.sensitiveKey=sensitiveKey;
     }
 
     public String getKey() {
-        return key;
+        return sensitiveKey;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setKey(String sensitiveKey) {
+        this.sensitiveKey = sensitiveKey;
     }
 
     public String getSensitiveType()

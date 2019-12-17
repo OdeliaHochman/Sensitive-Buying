@@ -51,7 +51,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity{
                 product.setCompanyName(nameCompany.getText().toString().trim());
                 product.setProductDescription(infoProduct.getText().toString().trim());
                 product.setProductName(infoProduct.getText().toString().trim());
-                product.setSensitiveList(sensitives.getText().toString().trim());
+             //   product.setSensitiveList(sensitives.getText().toString().trim());
                 product.setUrlImage(urlImage.getText().toString().trim());
                 product.setWeightAndType(weightSen.getText().toString().trim());
                 reference.push().setValue(product);

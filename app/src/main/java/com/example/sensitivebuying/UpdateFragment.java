@@ -43,16 +43,18 @@ public class UpdateFragment extends Fragment  {
     private CheckBox pine_nutCheckBox,sinapisCheckBox,celeryCheckBox ;
 
     private ProgressBar progressBarUpdate;
-    final Sensitive eggs = new Sensitive("ביצים","0");
-    final Sensitive peants = new Sensitive("בוטנים","1");
-    final Sensitive gluten = new Sensitive("גלוטן","2");
-    final Sensitive nuts = new Sensitive("אגוזים","3");
-    final Sensitive soya = new Sensitive("סויה","4");
-    final Sensitive lactose = new Sensitive("לקטוז","5");
-    final Sensitive sesame = new Sensitive("שומשום","6");
-    final Sensitive pine_nut = new Sensitive("צנובר","7");
-    final Sensitive sinapis = new Sensitive("חרדל","8");
-    final Sensitive celery = new Sensitive("סלרי","9");
+//    final Sensitive eggs = new Sensitive("ביצים","0");
+//    final Sensitive peants = new Sensitive("בוטנים","1");
+//    final Sensitive gluten = new Sensitive("גלוטן","2");
+//    final Sensitive nuts = new Sensitive("אגוזים","3");
+//    final Sensitive soya = new Sensitive("סויה","4");
+//    final Sensitive lactose = new Sensitive("לקטוז","5");
+//    final Sensitive sesame = new Sensitive("שומשום","6");
+//    final Sensitive pine_nut = new Sensitive("צנובר","7");
+//    final Sensitive sinapis = new Sensitive("חרדל","8");
+//    final Sensitive celery = new Sensitive("סלרי","9");
+
+    final SenstivieListFinal senList= new SenstivieListFinal();
 
     public UpdateFragment() {
         // Required empty public constructor
@@ -98,61 +100,61 @@ public class UpdateFragment extends Fragment  {
                 ArrayList<Sensitive> userCheckBoxSensitive= new ArrayList<>();
 
                 if (peantsCheckBox.isChecked()) {
-                    userCheckBoxSensitive.add(peants);
+                    userCheckBoxSensitive.add(senList.peants);
                 } else {
-                    userCheckBoxSensitive.remove(peants);
+                    userCheckBoxSensitive.remove(senList.peants);
                 }
 
                 if (eggsCheckBox.isChecked()) {
-                    userCheckBoxSensitive.add(eggs);
+                    userCheckBoxSensitive.add(senList.eggs);
                 } else {
-                    userCheckBoxSensitive.remove(eggs);
+                    userCheckBoxSensitive.remove(senList.eggs);
                 }
 
                 if (glutenCheckBox.isChecked()) {
-                    userCheckBoxSensitive.add(gluten);
+                    userCheckBoxSensitive.add(senList.gluten);
                 } else {
-                    userCheckBoxSensitive.remove(gluten);
+                    userCheckBoxSensitive.remove(senList.gluten);
                 }
 
                 if (lactoseCheckBox.isChecked()) {
-                    userCheckBoxSensitive.add(lactose);
+                    userCheckBoxSensitive.add(senList.lactose);
                 } else {
-                    userCheckBoxSensitive.remove(lactose);
+                    userCheckBoxSensitive.remove(senList.lactose);
                 }
 
                 if (nutsCheckBox.isChecked()) {
-                    userCheckBoxSensitive.add(nuts);
+                    userCheckBoxSensitive.add(senList.nuts);
                 } else {
-                    userCheckBoxSensitive.remove(nuts);
+                    userCheckBoxSensitive.remove(senList.nuts);
                 }
 
                 if (soyaCheckBox.isChecked()) {
-                    userCheckBoxSensitive.add(soya);
+                    userCheckBoxSensitive.add(senList.soya);
                 } else {
-                    userCheckBoxSensitive.remove(soya);
+                    userCheckBoxSensitive.remove(senList.soya);
                 }
 
                 if (sesameCheckBox.isChecked()) {
-                    userCheckBoxSensitive.add(sesame);
+                    userCheckBoxSensitive.add(senList.sesame);
                 } else {
-                    userCheckBoxSensitive.remove(sesame);
+                    userCheckBoxSensitive.remove(senList.sesame);
                 }
 
                 if (pine_nutCheckBox.isChecked()) {
-                    userCheckBoxSensitive.add(pine_nut);
+                    userCheckBoxSensitive.add(senList.pine_nut);
                 } else {
-                    userCheckBoxSensitive.remove(pine_nut);
+                    userCheckBoxSensitive.remove(senList.pine_nut);
                 }
                 if (sinapisCheckBox.isChecked()) {
-                    userCheckBoxSensitive.add(sinapis);
+                    userCheckBoxSensitive.add(senList.sinapis);
                 } else {
-                    userCheckBoxSensitive.remove(sinapis);
+                    userCheckBoxSensitive.remove(senList.sinapis);
                 }
                 if (celeryCheckBox.isChecked()) {
-                    userCheckBoxSensitive.add(celery);
+                    userCheckBoxSensitive.add(senList.celery);
                 } else {
-                    userCheckBoxSensitive.remove(celery);
+                    userCheckBoxSensitive.remove(senList.celery);
                 }
 
                 deleteUnChecked(userCheckBoxSensitive);
@@ -274,44 +276,44 @@ private void addSensitive( ArrayList<Sensitive> userCheckBoxSensitive)  {
     }
 
     private void check (Sensitive s) {
-            if (s.equals(eggs)) {
+            if (s.equals(senList.eggs)) {
                 eggsCheckBox.setChecked(true);
             }
 
-            if (s.equals(peants)) {
+            if (s.equals(senList.peants)) {
                 peantsCheckBox.setChecked(true);
             }
 
-            if (s.equals(gluten)) {
+            if (s.equals(senList.gluten)) {
                 glutenCheckBox.setChecked(true);
             }
 
-            if (s.equals(nuts)) {
+            if (s.equals(senList.nuts)) {
                 nutsCheckBox.setChecked(true);
             }
 
-            if (s.equals(lactose)) {
+            if (s.equals(senList.lactose)) {
                 lactoseCheckBox.setChecked(true);
             }
 
-            if (s.equals(soya)) {
+            if (s.equals(senList.soya)) {
                 soyaCheckBox.setChecked(true);
             }
 
-            if (s.equals(sesame)) {
+            if (s.equals(senList.sesame)) {
                 sesameCheckBox.setChecked(true);
             }
 
-            if (s.equals(pine_nut)) {
+            if (s.equals(senList.pine_nut)) {
             pine_nutCheckBox.setChecked(true);
 
             }
 
-            if (s.equals(sinapis)) {
+            if (s.equals(senList.sinapis)) {
             sinapisCheckBox.setChecked(true);
 
             }
-            if (s.equals(celery)) {
+            if (s.equals(senList.celery)) {
             celeryCheckBox.setChecked(true);
 
             }
@@ -320,43 +322,43 @@ private void addSensitive( ArrayList<Sensitive> userCheckBoxSensitive)  {
 
     private void unCheck (Sensitive s) {
 
-        if (s.equals(eggs)) {
+        if (s.equals(senList.eggs)) {
             eggsCheckBox.setChecked(false);
         }
 
-        if (s.equals(peants)) {
+        if (s.equals(senList.peants)) {
             peantsCheckBox.setChecked(false);
         }
 
-        if (s.equals(gluten)) {
+        if (s.equals(senList.gluten)) {
             glutenCheckBox.setChecked(false);
         }
 
-        if (s.equals(nuts)) {
+        if (s.equals(senList.nuts)) {
             nutsCheckBox.setChecked(false);
         }
 
-        if (s.equals(lactose)) {
+        if (s.equals(senList.lactose)) {
             lactoseCheckBox.setChecked(false);
         }
 
-        if (s.equals(soya)) {
+        if (s.equals(senList.soya)) {
             soyaCheckBox.setChecked(false);
         }
 
-        if (s.equals(sesame)) {
+        if (s.equals(senList.sesame)) {
             sesameCheckBox.setChecked(false);
         }
 
-        if (s.equals(pine_nut)) {
+        if (s.equals(senList.pine_nut)) {
             pine_nutCheckBox.setChecked(false);
         }
 
-        if (s.equals(sinapis)) {
+        if (s.equals(senList.sinapis)) {
             sinapisCheckBox.setChecked(false);
         }
 
-        if (s.equals(celery)) {
+        if (s.equals(senList.celery)) {
             celeryCheckBox.setChecked(false);
         }
 
