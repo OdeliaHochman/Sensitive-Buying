@@ -41,7 +41,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity{
         urlImage=findViewById(R.id.image_editTxt);
         weightSen=findViewById(R.id.weight_editTxt);
         ButtonUpdateProduct=findViewById(R.id.update_button);
-        reference= FirebaseDatabase.getInstance().getReference().child("Products");
+
         final Product product= new Product();
         ButtonUpdateProduct.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +54,8 @@ public class RepresentativeAddProductActivity extends AppCompatActivity{
              //   product.setSensitiveList(sensitives.getText().toString().trim());
                 product.setUrlImage(urlImage.getText().toString().trim());
                 product.setWeightAndType(weightSen.getText().toString().trim());
-                reference.push().setValue(product);
+                reference= FirebaseDatabase.getInstance().getReference().child("Products").child(codebar.getText().toString());//.child(product.getBarcode());
+                reference.setValue(product);
             }
         });
     }
