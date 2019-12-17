@@ -2,6 +2,7 @@ package com.example.sensitivebuying;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -58,6 +59,39 @@ public class FirebaseDatabaseHelper implements Serializable {
             }
         });
     }
+
+    public void addProduct(Product product , final DataStatus dataStatus)
+    {
+        String key = mReference.push().getKey();
+        mReference.child(key).setValue(product).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                dataStatus.DataIsInserted();
+            }
+        });
+    }
+    public void updateProduct(String key,Product product,final DataStatus dataStatus)
+    {
+        mReference.child(key).setValue(product).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                dataStatus.DataIsUpdated();
+            }
+        });
+    }
+
+    public void deleteProduct(String key , final DataStatus dataStatus)
+    {
+        mReference.child(key).setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                dataStatus.DataIsDeleted();
+            }
+        });
+    }
+
+
+
 
 
 }

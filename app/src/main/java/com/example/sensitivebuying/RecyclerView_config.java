@@ -1,8 +1,10 @@
 package com.example.sensitivebuying;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -51,6 +53,19 @@ public class RecyclerView_config implements Serializable {
             mBarcode =(TextView)itemView.findViewById(R.id.barcode);
             productIm = (ImageView)itemView.findViewById(R.id.imageView_productsList);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext,RepresentativeProductDetailsActivity.class);
+                    intent.putExtra("key",key);
+                    intent.putExtra("product name",mNamePro.getText().toString());
+                    intent.putExtra("weight",mWeight.getText().toString());
+                    intent.putExtra("company name",mCompanyName.getText().toString());
+                    intent.putExtra("barcode",mBarcode.getText().toString());
+                  //  intent.putExtra("product image",productIm.getText().toString());
+
+                }
+            });
 
         }
 

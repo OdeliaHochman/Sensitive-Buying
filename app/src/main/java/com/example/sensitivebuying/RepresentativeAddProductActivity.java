@@ -5,16 +5,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.List;
+
 public class RepresentativeAddProductActivity extends AppCompatActivity{
 
-    private Button ButtonUpdateProduct;
+    private Button btnSave;
     private  FirebaseDatabaseHelper addFirebase;
     private EditText codebar;
     private EditText nameCompany;
@@ -40,24 +42,50 @@ public class RepresentativeAddProductActivity extends AppCompatActivity{
         sensitives=findViewById(R.id.senstive_editTxt);
         urlImage=findViewById(R.id.image_editTxt);
         weightSen=findViewById(R.id.weight_editTxt);
-        ButtonUpdateProduct=findViewById(R.id.update_button);
+        btnSave =findViewById(R.id.save_button);
 
-        final Product product= new Product();
-        ButtonUpdateProduct.setOnClickListener(new View.OnClickListener() {
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                product.setBarcode(codebar.getText().toString().trim());
-                product.setCompanyName(nameCompany.getText().toString().trim());
-                product.setProductDescription(infoProduct.getText().toString().trim());
-                product.setProductName(nameProduct.getText().toString().trim());
-             //   product.setSensitiveList(sensitives.getText().toString().trim());
-                product.setUrlImage(urlImage.getText().toString().trim());
-                product.setWeightAndType(weightSen.getText().toString().trim());
-                reference= FirebaseDatabase.getInstance().getReference().child("Products").child(codebar.getText().toString());//.child(product.getBarcode());
-                reference.setValue(product);
+                Product product= new Product();
+                product.setBarcode(codebar.getText().toString());
+                product.setCompanyName(nameCompany.getText().toString());
+                product.setProductDescription(infoProduct.getText().toString());
+                product.setProductName(nameProduct.getText().toString());
+             //   product.setSensitiveList(sensitives.getText().toString());
+                product.setUrlImage(urlImage.getText().toString());
+                product.setWeightAndType(weightSen.getText().toString());
+//                reference= FirebaseDatabase.getInstance().getReference().child("Products").child(codebar.getText().toString());
+//                reference.setValue(product);
+                new FirebaseDatabaseHelper().addProduct(product, new FirebaseDatabaseHelper.DataStatus() {
+                    @Override
+                    public void DataIsLoaded(List<Product> productsList, List<String> keys) {
+
+                    }
+
+                    @Override
+                    public void DataIsInserted() {
+
+                        Toast.makeText(RepresentativeAddProductActivity.this,"המוצר התווסף בהצלחה" , Toast.LENGTH_LONG).show();
+
+                    }
+
+                    @Override
+                    public void DataIsUpdated() {
+
+                    }
+
+                    @Override
+                    public void DataIsDeleted() {
+
+                    }
+                });
             }
         });
+
+
     }
 
 }
