@@ -50,7 +50,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity{
                 product.setBarcode(codebar.getText().toString().trim());
                 product.setCompanyName(nameCompany.getText().toString().trim());
                 product.setProductDescription(infoProduct.getText().toString().trim());
-                product.setProductName(infoProduct.getText().toString().trim());
+                product.setProductName(nameProduct.getText().toString().trim());
              //   product.setSensitiveList(sensitives.getText().toString().trim());
                 product.setUrlImage(urlImage.getText().toString().trim());
                 product.setWeightAndType(weightSen.getText().toString().trim());
