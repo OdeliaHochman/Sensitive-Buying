@@ -18,6 +18,13 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,6 +35,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth firebaseAuth;
     private ProgressBar mProgressBar;
     final String activity = " LoginActivity";
+    private FirebaseUser autoUser;
+    private User user;
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,18 +46,35 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Log.d("debug",activity);
         setContentView(R.layout.activity_login);
 
+        mDatabase = FirebaseDatabase.getInstance();
+        mReference = mDatabase.getReference("Users");
         firebaseAuth = FirebaseAuth.getInstance();
         EditTextEmail =  (EditText) findViewById(R.id.email_editTxt);
         EditTextPassword =  (EditText) findViewById(R.id.password_editTxt);
         ButtonLogin =  (Button) findViewById(R.id.login_button);
         mProgressBar = (ProgressBar) findViewById(R.id.pb_loading);
         TextViewRegister = (TextView) findViewById(R.id.register_txtView);
+        autoUser = firebaseAuth.getCurrentUser();
+
+
 
         // if the user already login go to search activity
-        if(firebaseAuth.getCurrentUser()!=null ) {
-            Intent intent = new Intent(this, HostNavigationActivity.class);
-            startActivity(intent);
-            finish(); return;
+        if(autoUser!=null ) {
+//
+//            setUser();
+//            if(user.isRep())
+//            {
+//                Intent intent = new Intent(this,RepresentativeSearchActivity.class);
+//                startActivity(intent);
+//                finish(); return;
+//            }
+//            else
+//            {
+                Intent intent = new Intent(this, HostNavigationActivity.class);
+                startActivity(intent);
+                finish(); return;
+//            }
+//
         }
 
         ButtonLogin.setOnClickListener(this);
@@ -78,9 +106,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(LoginActivity.this,"התחברת בהצלחה", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(LoginActivity.this, HostNavigationActivity.class);
-                startActivity(intent);
-                finish(); return;
+                //setUser();
+//                if(user.isRep())
+//                {
+//                    Intent intent = new Intent(LoginActivity.this, RepresentativeSearchActivity.class);
+//                    startActivity(intent);
+//                    finish(); return;
+//                }
+//                else
+//                {
+                    Intent intent = new Intent(LoginActivity.this, HostNavigationActivity.class);
+                    startActivity(intent);
+                    finish(); return;
+//                }
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -122,5 +161,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         return false;
+    }
+
+    private void setUser()
+    {
+        new FirebaseUserHelper().readUser(new FirebaseUserHelper.DataStatusUser() {
+            @Override
+            public void DataIsLoaded(User userHelper, String key) {
+
+                user = userHelper;
+            }
+        });
     }
 }

@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,6 +26,8 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
 
  private RecyclerView mRecycler;
  private FloatingActionButton floatingButton;
+ private TextView textView;
+ private List<Product> productList;
 
     final String activity = "RepresentativeSearchActivity";
 
@@ -45,7 +49,9 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
             @Override
             public void DataIsLoaded(List<Product> productsList, List<String> keys) {
                findViewById(R.id.progressBar).setVisibility(View.GONE);
+               productList=productsList;
                 new RecyclerView_config().setConfig(mRecycler,RepresentativeSearchActivity.this,productsList,keys);
+
             }
 
             @Override
@@ -64,30 +70,44 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
             }
         });
 
+//        mRecycler.setAdapter(new RecyclerView_config.ProductsAdapter(productList, new BookAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(Book book) {
+//                Toast.makeText(getApplicationContext(), book.getBookName() + " " + " book is Clicked", Toast.LENGTH_LONG).show();
+//
+//            }
+//        }) {
+//        });
 /*
          adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,productsList);
-        myListView.setAdapter(adapter);
-         mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-             @Override
-             public boolean onQueryTextSubmit(String query) {
-                 return false;
-             }
+       myListView.setAdapter(adapter);
+       */
 
-             @Override
-             public boolean onQueryTextChange(String newText) {
-                 adapter.getFilter().filter(newText);
-                 return false;
-             }
-         });
-  To link to an item click we will add the following function:
-         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-             @Override
-             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                 Intent intent = new Intent(this, Activity3.class);
-                 startActivity(intent);
-             }
-         });
- */
+//         mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//             @Override
+//             public boolean onQueryTextSubmit(String query) {
+//                 textView.setText(query);
+//                 return false;
+//             }
+//
+//             @Override
+//             public boolean onQueryTextChange(String newText) {
+//                 //adapter.getFilter().filter(newText);
+//                 textView.setText(newText);
+//                 return false;
+//             }
+//         });
+
+
+  //To link to an item click we will add the following function:
+//         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//             @Override
+//             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                 Intent intent = new Intent(RepresentativeSearchActivity.this, RepresentativeProductDetailsActivity.class);
+//                 startActivity(intent);
+//             }
+//         });
+
 
     }
 

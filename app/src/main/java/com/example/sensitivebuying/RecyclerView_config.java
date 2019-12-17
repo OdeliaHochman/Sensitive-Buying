@@ -62,6 +62,7 @@ public class RecyclerView_config implements Serializable {
             mBarcode.setText(product.getBarcode());
             Picasso.get().load(product.getUrlImage()).into(productIm);
             this.key=key;
+
         }
 
     }
@@ -88,6 +89,7 @@ public class RecyclerView_config implements Serializable {
         public void onBindViewHolder(@NonNull ProductItemView holder, int position)
         {
             holder.bind(mproductsList.get(position),mKeys.get(position));
+
         }
 
         @Override
