@@ -2,20 +2,20 @@ package com.example.sensitivebuying;
 
 import java.io.Serializable;
 
-abstract public class User implements Serializable {
+public class User implements Serializable {
 
     private String name;
     private String mail;
-    private boolean isRep; // true if the user is represntative, defult false
+    private boolean rep; // true if the user is represntative, defult false
 
 
     public User() {
     }
 
-    public User(String name, String mail, boolean isRep) {
+    public User(String name, String mail, boolean rep) {
         this.name = name;
         this.mail = mail;
-        this.isRep = isRep;
+        this.rep = rep;
     }
 
     public void setName(String name) {
@@ -26,8 +26,12 @@ abstract public class User implements Serializable {
         this.mail = mail;
     }
 
+    public boolean getRep() {
+        return rep;
+    }
+
     public void setRep(boolean rep) {
-        isRep = rep;
+        this.rep = rep;
     }
 
     public String getName() {
@@ -39,7 +43,4 @@ abstract public class User implements Serializable {
     }
 
 
-    public boolean isRep() {
-        return isRep;
-    }
 }

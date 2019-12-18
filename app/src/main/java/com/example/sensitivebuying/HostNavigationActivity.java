@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewParent;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,24 +21,35 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 
 public class HostNavigationActivity extends AppCompatActivity  {
 
     private AppBarConfiguration mAppBarConfiguration;
-    final String activity = " HostNavigationActivity";
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference usersReference;
+    private User user;
 
 
-    DrawerLayout drawer;
-    NavController navController;
-    NavigationView navigationView;
+    private DrawerLayout drawer;
+    private NavController navController;
+    private NavigationView navigationView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("debug",activity);
         setContentView(R.layout.activity_host_navigation);
+
+        usersReference= FirebaseDatabase.getInstance().getReference("Users");
+        firebaseAuth = FirebaseAuth.getInstance();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -44,6 +57,10 @@ public class HostNavigationActivity extends AppCompatActivity  {
 
         drawer = findViewById(R.id.nav_main);
         navigationView = findViewById(R.id.nav_view);
+
+        setUserNameHeader();
+
+
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -76,6 +93,7 @@ public class HostNavigationActivity extends AppCompatActivity  {
                 return handled;            }
         });
 
+
     }
 
     @Override
@@ -85,5 +103,23 @@ public class HostNavigationActivity extends AppCompatActivity  {
 
     }
 
+    private void setUserNameHeader () {
+
+        new FirebaseUserHelper().readUser(new FirebaseUserHelper.DataStatusUser() {
+            @Override
+            public void DataIsLoaded(User userHelper, String key) {
+                user = userHelper;
+                String name = user.getName();
+                String txt = getString(R.string.hello);
+
+                navigationView = findViewById(R.id.nav_view);
+                View headerView = navigationView.getHeaderView(0);
+                TextView navUsername = (TextView) headerView.findViewById(R.id.text_view_header);
+                navUsername.setText(txt+" " +name);
+            }
+        });
+
+
+    }
 
 }
