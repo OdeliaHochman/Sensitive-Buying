@@ -64,6 +64,8 @@ public class RecyclerView_config implements Serializable {
                     intent.putExtra("barcode",mBarcode.getText().toString());
                   //  intent.putExtra("product image",productIm.getText().toString());
 
+                    mContext.startActivity(intent);
+
                 }
             });
 

@@ -122,6 +122,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
 
     }
 
+    //spinner by category - we will do sensitive list with checkbox?
     private int getIndex_SpinnerItem(Spinner spinner,String item)
     {
         int index=0;
