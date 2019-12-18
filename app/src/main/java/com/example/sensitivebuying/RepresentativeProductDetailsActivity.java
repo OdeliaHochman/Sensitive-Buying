@@ -67,7 +67,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
                // product.setUrlImage(urlImage.getText().toString());
                 product.setWeightAndType(weight.getText().toString());
 
-                new FirebaseDatabaseHelper().updateProduct(key, product, new FirebaseDatabaseHelper.DataStatus() {
+                new FirebaseDatabaseHelper().updateProduct(barcodeS, product, new FirebaseDatabaseHelper.DataStatus() {
                     @Override
                     public void DataIsLoaded(List<Product> productsList, List<String> keys) {
 
@@ -95,7 +95,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new FirebaseDatabaseHelper().deleteProduct(key, new FirebaseDatabaseHelper.DataStatus() {
+                new FirebaseDatabaseHelper().deleteProduct(barcodeS, new FirebaseDatabaseHelper.DataStatus() {
                     @Override
                     public void DataIsLoaded(List<Product> productsList, List<String> keys) {
 
