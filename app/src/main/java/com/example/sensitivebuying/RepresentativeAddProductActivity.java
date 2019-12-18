@@ -57,8 +57,8 @@ public class RepresentativeAddProductActivity extends AppCompatActivity{
              //   product.setSensitiveList(sensitives.getText().toString());
                 product.setUrlImage(urlImage.getText().toString());
                 product.setWeightAndType(weightSen.getText().toString());
-//                reference= FirebaseDatabase.getInstance().getReference().child("Products").child(codebar.getText().toString());
-//                reference.setValue(product);
+               // reference= FirebaseDatabase.getInstance().getReference().child("Products").child(codebar.getText().toString());
+                //reference.setValue(product);
                 new FirebaseDatabaseHelper().addProduct(product, new FirebaseDatabaseHelper.DataStatus() {
                     @Override
                     public void DataIsLoaded(List<Product> productsList, List<String> keys) {
@@ -69,6 +69,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity{
                     public void DataIsInserted() {
 
                         Toast.makeText(RepresentativeAddProductActivity.this,"המוצר התווסף בהצלחה" , Toast.LENGTH_LONG).show();
+                        finish();return;
 
                     }
 
