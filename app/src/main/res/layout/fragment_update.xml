@@ -22,6 +22,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ProgressBar
+        android:id="@+id/pb_update_senstive"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="70dp"
+        android:layout_height="67dp"
+        tools:layout_editor_absoluteX="313dp"
+        tools:layout_editor_absoluteY="618dp"
+        android:layout_marginBottom="151dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/bgapp1_senspdate"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/title_senspdate"
@@ -47,21 +58,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_senspdate" />
 
+
     <ScrollView
         android:id="@+id/scrollView_update"
-        android:layout_width="407dp"
-        android:layout_height="427dp"
+        android:layout_width="395dp"
+        android:layout_height="417dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="3dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="90dp"
         app:layout_constraintBottom_toTopOf="@+id/bgapp4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/marker_menu">
 
         <LinearLayout
+            android:id="@+id/linear_updateFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -228,14 +241,16 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="96dp"
         android:text="שמור"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView_update"
-        app:layout_constraintVertical_bias="0.324" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="NotSibling" />
 
     >
 

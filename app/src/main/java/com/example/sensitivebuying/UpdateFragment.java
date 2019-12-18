@@ -85,7 +85,7 @@ public class UpdateFragment extends Fragment  {
 
 
 
-
+        progressBarUpdate = v.findViewById(R.id.pb_update_senstive);
 
         readData();
 
