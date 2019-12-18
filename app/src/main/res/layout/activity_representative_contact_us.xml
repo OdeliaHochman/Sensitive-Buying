@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RepresentativeContactUsActivity">
+
+
+    <ImageView
+        android:id="@+id/bgapp1_customerToRep"
+        android:layout_width="507dp"
+        android:layout_height="122dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/back2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.908"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/title_customerToRep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="12dp"
+        android:text="צור קשר עם נציג החברה"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="29dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2_customerToRep"
+        android:layout_width="408dp"
+        android:layout_height="509dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="right"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/btn_send"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bgapp1_customerToRep">
+
+        <EditText
+            android:id="@+id/fullname_customerToRep"
+            android:layout_width="359dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="52dp"
+            android:ems="10"
+            android:hint="שם מלא"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.551"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_customerToRep" />
+
+        <EditText
+            android:id="@+id/companyname_customerToRep"
+            android:layout_width="359dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:hint="שם חברה"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fullname_customerToRep"
+            tools:layout_editor_absoluteX="28dp" />
+
+        <EditText
+            android:id="@+id/mailaddress_customerToRep"
+            android:layout_width="359dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:hint="כתובת מייל"
+            android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toTopOf="@+id/phonenumber_representative"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/companyname_customerToRep"
+            tools:layout_editor_absoluteX="28dp" />
+
+        <EditText
+            android:id="@+id/phonenumber_customerToRep"
+            android:layout_width="358dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="מספר פלאפון"
+            android:inputType="phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mailaddress_customerToRep"
+            tools:layout_editor_absoluteX="28dp" />
+
+        <EditText
+            android:id="@+id/subject_customerToRep"
+            android:layout_width="360dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="50dp"
+            android:ems="10"
+            android:hint="נושא הפנייה"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phonenumber_customerToRep"
+            tools:layout_editor_absoluteX="25dp" />
+
+        <EditText
+            android:id="@+id/cont_customerToRep"
+            android:layout_width="352dp"
+            android:layout_height="100dp"
+            android:layout_margin="8dp"
+            android:ems="10"
+            android:hint="תוכן הפנייה"
+            android:iconifiedByDefault="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subject_customerToRep"
+            tools:layout_editor_absoluteX="27dp"
+            tools:layout_editor_absoluteY="468dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_send_customerToRep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="שלח"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2_customerToRep"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/contactImage_customerToRep"
+        android:layout_width="90dp"
+        android:layout_height="77dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.009"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/mail"
+        tools:ignore="UnknownId" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

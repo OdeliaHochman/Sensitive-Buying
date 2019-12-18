@@ -8,129 +8,150 @@
 
 
         <ImageView
-            android:id="@+id/bgapp5"
-            android:layout_width="411dp"
-            android:layout_height="729dp"
+            android:id="@+id/bgapp1_fragmentContact"
+            android:layout_width="505dp"
+            android:layout_height="113dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:scaleType="fitXY"
-            android:src="@drawable/orangeback"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/back2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.908"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <TextView
-            android:id="@+id/contact_us_representative"
+            android:id="@+id/title_fragmentContact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="32dp"
-            android:text="צור קשר:"
-            android:textSize="30sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:text="צור קשר"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textSize="35dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/fullname_representative"
-            android:layout_width="362dp"
-            android:layout_height="43dp"
-            android:layout_marginTop="52dp"
-            android:ems="10"
-            android:hint="שם מלא"
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="397dp"
+            android:layout_height="458dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="right"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/btn_send"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.551"
+            app:layout_constraintHorizontal_bias="0.933"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contact_us_representative" />
+            app:layout_constraintTop_toBottomOf="@+id/bgapp1_fragmentContact">
 
-        <EditText
-            android:id="@+id/companyname_representative"
-            android:layout_width="359dp"
-            android:layout_height="37dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="16dp"
-            android:ems="10"
-            android:hint="שם חברה"
-            app:layout_constraintTop_toBottomOf="@+id/fullname_representative"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteX="28dp" />
+                <EditText
+                    android:id="@+id/fullname_representative"
+                    android:layout_width="359dp"
+                    android:layout_height="37dp"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="שם מלא"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.551"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title_fragmentContact" />
 
-        <EditText
-            android:id="@+id/mailaddress_representative"
-            android:layout_width="359dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:ems="10"
-            android:hint="כתובת מייל"
-            android:inputType="textEmailAddress"
-            app:layout_constraintBottom_toTopOf="@+id/phonenumber_representative"
-            app:layout_constraintTop_toBottomOf="@+id/companyname_representative"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteX="28dp" />
+                <EditText
+                    android:id="@+id/companyname_representative"
+                    android:layout_width="359dp"
+                    android:layout_height="37dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="8dp"
+                    android:ems="10"
+                    android:hint="שם חברה"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fullname_representative"
+                    tools:layout_editor_absoluteX="28dp" />
 
-        <EditText
-            android:id="@+id/phonenumber_representative"
-            android:layout_width="358dp"
-            android:layout_height="43dp"
-            android:layout_marginTop="17dp"
-            android:ems="10"
-            android:hint="מספר פלאפון"
-            android:inputType="phone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mailaddress_representative"
-            tools:layout_editor_absoluteX="28dp" />
+                <EditText
+                    android:id="@+id/mailaddress_representative"
+                    android:layout_width="359dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="8dp"
+                    android:ems="10"
+                    android:hint="כתובת מייל"
+                    android:inputType="textEmailAddress"
+                    app:layout_constraintBottom_toTopOf="@+id/phonenumber_representative"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/companyname_representative"
+                    tools:layout_editor_absoluteX="28dp" />
 
-        <EditText
-            android:id="@+id/subject_representative"
-            android:layout_width="360dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="76dp"
-            android:ems="10"
-            android:hint="נושא הפנייה"
-            app:layout_constraintTop_toBottomOf="@+id/phonenumber_representative"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteX="25dp" />
+                <EditText
+                    android:id="@+id/phonenumber_representative"
+                    android:layout_width="358dp"
+                    android:layout_height="43dp"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="מספר פלאפון"
+                    android:inputType="phone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mailaddress_representative"
+                    tools:layout_editor_absoluteX="28dp" />
 
-        <EditText
-            android:id="@+id/cont_representative"
-            android:layout_width="352dp"
-            android:layout_height="129dp"
-            android:layout_margin="8dp"
-            android:ems="10"
-            android:hint="תוכן הפנייה"
-            android:iconifiedByDefault="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/subject_representative"
-            tools:layout_editor_absoluteX="27dp"
-            tools:layout_editor_absoluteY="468dp" />
+                <EditText
+                    android:id="@+id/subject_representative"
+                    android:layout_width="360dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="50dp"
+                    android:ems="10"
+                    android:hint="נושא הפנייה"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/phonenumber_representative"
+                    tools:layout_editor_absoluteX="25dp" />
+
+                <EditText
+                    android:id="@+id/cont_representative"
+                    android:layout_width="352dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    android:ems="10"
+                    android:hint="תוכן הפנייה"
+                    android:iconifiedByDefault="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/subject_representative"
+                    tools:layout_editor_absoluteX="27dp"
+                    tools:layout_editor_absoluteY="468dp" />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/btn_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="36dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="90dp"
             android:text="שלח"
-            app:layout_constraintBottom_toBottomOf="@+id/bgapp5"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
         <ImageButton
             android:id="@+id/contactImage_representative"
             android:layout_width="110dp"
             android:layout_height="106dp"
-            app:layout_constraintBottom_toTopOf="@+id/fullname_representative"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.099"
+            app:layout_constraintHorizontal_bias="0.053"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/mail"
-            tools:ignore="UnknownId" />
+            tools:ignore="MissingConstraints,UnknownId"
+            tools:layout_editor_absoluteY="0dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

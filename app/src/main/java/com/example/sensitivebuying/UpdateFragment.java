@@ -83,7 +83,7 @@ public class UpdateFragment extends Fragment  {
         sinapisCheckBox=(CheckBox)v.findViewById(R.id.checkBox_sinapis_menu);
         celeryCheckBox=(CheckBox)v.findViewById(R.id.checkBox_celery_menu);
 
-        progressBarUpdate = v.findViewById(R.id.pb_update_senstive);
+
 
 
 

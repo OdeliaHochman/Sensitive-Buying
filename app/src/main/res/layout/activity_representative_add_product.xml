@@ -1,64 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".RepresentativeAddProductActivity">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:gravity="center"
+android:orientation="vertical"
+tools:context=".RepresentativeAddProductActivity">
+
+
+    <ImageView
+        android:id="@+id/bgapp1_add"
+        android:layout_width="505dp"
+        android:layout_height="113dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/back2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.908"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/title_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:text="הוספת מוצר"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:gravity="right"
-        android:orientation="vertical"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
+        android:layout_marginTop="124dp"
+        android:gravity="end"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
 
-        <TextView
-            android:id="@+id/titleLogin_txtView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="הכנס מוצר חדש"
-            android:textSize="22dp"/>
-
-        <EditText
-            android:id="@+id/barcode_editTxt"
-            android:inputType="text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:hint="קוד-בר:" />
 
         <EditText
             android:id="@+id/company_editTxt"
-            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:gravity="right"
-            android:hint="שם חברה:" />
+            android:hint="שם חברה"
+            android:inputType="text" />
 
-        <EditText
-            android:id="@+id/information_editTxt"
-            android:inputType="text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:gravity="right"
-            android:hint="מידע על המוצר:" />
 
         <EditText
             android:id="@+id/nameProduct_editTxt"
-            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:gravity="right"
-            android:hint="שם המוצר:" />
+            android:hint="שם המוצר"
+            android:inputType="text" />
 
+        <EditText
+            android:id="@+id/barcode_editTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="ברקוד"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/weight_editTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="right"
+            android:hint="משקל מוצר"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/information_editTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="right"
+            android:hint="מידע על המוצר"
+            android:inputType="text" />
 
         <Spinner
             android:id="@+id/sensitives_spinner"
@@ -77,52 +110,33 @@
             android:text="בחר רגישויות"
             android:textAlignment="gravity" />
 
-        <CheckBox
-            android:id="@+id/checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true" />
-
 
 
         <EditText
             android:id="@+id/image_editTxt"
-            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:gravity="right"
-            android:hint="תמונה:" />
-
-        <EditText
-            android:id="@+id/weight_editTxt"
-            android:inputType="text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:gravity="right"
-            android:hint="משקל מוצר:" />
-
-
-        <Button
-            android:id="@+id/save_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="הוסף מוצר" />
-
-
-        <ProgressBar
-            android:id="@+id/pb_loading"
-            android:layout_height="250dp"
-            android:layout_width="60dp"
-            android:layout_margin="10dp"
-            android:layout_gravity="center"
-            android:visibility="invisible"
-            />
+            android:hint="תמונה"
+            android:inputType="text" />
 
 
     </LinearLayout>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="52dp"
+        android:text="הוסף מוצר"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.987"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.91" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

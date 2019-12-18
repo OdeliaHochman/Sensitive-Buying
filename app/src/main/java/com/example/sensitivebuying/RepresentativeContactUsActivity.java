@@ -14,6 +14,6 @@ public class RepresentativeContactUsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("debug",activity);
-        setContentView(R.layout.activity_representative_contact_us2);
+        setContentView(R.layout.activity_representative_contact_us);
     }
 }

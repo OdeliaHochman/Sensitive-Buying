@@ -7,53 +7,59 @@
     tools:context=".SensitiveRegisterActivity">
 
 
-
     <ImageView
-        android:id="@+id/bgapp4"
-        android:layout_width="411dp"
-        android:layout_height="729dp"
+        android:id="@+id/bgapp1_sensReg"
+        android:layout_width="505dp"
+        android:layout_height="113dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:scaleType="fitXY"
-        android:src="@drawable/orangeback"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/back2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.908"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
-        android:id="@+id/sensitive_registersens"
+        android:id="@+id/title_sensReg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         android:text="עדכון רגישויות"
-        android:textSize="35sp"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="35dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/marker_registersens"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
         android:text="נא סמן את הרגישויות אותן תרצה לבדוק:"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.911"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sensitive_registersens" />
+        app:layout_constraintTop_toBottomOf="@+id/title_sensReg" />
 
     <ScrollView
         android:id="@+id/scrollView_reg"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="410dp"
+        android:layout_height="421dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="1dp"
         android:layout_marginBottom="90dp"
         app:layout_constraintBottom_toTopOf="@+id/bgapp4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/marker_registersens"
-        app:layout_constraintVertical_bias="0.12"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintVertical_bias="0.12">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,7 +73,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:checked="false"
                 android:onClick="onCheckboxClicked"
                 android:text="@string/gluten"
@@ -83,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
                 android:checked="false"
                 android:onClick="onCheckboxClicked"
                 android:text="@string/eggs"
@@ -99,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:checked="false"
                 android:onClick="onCheckboxClicked"
                 android:text="@string/peanuts"
@@ -115,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="10dp"
                 android:checked="false"
                 android:onClick="onCheckboxClicked"
                 android:text="@string/lactose"
@@ -131,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:checked="false"
                 android:onClick="onCheckboxClicked"
                 android:text="@string/nuts"
@@ -147,7 +153,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:checked="false"
                 android:onClick="onCheckboxClicked"
                 android:text="@string/soya"
@@ -163,7 +169,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="10dp"
                 android:checked="false"
                 android:onClick="onCheckboxClicked"
                 android:text="@string/sesame"
@@ -179,7 +185,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="10dp"
                 android:checked="false"
                 android:onClick="onCheckboxClicked"
                 android:text="@string/pine_nut"
@@ -195,7 +201,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="10dp"
                 android:checked="false"
                 android:onClick="onCheckboxClicked"
                 android:text="@string/sinapis"
@@ -211,7 +217,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="10dp"
                 android:checked="false"
                 android:onClick="onCheckboxClicked"
                 android:text="@string/celery"
@@ -232,15 +238,14 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginStart="160dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="83dp"
         android:text="שמור"
-        app:layout_constraintBottom_toBottomOf="@+id/bgapp4"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintHorizontal_bias="0.006"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView_reg"
-        app:layout_constraintVertical_bias="0.071" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView_reg" />
 
     <TextView
         android:id="@+id/skip_registersens"
@@ -250,16 +255,13 @@
         android:layout_marginTop="35dp"
         android:layout_marginBottom="40dp"
         android:text="דלג"
-
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnsave_registersens_registersens"
-        app:layout_constraintHorizontal_bias="0.155"
+        app:layout_constraintHorizontal_bias="0.232"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView_reg"
-        app:layout_constraintVertical_bias="0.0" />
-
-    >
+        app:layout_constraintVertical_bias="0.737" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

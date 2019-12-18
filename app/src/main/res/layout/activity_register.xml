@@ -5,6 +5,12 @@
     android:gravity="center"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/imageView_logo"
+        android:layout_width="400dp"
+        android:layout_height="292dp"
+        android:src="@drawable/logo4"
+        android:layout_gravity="top"/>
 
     <LinearLayout
         android:gravity="right"

@@ -70,19 +70,9 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
             }
         });
 
-//        mRecycler.setAdapter(new RecyclerView_config.ProductsAdapter(productList, new BookAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(Book book) {
-//                Toast.makeText(getApplicationContext(), book.getBookName() + " " + " book is Clicked", Toast.LENGTH_LONG).show();
-//
-//            }
-//        }) {
-//        });
-/*
-         adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,productsList);
-       myListView.setAdapter(adapter);
-       */
 
+//         adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,productsList);
+//       myListView.setAdapter(adapter);
 //         mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 //             @Override
 //             public boolean onQueryTextSubmit(String query) {
@@ -95,16 +85,6 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
 //                 //adapter.getFilter().filter(newText);
 //                 textView.setText(newText);
 //                 return false;
-//             }
-//         });
-
-
-  //To link to an item click we will add the following function:
-//         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//             @Override
-//             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                 Intent intent = new Intent(RepresentativeSearchActivity.this, RepresentativeProductDetailsActivity.class);
-//                 startActivity(intent);
 //             }
 //         });
 
