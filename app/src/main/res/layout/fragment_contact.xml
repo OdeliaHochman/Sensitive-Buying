@@ -39,12 +39,13 @@
             android:layout_width="397dp"
             android:layout_height="458dp"
             android:layout_marginStart="2dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:gravity="right"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/btn_send"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.933"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bgapp1_fragmentContact">
 
