@@ -1,5 +1,6 @@
 package com.example.sensitivebuying;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -58,6 +59,8 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+             //   Intent intent =new Intent(RepresentativeProductDetailsActivity.this,RepresentativeUpdateProductActivity.class);
+             //   startActivity(intent);
                 Product product = new Product();
                 product.setBarcode(barcode.getText().toString());
                 product.setCompanyName(companyName.getText().toString());

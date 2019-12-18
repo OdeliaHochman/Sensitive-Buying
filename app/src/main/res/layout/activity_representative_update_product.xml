@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:gravity="center"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".RepresentativeAddProductActivity">
+    tools:context=".RepresentativeUpdateProductActivity">
 
 
     <ImageView
-        android:id="@+id/bgapp1_add"
+        android:id="@+id/bgapp1_up"
         android:layout_width="523dp"
         android:layout_height="77dp"
         android:layout_marginStart="8dp"
@@ -24,18 +22,17 @@
 
 
     <TextView
-        android:id="@+id/title_add"
+        android:id="@+id/title_updatePro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="הוספת מוצר"
+        android:text="עדכון מוצר"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,7 +46,7 @@
 
 
         <EditText
-            android:id="@+id/company_add"
+            android:id="@+id/company_updatePro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -58,7 +55,7 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/nameProduct_add"
+            android:id="@+id/nameProduct_updatePro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -67,7 +64,7 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/barcode_add"
+            android:id="@+id/barcode_updatePro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -77,7 +74,7 @@
 
 
         <EditText
-            android:id="@+id/weight_add"
+            android:id="@+id/weight_updatePro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -86,7 +83,7 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/information_add"
+            android:id="@+id/information_updatePro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -95,7 +92,7 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/senstive_add"
+            android:id="@+id/senstive_updatePro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -104,7 +101,7 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/image_add"
+            android:id="@+id/image_updatePro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -122,7 +119,7 @@
         android:layout_gravity="center"
         android:layout_marginEnd="160dp"
         android:layout_marginBottom="52dp"
-        android:text="הוספת מוצר"
+        android:text="עדכן מוצר"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.987"
@@ -130,7 +127,3 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
