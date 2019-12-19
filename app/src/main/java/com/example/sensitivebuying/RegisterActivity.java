@@ -85,8 +85,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 usersReference.child(firebaseAuth.getCurrentUser().getUid()).setValue(user);
                 Intent intent = new Intent(RegisterActivity.this,SensitiveRegisterActivity.class);
                 intent.putExtra("CustomerUser", user);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 inProgress(false);
+                finish();
 
             }
         }).addOnFailureListener(new OnFailureListener() {

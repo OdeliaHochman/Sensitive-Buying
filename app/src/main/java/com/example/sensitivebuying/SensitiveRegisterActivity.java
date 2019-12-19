@@ -77,15 +77,21 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
                 });
             }
             updateSensitive.clear();
-            Intent intent =new Intent(SensitiveRegisterActivity.this,LoginActivity.class);
-            startActivity(intent);
+
+           moveToHost();
         }
         if(v==skipT)
         {
-            Intent intent =new Intent(SensitiveRegisterActivity.this,LoginActivity.class);
-            startActivity(intent);
+            moveToHost();
+
         }
 
+    }
+    private  void moveToHost () {
+        Intent intent =new Intent(SensitiveRegisterActivity.this,HostNavigationActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        finish();
     }
 
     public void onCheckboxClicked(View view) {

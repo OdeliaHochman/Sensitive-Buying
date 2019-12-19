@@ -34,24 +34,24 @@ public class OpenActivity extends AppCompatActivity {
             setUser();
         }
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    synchronized (this) {
-                        wait(2000);
-                        Intent intent = new Intent (OpenActivity.this, LoginActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        startActivity(intent);
-                        finish();
+        else {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        synchronized (this) {
+                            wait(1500);
+                            Intent intent = new Intent(OpenActivity.this, LoginActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            startActivity(intent);
+                            finish();
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                 }
-                catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
+            }).start();
+        }
     }
 
 
