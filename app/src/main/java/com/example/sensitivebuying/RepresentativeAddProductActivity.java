@@ -83,8 +83,6 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
                     @Override
                     public void DataIsInserted() {
 
-                         reference= FirebaseDatabase.getInstance().getReference().child("Products").child(codebar.getText().toString());
-                        reference.setValue(product);
                         Toast.makeText(RepresentativeAddProductActivity.this,"המוצר התווסף בהצלחה" , Toast.LENGTH_LONG).show();
                         finish();return;
 

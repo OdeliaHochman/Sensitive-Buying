@@ -62,8 +62,8 @@ public class FirebaseDatabaseHelper implements Serializable {
 
     public void addProduct(Product product , final DataStatus dataStatus)
     {
-        String key = mReference.push().getKey();
-        mReference.child(key).setValue(product).addOnSuccessListener(new OnSuccessListener<Void>() {
+        String  barcode = product.getBarcode();
+        mReference.child(barcode).setValue(product).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 dataStatus.DataIsInserted();
