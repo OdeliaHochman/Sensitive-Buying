@@ -58,7 +58,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
                 product.setCompanyName(companyName.getText().toString());
                 product.setProductDescription(productDetalis.getText().toString());
                 product.setProductName(productName.getText().toString());
-                //   product.setSensitiveList(sensitives.getText().toString());
+                //product.setSensitiveList(listOfSensitiveTrue);
                // product.setUrlImage(urlImage.getText().toString());
                 product.setWeightAndType(weight.getText().toString());
 

@@ -18,16 +18,13 @@ import java.util.List;
 public class RepresentativeAddProductActivity extends AppCompatActivity {
 
     private Button btnSave;
-    private FirebaseProductsHelper addFirebase;
     private EditText codebar;
     private EditText nameCompany;
     private EditText infoProduct;
     private EditText nameProduct;
-    private Spinner sensitives;
+    private Spinner spinner;
     private EditText urlImage;
     private EditText weightSen;
-
-    private DatabaseReference reference;
 
     final String activity = " RepresentativeAddProductActivity";
 
@@ -45,7 +42,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.save_button);
 
         final String[] select_qualification = {"    בחר רגישויות  ", "בוטנים", "אגוזים", "שקדים", "גלוטן", "לקטוז", "סויה", "שומשום"};
-        Spinner spinner = (Spinner) findViewById(R.id.sensitives_spinner);
+        spinner = (Spinner) findViewById(R.id.sensitives_spinner);
 
         final ArrayList<Sensitive> listOfSensitive = new ArrayList<>();
         final ArrayList<Sensitive> listOfSensitiveTrue = new ArrayList<>();
@@ -79,8 +76,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
                     product.setSensitiveList(listOfSensitiveTrue);
                     product.setUrlImage(urlImage.getText().toString());
                     product.setWeightAndType(weightSen.getText().toString());
-                    // reference= FirebaseDatabase.getInstance().getReference().child("Products").child(codebar.getText().toString());
-                    //reference.setValue(product);
+
                     new FirebaseProductsHelper().addProduct(product, new FirebaseProductsHelper.DataStatus() {
                         @Override
                         public void DataIsLoaded(List<Product> productsList, List<String> keys) {
