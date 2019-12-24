@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +13,7 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
 
     final String activity = " CustomerDetailsActivity";
     private Button btn_contact;
+    private ImageView shareImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,19 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
 
         btn_contact=(Button)findViewById(R.id.btn_contact_rep_customerDetails);
         btn_contact.setOnClickListener(this);
+
+        shareImage=(ImageView)findViewById(R.id.shareimage);
+//        shareImage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent shareIntent = new Intent();
+//                shareIntent.setAction(Intent.ACTION_SEND);
+//                shareIntent.putExtra(Intent.EXTRA_SUBJECT,"Android Development Tutorials");
+//                shareIntent.putExtra(Intent.EXTRA_TEXT, "www.technxt.net");
+//                shareIntent.setType("text/plain");
+//                startActivity(shareIntent);
+//            }
+//        });
     }
 
     @Override

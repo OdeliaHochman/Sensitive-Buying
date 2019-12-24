@@ -162,7 +162,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/shareimage"
         android:layout_width="41dp"
         android:layout_height="40dp"
         android:layout_marginEnd="28dp"
