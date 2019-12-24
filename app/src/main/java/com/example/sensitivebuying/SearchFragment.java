@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -29,7 +30,9 @@ public class SearchFragment extends Fragment implements  View.OnClickListener {
     final String activity = " SearchFragment";
     private SearchView mySearchView;
     private RecyclerView mRecycler;
+    private List<Product> productList;
     private  View v;
+
 
     public SearchFragment() {
         // Required empty public constructor
@@ -48,9 +51,10 @@ public class SearchFragment extends Fragment implements  View.OnClickListener {
 
         new FirebaseDatabaseHelper().readProducts(new FirebaseDatabaseHelper.DataStatus() {
             @Override
-            public void DataIsLoaded(List<Product> productsList, List<String> keys) {
+            public void DataIsLoaded(List<Product> list, List<String> keys) {
                 v.findViewById(R.id.progressBar_customer).setVisibility(View.GONE);
-                new RecyclerView_config().setConfig(mRecycler,getActivity(),productsList,keys);
+                productList=list;
+                new RecyclerView_config().setConfig(mRecycler,getActivity(),productList,keys);
             }
 
             @Override
@@ -68,6 +72,23 @@ public class SearchFragment extends Fragment implements  View.OnClickListener {
 
             }
         });
+
+
+        if(mySearchView != null){
+            mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    search(newText);
+                    return true;
+                }
+            });
+        }
+
         return  v;
 
     }
@@ -75,37 +96,25 @@ public class SearchFragment extends Fragment implements  View.OnClickListener {
 
 
 
-
-
-/*
-         adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,productsList);
-        myListView.setAdapter(adapter);
-         mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-             @Override
-             public boolean onQueryTextSubmit(String query) {
-                 return false;
-             }
-
-             @Override
-             public boolean onQueryTextChange(String newText) {
-                 adapter.getFilter().filter(newText);
-                 return false;
-             }
-         });
-  To link to an item click we will add the following function:
-         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-             @Override
-             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                 Intent intent = new Intent(this, Activity3.class);
-                 startActivity(intent);
-             }
-         });
- */
-
-
-
     @Override
     public void onClick(View v) {
+
+
+    }
+
+    private void search (String str) {
+
+        ArrayList<Product> searchList = new ArrayList<>();
+        ArrayList<String> searchKeys = new ArrayList<>();
+
+        for ( Product p : productList) {
+            if (p.getProductName().toLowerCase().contains(str) || p.getBarcode().contains(str))  {
+                searchList.add(p);
+                searchKeys.add(p.getBarcode());
+            }
+        }
+
+        new RecyclerView_config().setConfig(mRecycler,getActivity(),searchList,searchKeys);
 
 
     }

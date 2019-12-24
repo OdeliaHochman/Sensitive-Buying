@@ -1,5 +1,7 @@
 package com.example.sensitivebuying;
 
+import androidx.annotation.Nullable;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -94,6 +96,22 @@ public class Product implements Serializable  {
     public ArrayList<Sensitive> getSensitiveList()
     {
         return sensitiveList;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        // If the object is compared with itself then return true
+        if (obj == this) {
+            return true;
+        }
+        Product p = (Product) obj;
+
+        if (this.barcode.equals(p.barcode)){
+            return true;
+        }
+
+
+        return false;
     }
 
 

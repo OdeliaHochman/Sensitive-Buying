@@ -50,16 +50,16 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
                 "Select Sensitive", "בוטנים", "אגוזים", "שקדים", "גלוטן","לקטוז","סויה", "שומשום"};
         Spinner spinner = (Spinner) findViewById(R.id.sensitives_spinner);
 
-        ArrayList<StateVO> listVOs = new ArrayList<>();
-
-        for (int i = 0; i < select_qualification.length; i++) {
-            StateVO stateVO = new StateVO();
-            stateVO.setTitle(select_qualification[i]);
-            stateVO.setSelected(false);
-            listVOs.add(stateVO);
-        }
-        MyAdapter myAdapter = new MyAdapter(this, 0,listVOs);
-        spinner.setAdapter(myAdapter);
+//        ArrayList<StateVO> listVOs = new ArrayList<>();
+//
+//        for (int i = 0; i < select_qualification.length; i++) {
+//            StateVO stateVO = new StateVO();
+//            stateVO.setTitle(select_qualification[i]);
+//            stateVO.setSelected(false);
+//            listVOs.add(stateVO);
+//        }
+//        MyAdapter myAdapter = new MyAdapter(this, 0,listVOs);
+//        spinner.setAdapter(myAdapter);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override

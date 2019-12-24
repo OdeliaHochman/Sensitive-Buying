@@ -22,8 +22,8 @@ import java.util.List;
 
 public class RepresentativeSearchActivity extends AppCompatActivity implements View.OnClickListener  {
 
-    private SearchView mySearchView;
 
+    private SearchView mySearchView;
  private RecyclerView mRecycler;
  private FloatingActionButton floatingButton;
  private TextView textView;
@@ -47,10 +47,10 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
 
         new FirebaseDatabaseHelper().readProducts(new FirebaseDatabaseHelper.DataStatus() {
             @Override
-            public void DataIsLoaded(List<Product> productsList, List<String> keys) {
+            public void DataIsLoaded(List<Product> list, List<String> keys) {
                findViewById(R.id.progressBar).setVisibility(View.GONE);
-               productList=productsList;
-                new RecyclerView_config().setConfig(mRecycler,RepresentativeSearchActivity.this,productsList,keys);
+               productList=list;
+                new RecyclerView_config().setConfig(mRecycler,RepresentativeSearchActivity.this,productList,keys);
 
             }
 
@@ -70,23 +70,22 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
             }
         });
 
+        if(mySearchView != null){
+            mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
 
-//         adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,productsList);
-//       myListView.setAdapter(adapter);
-//         mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//             @Override
-//             public boolean onQueryTextSubmit(String query) {
-//                 textView.setText(query);
-//                 return false;
-//             }
-//
-//             @Override
-//             public boolean onQueryTextChange(String newText) {
-//                 //adapter.getFilter().filter(newText);
-//                 textView.setText(newText);
-//                 return false;
-//             }
-//         });
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    search(newText);
+                    return true;
+                }
+            });
+        }
+
+
 
 
     }
@@ -99,5 +98,22 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
             Intent intent = new Intent(RepresentativeSearchActivity.this,RepresentativeAddProductActivity.class);
             startActivity(intent);
         }
+    }
+
+    private void search (String str) {
+
+        ArrayList<Product>searchList = new ArrayList<>();
+        ArrayList<String> searchKeys = new ArrayList<>();
+
+        for ( Product p : productList) {
+            if (p.getProductName().toLowerCase().contains(str) || p.getBarcode().contains(str))  {
+                searchList.add(p);
+                searchKeys.add(p.getBarcode());
+            }
+        }
+
+        new RecyclerView_config().setConfig(mRecycler,RepresentativeSearchActivity.this,searchList,searchKeys);
+
+
     }
 }
