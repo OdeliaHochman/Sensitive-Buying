@@ -10,8 +10,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DatabaseReference;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +52,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
             listOfSensitive.add(sensitive);
 
 
-            AddProduct_SensitivesSpinner addProductSensitivesSpinner = new AddProduct_SensitivesSpinner(this, 0, listOfSensitive);
+            AddProduct_SensitivesCheckBoxSpinner addProductSensitivesSpinner = new AddProduct_SensitivesCheckBoxSpinner(this, 0, listOfSensitive);
             spinner.setAdapter(addProductSensitivesSpinner);
 
             btnSave.setOnClickListener(new View.OnClickListener() {
