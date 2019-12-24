@@ -83,13 +83,12 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
             btnSave.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(isEmpty()) // if one of the text view is empty
+                    if (isEmpty()) // if one of the text view is empty
                         return;
 
-                    ArrayList<Sensitive> ArrSensitives=new ArrayList<>();
+                    ArrayList<Sensitive> ArrSensitives = new ArrayList<>();
                     for (int j = 0; j < listOfSensitive.size(); j++) {
-                        if (listOfSensitive.get(j).getSelected() == true)
-                        {
+                        if (listOfSensitive.get(j).getSelected() == true) {
                             listOfSensitiveTrue.add(listOfSensitive.get(j));
                         }
                     }
@@ -102,8 +101,29 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
                     product.setSensitiveList(listOfSensitiveTrue);
                     product.setUrlImage(urlImage.getText().toString());
                     product.setWeightAndType(weightSen.getText().toString());
-                    if (isAdd) {
 
+                    new FirebaseCompaniesHelper().addProductOfCompanies(product, new FirebaseProductsHelper.DataStatus() {
+                        @Override
+                        public void DataIsLoaded(List<Product> productsList, List<String> keys) {
+
+                        }
+
+                        @Override
+                        public void DataIsInserted() {
+
+                        }
+
+                        @Override
+                        public void DataIsUpdated() {
+
+                        }
+
+                        @Override
+                        public void DataIsDeleted() {
+
+                        }
+                    });
+                    if (isAdd) {
                         new FirebaseProductsHelper().addProduct(product, new FirebaseProductsHelper.DataStatus() {
                             @Override
                             public void DataIsLoaded(List<Product> productsList, List<String> keys) {
@@ -128,41 +148,37 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
 
                             }
                         });
-                    }
-
-                    else { // update
+                    } else { // update
                         String barcode_new = codebar.getText().toString();
-                new FirebaseProductsHelper().updateProduct(barcode_new, product, new FirebaseProductsHelper.DataStatus() {
-                    @Override
-                    public void DataIsLoaded(List<Product> productsList, List<String> keys) {
+                        new FirebaseProductsHelper().updateProduct(barcode_new, product, new FirebaseProductsHelper.DataStatus() {
+                            @Override
+                            public void DataIsLoaded(List<Product> productsList, List<String> keys) {
+
+                            }
+
+                            @Override
+                            public void DataIsInserted() {
+
+                            }
+
+                            @Override
+                            public void DataIsUpdated() {
+                                Toast.makeText(RepresentativeAddProductActivity.this, "המוצר התעדכן בהצלחה", Toast.LENGTH_LONG).show();
+                                finish();
+                                return;
+                            }
+
+                            @Override
+                            public void DataIsDeleted() {
+
+                            }
+                        });
+
 
                     }
-
-                    @Override
-                    public void DataIsInserted() {
-
-                    }
-
-                    @Override
-                    public void DataIsUpdated() {
-                        Toast.makeText(RepresentativeAddProductActivity.this,"המוצר התעדכן בהצלחה" , Toast.LENGTH_LONG).show();
-                        finish();
-                        return;
-                    }
-
-                    @Override
-                    public void DataIsDeleted() {
-
-                    }
-                });
-
-
-                        }
 
                 }
             });
-
-
         }
 
     }
@@ -192,6 +208,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
 
             }
         });
+
 
     }
 
