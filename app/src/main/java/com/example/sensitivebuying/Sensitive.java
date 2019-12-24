@@ -9,6 +9,8 @@ public class Sensitive implements Serializable {
 
     private String sensitiveKey;
     private String sensitiveType;
+    private boolean selected;
+
 
     public Sensitive()
     {
@@ -18,6 +20,12 @@ public class Sensitive implements Serializable {
     {
         this.sensitiveType = sensitiveType;
         this.sensitiveKey=sensitiveKey;
+    }
+
+    public Sensitive(String sensitiveType, boolean selected)
+    {
+        this.sensitiveType = sensitiveType;
+        this.selected=selected;
     }
 
     public String getKey() {
@@ -36,6 +44,15 @@ public class Sensitive implements Serializable {
     public void setSensitiveType(String sensitiveType) {
         this.sensitiveType = sensitiveType;
     }
+
+    public boolean getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Boolean selected) {
+        this.selected = selected;
+    }
+
 
     @NonNull
     @Override

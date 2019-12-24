@@ -20,7 +20,7 @@ import java.util.List;
 public class RepresentativeAddProductActivity extends AppCompatActivity {
 
     private Button btnSave;
-    private  FirebaseDatabaseHelper addFirebase;
+    private FirebaseDatabaseHelper addFirebase;
     private EditText codebar;
     private EditText nameCompany;
     private EditText infoProduct;
@@ -36,72 +36,82 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("debug",activity);
+        Log.d("debug", activity);
         setContentView(R.layout.activity_representative_add_product);
-        codebar= findViewById(R.id.barcode_editTxt);
-        nameCompany=findViewById(R.id.company_editTxt);
-        infoProduct=findViewById(R.id.information_editTxt);
-        nameProduct=findViewById(R.id.nameProduct_editTxt);
-        urlImage=findViewById(R.id.image_editTxt);
-        weightSen=findViewById(R.id.weight_editTxt);
-        btnSave =findViewById(R.id.save_button);
+        codebar = findViewById(R.id.barcode_editTxt);
+        nameCompany = findViewById(R.id.company_editTxt);
+        infoProduct = findViewById(R.id.information_editTxt);
+        nameProduct = findViewById(R.id.nameProduct_editTxt);
+        urlImage = findViewById(R.id.image_editTxt);
+        weightSen = findViewById(R.id.weight_editTxt);
+        btnSave = findViewById(R.id.save_button);
 
-        final String[] select_qualification = {
-                "Select Sensitive", "בוטנים", "אגוזים", "שקדים", "גלוטן","לקטוז","סויה", "שומשום"};
+        final String[] select_qualification = {  "בחר רגישויות", "בוטנים", "אגוזים", "שקדים", "גלוטן", "לקטוז", "סויה", "שומשום"};
         Spinner spinner = (Spinner) findViewById(R.id.sensitives_spinner);
 
-//        ArrayList<StateVO> listVOs = new ArrayList<>();
-//
-//        for (int i = 0; i < select_qualification.length; i++) {
-//            StateVO stateVO = new StateVO();
-//            stateVO.setTitle(select_qualification[i]);
-//            stateVO.setSelected(false);
-//            listVOs.add(stateVO);
-//        }
-//        MyAdapter myAdapter = new MyAdapter(this, 0,listVOs);
-//        spinner.setAdapter(myAdapter);
+        final ArrayList<Sensitive> listOfSensitive = new ArrayList<>();
+        final ArrayList<Sensitive> listOfSensitiveTrue = new ArrayList<>();
 
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                final Product product= new Product();
-                product.setBarcode(codebar.getText().toString());
-                product.setCompanyName(nameCompany.getText().toString());
-                product.setProductDescription(infoProduct.getText().toString());
-                product.setProductName(nameProduct.getText().toString());
-               // product.setSensitiveList(sensitives.getText().toString());
-                product.setUrlImage(urlImage.getText().toString());
-                product.setWeightAndType(weightSen.getText().toString());
-               // reference= FirebaseDatabase.getInstance().getReference().child("Products").child(codebar.getText().toString());
-                //reference.setValue(product);
-                new FirebaseDatabaseHelper().addProduct(product, new FirebaseDatabaseHelper.DataStatus() {
-                    @Override
-                    public void DataIsLoaded(List<Product> productsList, List<String> keys) {
+
+        for (int i = 0; i < select_qualification.length; i++) {
+            final Sensitive sensitive = new Sensitive();
+            sensitive.setSensitiveType(select_qualification[i]);
+            listOfSensitive.add(sensitive);
+
+
+            MyAdapter myAdapter = new MyAdapter(this, 0, listOfSensitive);
+            spinner.setAdapter(myAdapter);
+
+            btnSave.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ArrayList<Sensitive> ArrSensitives=new ArrayList<>();
+                    for (int j = 0; j < listOfSensitive.size(); j++) {
+                        if (listOfSensitive.get(j).getSelected() == true)
+                        {
+                            listOfSensitiveTrue.add(listOfSensitive.get(j));
+                        }
                     }
 
-                    @Override
-                    public void DataIsInserted() {
+                    final Product product = new Product();
+                    product.setBarcode(codebar.getText().toString());
+                    product.setCompanyName(nameCompany.getText().toString());
+                    product.setProductDescription(infoProduct.getText().toString());
+                    product.setProductName(nameProduct.getText().toString());
+                    product.setSensitiveList(listOfSensitiveTrue);
+                    product.setUrlImage(urlImage.getText().toString());
+                    product.setWeightAndType(weightSen.getText().toString());
+                    // reference= FirebaseDatabase.getInstance().getReference().child("Products").child(codebar.getText().toString());
+                    //reference.setValue(product);
+                    new FirebaseDatabaseHelper().addProduct(product, new FirebaseDatabaseHelper.DataStatus() {
+                        @Override
+                        public void DataIsLoaded(List<Product> productsList, List<String> keys) {
+                        }
 
-                        Toast.makeText(RepresentativeAddProductActivity.this,"המוצר התווסף בהצלחה" , Toast.LENGTH_LONG).show();
-                        finish();return;
+                        @Override
+                        public void DataIsInserted() {
 
-                    }
+                            Toast.makeText(RepresentativeAddProductActivity.this, "המוצר התווסף בהצלחה", Toast.LENGTH_LONG).show();
+                            finish();
+                            return;
 
-                    @Override
-                    public void DataIsUpdated() {
+                        }
 
-                    }
+                        @Override
+                        public void DataIsUpdated() {
 
-                    @Override
-                    public void DataIsDeleted() {
+                        }
 
-                    }
-                });
-            }
-        });
+                        @Override
+                        public void DataIsDeleted() {
 
+                        }
+                    });
+                }
+            });
+
+
+        }
 
     }
-
 }

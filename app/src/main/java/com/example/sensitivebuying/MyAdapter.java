@@ -13,16 +13,16 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyAdapter extends ArrayAdapter<StateVO> {
+public class MyAdapter extends ArrayAdapter<Sensitive> {
     private Context mContext;
-    private ArrayList<StateVO> listState;
+    private ArrayList<Sensitive> listState;
     private MyAdapter myAdapter;
     private boolean isFromView = false;
 
-    public MyAdapter(Context context, int resource, List<StateVO> objects) {
+    public MyAdapter(Context context, int resource, List<Sensitive> objects) {
         super(context, resource, objects);
         this.mContext = context;
-        this.listState = (ArrayList<StateVO>) objects;
+        this.listState = (ArrayList<Sensitive>) objects;
         this.myAdapter = this;
     }
 
@@ -54,11 +54,11 @@ public class MyAdapter extends ArrayAdapter<StateVO> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.mTextView.setText(listState.get(position).getTitle());
+        holder.mTextView.setText(listState.get(position).getSensitiveType());
 
         // To check weather checked event fire from getview() or user input
         isFromView = true;
-        holder.mCheckBox.setChecked(listState.get(position).isSelected());
+        holder.mCheckBox.setChecked(listState.get(position).getSelected());
         isFromView = false;
 
         if ((position == 0)) {

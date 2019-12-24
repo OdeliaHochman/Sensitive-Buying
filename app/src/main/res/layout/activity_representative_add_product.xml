@@ -101,16 +101,6 @@ tools:context=".RepresentativeAddProductActivity">
             android:layout_marginTop="10dp" />
 
 
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="50dp"
-            android:text="בחר רגישויות"
-            android:textAlignment="gravity" />
-
-
 
         <EditText
             android:id="@+id/image_editTxt"
