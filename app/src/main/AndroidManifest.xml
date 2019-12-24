@@ -11,7 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".RepresentativeUpdateProductActivity"></activity>
         <activity android:name=".OpenActivity">
 
             <intent-filter>
