@@ -47,8 +47,7 @@ public class FirebaseUserHelper {
                     dataStatus.DataIsLoaded(rep,userKey);
                 }
                 else {
-                    CustomerUser cus  = dataSnapshot.getValue(CustomerUser.class);
-                    dataStatus.DataIsLoaded(cus,userKey);
+                    dataStatus.DataIsLoaded(user,userKey);
 
                 }
 
