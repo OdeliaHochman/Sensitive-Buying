@@ -13,15 +13,15 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddProduct_SensitivesCheckBoxSpinner extends ArrayAdapter<Sensitive> {
+public class AddProduct_SensitivesCheckBoxSpinner extends ArrayAdapter<Sensitive_Checkbox> {
     private Context mContext;
-    private ArrayList<Sensitive> listState;
+    private ArrayList<Sensitive_Checkbox> listState;
     private boolean isFromView = false;
 
-    public AddProduct_SensitivesCheckBoxSpinner(Context context, int resource, List<Sensitive> objects) {
+    public AddProduct_SensitivesCheckBoxSpinner(Context context, int resource, List<Sensitive_Checkbox> objects) {
         super(context, resource, objects);
         this.mContext = context;
-        this.listState = (ArrayList<Sensitive>) objects;
+        this.listState = (ArrayList<Sensitive_Checkbox>) objects;
 
     }
 
@@ -53,11 +53,11 @@ public class AddProduct_SensitivesCheckBoxSpinner extends ArrayAdapter<Sensitive
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.mTextView.setText(listState.get(position).getSensitiveType());
+        holder.mTextView.setText(listState.get(position).getSensitiveTypebox());
 
         // To check weather checked event fire from getview() or user input
         isFromView = true;
-        holder.mCheckBox.setChecked(listState.get(position).getSelected());
+        holder.mCheckBox.setChecked(listState.get(position).getSelectedbox());
         isFromView = false;
 
         if ((position == 0)) {
@@ -73,7 +73,7 @@ public class AddProduct_SensitivesCheckBoxSpinner extends ArrayAdapter<Sensitive
                 int getPosition = (Integer) buttonView.getTag();
 
                 if (!isFromView) {
-                    listState.get(position).setSelected(isChecked);
+                    listState.get(position).setSelectedbox(isChecked);
                 }
             }
         });

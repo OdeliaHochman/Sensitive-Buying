@@ -68,16 +68,20 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
         spinner = (Spinner) findViewById(R.id.sensitives_spinner);
 
         final ArrayList<Sensitive> listOfSensitive = new ArrayList<>();
+        final ArrayList<Sensitive_Checkbox> listbox=new ArrayList<>();
         final ArrayList<Sensitive> listOfSensitiveTrue = new ArrayList<>();
 
 
         for (int i = 0; i < select_qualification.length; i++) {
             final Sensitive sensitive = new Sensitive();
+            final Sensitive_Checkbox senbox= new Sensitive_Checkbox();
             sensitive.setSensitiveType(select_qualification[i]);
+            senbox.setSensitiveTypebox(select_qualification[i]);
             listOfSensitive.add(sensitive);
+            listbox.add(senbox);
 
 
-            AddProduct_SensitivesCheckBoxSpinner addProductSensitivesSpinner = new AddProduct_SensitivesCheckBoxSpinner(this, 0, listOfSensitive);
+            AddProduct_SensitivesCheckBoxSpinner addProductSensitivesSpinner = new AddProduct_SensitivesCheckBoxSpinner(this, 0, listbox);
             spinner.setAdapter(addProductSensitivesSpinner);
 
             btnSave.setOnClickListener(new View.OnClickListener() {
@@ -86,9 +90,8 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
                     if (isEmpty()) // if one of the text view is empty
                         return;
 
-                    ArrayList<Sensitive> ArrSensitives = new ArrayList<>();
-                    for (int j = 0; j < listOfSensitive.size(); j++) {
-                        if (listOfSensitive.get(j).getSelected() == true) {
+                    for (int j = 0; j < listbox.size(); j++) {
+                        if (listbox.get(j).getSelectedbox() == true) {
                             listOfSensitiveTrue.add(listOfSensitive.get(j));
                         }
                     }
@@ -173,10 +176,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
 
                             }
                         });
-
-
                     }
-
                 }
             });
         }

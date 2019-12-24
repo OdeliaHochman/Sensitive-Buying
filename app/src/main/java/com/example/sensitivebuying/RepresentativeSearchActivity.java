@@ -18,10 +18,10 @@ import java.util.List;
 
 public class RepresentativeSearchActivity extends AppCompatActivity implements View.OnClickListener  {
 
- private SearchView mySearchView;
- private RecyclerView mRecycler;
- private FloatingActionButton floatingButton;
- private List<Product> productList;
+    private SearchView mySearchView;
+    private RecyclerView mRecycler;
+    private FloatingActionButton floatingButton;
+    private List<Product> productList;
 
 
     final String activity = "RepresentativeSearchActivity";
@@ -43,9 +43,9 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
         new FirebaseProductsHelper().readProducts(new FirebaseProductsHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<Product> list, List<String> keys) {
-               findViewById(R.id.progressBar).setVisibility(View.GONE);
+                findViewById(R.id.progressBar).setVisibility(View.GONE);
 
-                       productList=list;
+                productList=list;
 
                 new RecyclerView_config().setConfig(mRecycler,RepresentativeSearchActivity.this,productList,keys);
 
@@ -105,16 +105,16 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
 
         ArrayList<Product>searchList = new ArrayList<>();
         ArrayList<String> searchKeys = new ArrayList<>();
-if (productList!= null ) {
-    for (Product p : productList) {
-        if (p.getProductName().toLowerCase().contains(str) || p.getBarcode().contains(str)) {
-            searchList.add(p);
-            searchKeys.add(p.getBarcode());
+        if (productList!= null ) {
+            for (Product p : productList) {
+                if (p.getProductName().toLowerCase().contains(str) || p.getBarcode().contains(str)) {
+                    searchList.add(p);
+                    searchKeys.add(p.getBarcode());
+                }
+            }
+
+            new RecyclerView_config().setConfig(mRecycler, RepresentativeSearchActivity.this, searchList, searchKeys);
+
         }
-    }
-
-    new RecyclerView_config().setConfig(mRecycler, RepresentativeSearchActivity.this, searchList, searchKeys);
-
-}
     }
 }

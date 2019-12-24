@@ -68,23 +68,13 @@ public class FirebaseCompaniesHelper
     {
         String  barcode = product.getBarcode();
 
-        cReference.child(product.getCompanyName()).child(barcode).setValue(product).addOnSuccessListener(new OnSuccessListener<Void>() {
+        cReference.child(product.getCompanyName()).child("barcode").setValue(barcode).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 dataStatus.DataIsInserted();
             }
         });
     }
-    public void updateProduct(String key,Product product,final FirebaseProductsHelper.DataStatus dataStatus)
-    {
-        cReference.child(key).setValue(product).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                dataStatus.DataIsUpdated();
-            }
-        });
-    }
-
     public void deleteProduct(String key , final FirebaseProductsHelper.DataStatus dataStatus)
     {
         cReference.child(key).setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
