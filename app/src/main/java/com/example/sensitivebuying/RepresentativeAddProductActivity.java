@@ -16,7 +16,7 @@ import java.util.List;
 public class RepresentativeAddProductActivity extends AppCompatActivity {
 
     private Button btnSave;
-    private EditText codebar;
+    private EditText barcode;
     private EditText nameCompany;
     private EditText infoProduct;
     private EditText nameProduct;
@@ -31,7 +31,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d("debug", activity);
         setContentView(R.layout.activity_representative_add_product);
-        codebar = findViewById(R.id.barcode_editTxt);
+        barcode = findViewById(R.id.barcode_editTxt);
         nameCompany = findViewById(R.id.company_editTxt);
         infoProduct = findViewById(R.id.information_editTxt);
         nameProduct = findViewById(R.id.nameProduct_editTxt);
@@ -58,7 +58,6 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
             btnSave.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ArrayList<Sensitive> ArrSensitives=new ArrayList<>();
                     for (int j = 0; j < listOfSensitive.size(); j++) {
                         if (listOfSensitive.get(j).getSelected() == true)
                         {
@@ -67,7 +66,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
                     }
 
                     final Product product = new Product();
-                    product.setBarcode(codebar.getText().toString());
+                    product.setBarcode(barcode.getText().toString());
                     product.setCompanyName(nameCompany.getText().toString());
                     product.setProductDescription(infoProduct.getText().toString());
                     product.setProductName(nameProduct.getText().toString());
