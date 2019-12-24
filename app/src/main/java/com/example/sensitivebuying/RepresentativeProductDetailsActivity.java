@@ -10,7 +10,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +29,8 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
     private ImageView productImage;
     private Button btnUpdate,btnDelete;
     final String activity = " RepresentativeProductDetailsActivity";
-    private String productNameS,companyNameS,weightS,productDetalisS,barcodeS;
+    private String productNameS,companyNameS,weightS,barcodeS;
+    private FirebaseDatabase firebaseDatabase;
 
 
 
@@ -30,12 +39,12 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d("debug",activity);
         setContentView(R.layout.activity_representative_product_details);
+        firebaseDatabase = FirebaseDatabase.getInstance();
 
         productNameS = getIntent().getStringExtra("product name");
         companyNameS = getIntent().getStringExtra("company name");
         weightS = getIntent().getStringExtra("weight");
         barcodeS = getIntent().getStringExtra("barcode");
-        //productDetalisS = getIntent().getStringExtra("product detalis");
 
         productName = (TextView) findViewById(R.id.product_name_Adetails);
         productName.setText(productNameS);
@@ -44,49 +53,18 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
         weight = (TextView) findViewById(R.id.product_weight_name_Adetails);
         weight.setText(weightS);
         productDetalis = (TextView) findViewById(R.id.product_details_name_Adetails);
-        productDetalis.setText(productDetalisS);
         barcode = (TextView) findViewById(R.id.barcode_Adetails);
         barcode.setText(barcodeS);
-
 
         productImage = (ImageView)findViewById(R.id.product_image_Adetails);
         btnUpdate = (Button)findViewById(R.id.btnUpdateProDet);
         btnDelete = (Button)findViewById(R.id.btnDeleteProDet);
 
+        setDetails(barcodeS);
+
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Product product = new Product();
-//                product.setBarcode(barcode.getText().toString());
-//                product.setCompanyName(companyName.getText().toString());
-//                product.setProductDescription(productDetalis.getText().toString());
-//                product.setProductName(productName.getText().toString());
-//                //product.setSensitiveList(listOfSensitiveTrue);
-//               // product.setUrlImage(urlImage.getText().toString());
-//                product.setWeightAndType(weight.getText().toString());
-//
-//                new FirebaseProductsHelper().updateProduct(barcodeS, product, new FirebaseProductsHelper.DataStatus() {
-//                    @Override
-//                    public void DataIsLoaded(List<Product> productsList, List<String> keys) {
-//
-//                    }
-//
-//                    @Override
-//                    public void DataIsInserted() {
-//
-//                    }
-//
-//                    @Override
-//                    public void DataIsUpdated() {
-//                        Toast.makeText(RepresentativeProductDetailsActivity.this,"המוצר התעדכן בהצלחה" , Toast.LENGTH_LONG).show();
-//
-//                    }
-//
-//                    @Override
-//                    public void DataIsDeleted() {
-//
-//                    }
-//                });
                 Intent intent = new Intent(RepresentativeProductDetailsActivity.this, RepresentativeAddProductActivity.class);
                 intent.putExtra("barcode",barcodeS);
                 startActivity(intent);
@@ -119,6 +97,26 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
                         finish();return;
                     }
                 });
+            }
+        });
+
+    }
+
+    private void setDetails (String barcode) {
+
+        DatabaseReference reference = firebaseDatabase.getReference("Products").child(barcode);
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Product p = dataSnapshot.getValue(Product.class);
+                productDetalis.setText(p.getProductDescription());
+                Picasso.get().load(p.getUrlImage()).into(productImage);
+                //sensitivelist
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 

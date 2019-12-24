@@ -3,76 +3,100 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".RepresentativeProductDetailsActivity">
 
 
     <ImageView
-        android:id="@+id/bgapp2"
-        android:layout_width="411dp"
-        android:layout_height="729dp"
+        android:id="@+id/bgapp1_details"
+        android:layout_width="505dp"
+        android:layout_height="113dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:scaleType="fitXY"
-        android:src="@drawable/orangeback"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/back2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.908"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/title_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:text="פרטי מוצר"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/product_name_Adetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="15dp"
         android:text="productName"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/company_name_Adetails"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/product_image_Adetails"
+        app:layout_constraintTop_toBottomOf="@+id/bgapp1_details"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/barcode_Adetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="324dp"
-        android:layout_marginBottom="640dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="16dp"
         android:text="barcode"
         android:typeface="monospace"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/company_name_Adetails" />
 
     <TextView
         android:id="@+id/product_weight_name_Adetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="612dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="23dp"
         android:text="weight"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barcode_Adetails" />
 
     <TextView
         android:id="@+id/product_details_name_Adetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="528dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="368dp"
         android:text="product details"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
-        />
+        app:layout_constraintTop_toBottomOf="@+id/Component_details" />
 
     <TextView
         android:id="@+id/company_name_Adetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="188dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="13dp"
         android:text="companyName"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/barcode_Adetails"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,34 +104,72 @@
         android:id="@+id/product_image_Adetails"
         android:layout_width="156dp"
         android:layout_height="143dp"
-        app:srcCompat="@android:drawable/sym_def_app_icon"
-        tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="19dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/company_name_Adetails"
-        app:layout_constraintVertical_bias="0.375"/>
+        app:layout_constraintTop_toBottomOf="@+id/bgapp1_details"
+        app:srcCompat="@android:drawable/sym_def_app_icon" />
 
     <Button
         android:id="@+id/btnUpdateProDet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="56dp"
         android:layout_marginBottom="56dp"
-        android:text="update product"
+        android:text="עדכון פרטי מוצר"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnDeleteProDet"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnDeleteProDet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="70dp"
         android:layout_marginBottom="56dp"
-        android:text="delete product"
+        android:text="מחיקת מוצר"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/btnUpdateProDet" />
+
+    <TextView
+        android:id="@+id/Component_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="40dp"
+        android:text="רכיבים:"
+        app:layout_constraintBottom_toTopOf="@+id/product_details_name_Adetails"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_image_Adetails"
+        app:layout_constraintVertical_bias="0.921" />
+
+    <TextView
+        android:id="@+id/allergens_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="62dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="40dp"
+        android:text="אלרגנים:"
+        app:layout_constraintBottom_toTopOf="@+id/sensitiveList_details"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_details_name_Adetails" />
+
+    <TextView
+        android:id="@+id/sensitiveList_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="129dp"
+        android:text="sensitiveList"
+        app:layout_constraintBottom_toTopOf="@+id/btnDeleteProDet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/allergens_details" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
