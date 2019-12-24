@@ -13,17 +13,17 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyAdapter extends ArrayAdapter<Sensitive> {
+public class AddProduct_SensitivesSpinner extends ArrayAdapter<Sensitive> {
     private Context mContext;
     private ArrayList<Sensitive> listState;
-    private MyAdapter myAdapter;
+    private AddProduct_SensitivesSpinner addProductSensitivesSpinner;
     private boolean isFromView = false;
 
-    public MyAdapter(Context context, int resource, List<Sensitive> objects) {
+    public AddProduct_SensitivesSpinner(Context context, int resource, List<Sensitive> objects) {
         super(context, resource, objects);
         this.mContext = context;
         this.listState = (ArrayList<Sensitive>) objects;
-        this.myAdapter = this;
+        this.addProductSensitivesSpinner = this;
     }
 
     @Override

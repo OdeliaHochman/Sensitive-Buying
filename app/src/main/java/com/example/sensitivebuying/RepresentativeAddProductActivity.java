@@ -3,7 +3,6 @@ package com.example.sensitivebuying;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -12,7 +11,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +44,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
         weightSen = findViewById(R.id.weight_editTxt);
         btnSave = findViewById(R.id.save_button);
 
-        final String[] select_qualification = {  "בחר רגישויות", "בוטנים", "אגוזים", "שקדים", "גלוטן", "לקטוז", "סויה", "שומשום"};
+        final String[] select_qualification = {"    בחר רגישויות  ", "בוטנים", "אגוזים", "שקדים", "גלוטן", "לקטוז", "סויה", "שומשום"};
         Spinner spinner = (Spinner) findViewById(R.id.sensitives_spinner);
 
         final ArrayList<Sensitive> listOfSensitive = new ArrayList<>();
@@ -59,8 +57,8 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
             listOfSensitive.add(sensitive);
 
 
-            MyAdapter myAdapter = new MyAdapter(this, 0, listOfSensitive);
-            spinner.setAdapter(myAdapter);
+            AddProduct_SensitivesSpinner addProductSensitivesSpinner = new AddProduct_SensitivesSpinner(this, 0, listOfSensitive);
+            spinner.setAdapter(addProductSensitivesSpinner);
 
             btnSave.setOnClickListener(new View.OnClickListener() {
                 @Override

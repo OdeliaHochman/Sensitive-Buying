@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,6 +30,8 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
  private FloatingActionButton floatingButton;
  private TextView textView;
  private List<Product> productList;
+ private DatabaseReference refCompanyName;
+ private RepresentativeUser userCompany;
 
     final String activity = "RepresentativeSearchActivity";
 
@@ -49,7 +53,9 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
             @Override
             public void DataIsLoaded(List<Product> list, List<String> keys) {
                findViewById(R.id.progressBar).setVisibility(View.GONE);
-               productList=list;
+
+                       productList=list;
+
                 new RecyclerView_config().setConfig(mRecycler,RepresentativeSearchActivity.this,productList,keys);
 
             }
