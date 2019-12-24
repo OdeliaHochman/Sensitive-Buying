@@ -18,14 +18,11 @@ import java.util.List;
 
 public class RepresentativeSearchActivity extends AppCompatActivity implements View.OnClickListener  {
 
-
-    private SearchView mySearchView;
+ private SearchView mySearchView;
  private RecyclerView mRecycler;
  private FloatingActionButton floatingButton;
- private TextView textView;
  private List<Product> productList;
- private DatabaseReference refCompanyName;
- private RepresentativeUser userCompany;
+
 
     final String activity = "RepresentativeSearchActivity";
 

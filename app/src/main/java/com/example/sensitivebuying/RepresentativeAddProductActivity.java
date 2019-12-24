@@ -46,6 +46,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         final String barcode = getIntent().getStringExtra("barcode");
         codebar = findViewById(R.id.barcode_editTxt);
+
         nameCompany = findViewById(R.id.company_editTxt);
         infoProduct = findViewById(R.id.information_editTxt);
         nameProduct = findViewById(R.id.nameProduct_editTxt);
@@ -76,7 +77,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
             listOfSensitive.add(sensitive);
 
 
-            AddProduct_SensitivesSpinner addProductSensitivesSpinner = new AddProduct_SensitivesSpinner(this, 0, listOfSensitive);
+            AddProduct_SensitivesCheckBoxSpinner addProductSensitivesSpinner = new AddProduct_SensitivesCheckBoxSpinner(this, 0, listOfSensitive);
             spinner.setAdapter(addProductSensitivesSpinner);
 
             btnSave.setOnClickListener(new View.OnClickListener() {

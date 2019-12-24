@@ -35,7 +35,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
         companyNameS = getIntent().getStringExtra("company name");
         weightS = getIntent().getStringExtra("weight");
         barcodeS = getIntent().getStringExtra("barcode");
-        productDetalisS = getIntent().getStringExtra("product detalis");
+        //productDetalisS = getIntent().getStringExtra("product detalis");
 
         productName = (TextView) findViewById(R.id.product_name_Adetails);
         productName.setText(productNameS);
