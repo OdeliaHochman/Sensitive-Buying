@@ -2,7 +2,6 @@ package com.example.sensitivebuying;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,12 +56,12 @@ public class RecyclerView_config implements Serializable {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext,RepresentativeProductDetailsActivity.class);
-                    intent.putExtra("key",key);
+                   // intent.putExtra("key",key);
                     intent.putExtra("product name",mNamePro.getText().toString());
                     intent.putExtra("weight",mWeight.getText().toString());
                     intent.putExtra("company name",mCompanyName.getText().toString());
                     intent.putExtra("barcode",mBarcode.getText().toString());
-                  //  intent.putExtra("product image",productIm.getText().toString());
+
 
                     mContext.startActivity(intent);
 
@@ -71,14 +70,15 @@ public class RecyclerView_config implements Serializable {
 
         }
 
-        public void bind(Product product , String key)
+        public void bind(Product product , String barcode)
         {
             mNamePro.setText(product.getProductName());
             mCompanyName.setText(product.getCompanyName());
             mWeight.setText(product.getWeightAndType());
-            mBarcode.setText(product.getBarcode());
+            mBarcode.setText(barcode);
+            //mBarcode.setText(product.getBarcode());
             Picasso.get().load(product.getUrlImage()).into(productIm);
-            this.key=key;
+
 
         }
 
@@ -87,12 +87,12 @@ public class RecyclerView_config implements Serializable {
     class ProductsAdapter extends  RecyclerView.Adapter<ProductItemView>
     {
         private List<Product> mproductsList;
-        private List<String> mKeys;
+        private List<String> barcodes;
 
-        public ProductsAdapter(List<Product> mproductsList, List<String> mKeys)
+        public ProductsAdapter(List<Product> mproductsList, List<String> barcodes)
         {
             this.mproductsList = mproductsList;
-            this.mKeys = mKeys;
+            this.barcodes = barcodes;
         }
 
         @NonNull
@@ -105,7 +105,7 @@ public class RecyclerView_config implements Serializable {
         @Override
         public void onBindViewHolder(@NonNull ProductItemView holder, int position)
         {
-            holder.bind(mproductsList.get(position),mKeys.get(position));
+            holder.bind(mproductsList.get(position), barcodes.get(position));
 
         }
 
