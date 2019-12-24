@@ -1,6 +1,5 @@
 package com.example.sensitivebuying;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,9 +19,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
     private ImageView productImage;
     private Button btnUpdate,btnDelete;
     final String activity = " RepresentativeProductDetailsActivity";
-    private String key;
     private String productNameS,companyNameS,weightS,productDetalisS,barcodeS;
-    private Spinner productSpinner;
 
 
 
@@ -36,10 +33,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
         companyNameS = getIntent().getStringExtra("company name");
         weightS = getIntent().getStringExtra("weight");
         barcodeS = getIntent().getStringExtra("barcode");
-        //productDetalisS = getIntent().getStringExtra("product detalis");
-
-        //productSpinner=(Spinner)findViewById(R.id.spinner) ;
-       // productSpinner.setSelection(getIndex_SpinnerItem(productSpinner,sensitiveList));
+        productDetalisS = getIntent().getStringExtra("product detalis");
 
         productName = (TextView) findViewById(R.id.product_name_Adetails);
         productName.setText(productNameS);
@@ -59,8 +53,6 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             //   Intent intent =new Intent(RepresentativeProductDetailsActivity.this,RepresentativeUpdateProductActivity.class);
-             //   startActivity(intent);
                 Product product = new Product();
                 product.setBarcode(barcode.getText().toString());
                 product.setCompanyName(companyName.getText().toString());
@@ -70,7 +62,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
                // product.setUrlImage(urlImage.getText().toString());
                 product.setWeightAndType(weight.getText().toString());
 
-                new FirebaseDatabaseHelper().updateProduct(barcodeS, product, new FirebaseDatabaseHelper.DataStatus() {
+                new FirebaseProductsHelper().updateProduct(barcodeS, product, new FirebaseProductsHelper.DataStatus() {
                     @Override
                     public void DataIsLoaded(List<Product> productsList, List<String> keys) {
 
@@ -98,7 +90,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new FirebaseDatabaseHelper().deleteProduct(barcodeS, new FirebaseDatabaseHelper.DataStatus() {
+                new FirebaseProductsHelper().deleteProduct(barcodeS, new FirebaseProductsHelper.DataStatus() {
                     @Override
                     public void DataIsLoaded(List<Product> productsList, List<String> keys) {
 

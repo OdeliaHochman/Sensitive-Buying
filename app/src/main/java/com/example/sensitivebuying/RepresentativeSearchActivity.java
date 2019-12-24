@@ -4,10 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -16,9 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +43,7 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
         floatingButton = (FloatingActionButton)findViewById(R.id.floating_button_search);
         floatingButton.setOnClickListener(this);
 
-        new FirebaseDatabaseHelper().readProducts(new FirebaseDatabaseHelper.DataStatus() {
+        new FirebaseProductsHelper().readProducts(new FirebaseProductsHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<Product> list, List<String> keys) {
                findViewById(R.id.progressBar).setVisibility(View.GONE);

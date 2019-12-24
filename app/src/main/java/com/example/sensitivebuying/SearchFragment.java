@@ -1,22 +1,15 @@
 package com.example.sensitivebuying;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.SearchView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +42,7 @@ public class SearchFragment extends Fragment implements  View.OnClickListener {
         mySearchView = (SearchView)v.findViewById(R.id.searchLine_customer);
         mRecycler = (RecyclerView)v.findViewById(R.id.recyclerView_products_customer);
 
-        new FirebaseDatabaseHelper().readProducts(new FirebaseDatabaseHelper.DataStatus() {
+        new FirebaseProductsHelper().readProducts(new FirebaseProductsHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<Product> list, List<String> keys) {
                 v.findViewById(R.id.progressBar_customer).setVisibility(View.GONE);

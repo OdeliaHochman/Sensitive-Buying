@@ -13,7 +13,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirebaseDatabaseHelper implements Serializable {
+public class FirebaseProductsHelper implements Serializable {
 
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
@@ -27,7 +27,7 @@ public class FirebaseDatabaseHelper implements Serializable {
         void DataIsDeleted();
     }
 
-    public FirebaseDatabaseHelper()
+    public FirebaseProductsHelper()
     {
 
         mDatabase = FirebaseDatabase.getInstance();

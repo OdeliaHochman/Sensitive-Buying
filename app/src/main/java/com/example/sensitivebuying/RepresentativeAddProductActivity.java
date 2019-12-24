@@ -18,7 +18,7 @@ import java.util.List;
 public class RepresentativeAddProductActivity extends AppCompatActivity {
 
     private Button btnSave;
-    private FirebaseDatabaseHelper addFirebase;
+    private FirebaseProductsHelper addFirebase;
     private EditText codebar;
     private EditText nameCompany;
     private EditText infoProduct;
@@ -81,7 +81,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
                     product.setWeightAndType(weightSen.getText().toString());
                     // reference= FirebaseDatabase.getInstance().getReference().child("Products").child(codebar.getText().toString());
                     //reference.setValue(product);
-                    new FirebaseDatabaseHelper().addProduct(product, new FirebaseDatabaseHelper.DataStatus() {
+                    new FirebaseProductsHelper().addProduct(product, new FirebaseProductsHelper.DataStatus() {
                         @Override
                         public void DataIsLoaded(List<Product> productsList, List<String> keys) {
                         }
