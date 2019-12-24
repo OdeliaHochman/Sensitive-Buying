@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,12 +19,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RepresentativeProductDetailsActivity extends AppCompatActivity {
 
-    private TextView productName,companyName,weight,productDetalis,barcode;
+    private TextView productName,companyName,weight, productDetails,barcode;
     private ImageView productImage;
     private Button btnUpdate,btnDelete;
     final String activity = " RepresentativeProductDetailsActivity";
@@ -52,7 +50,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
         companyName.setText(companyNameS);
         weight = (TextView) findViewById(R.id.product_weight_name_Adetails);
         weight.setText(weightS);
-        productDetalis = (TextView) findViewById(R.id.product_details_name_Adetails);
+        productDetails = (TextView) findViewById(R.id.product_details_name_Adetails);
         barcode = (TextView) findViewById(R.id.barcode_Adetails);
         barcode.setText(barcodeS);
 
@@ -109,7 +107,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Product p = dataSnapshot.getValue(Product.class);
-                productDetalis.setText(p.getProductDescription());
+                productDetails.setText(p.getProductDescription());
                 Picasso.get().load(p.getUrlImage()).into(productImage);
                 //sensitivelist
             }
