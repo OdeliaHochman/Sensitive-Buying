@@ -79,8 +79,12 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
 
                 @Override
                 public boolean onQueryTextChange(String newText) {
-                    search(newText);
-                    return true;
+                    if (mySearchView!= null ) {
+                        Log.d("debug_search",""+newText);
+                        search(newText);
+                        return true;
+                    }
+                    return false;
                 }
             });
         }
@@ -104,16 +108,16 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
 
         ArrayList<Product>searchList = new ArrayList<>();
         ArrayList<String> searchKeys = new ArrayList<>();
-
-        for ( Product p : productList) {
-            if (p.getProductName().toLowerCase().contains(str) || p.getBarcode().contains(str))  {
-                searchList.add(p);
-                searchKeys.add(p.getBarcode());
-            }
+if (productList!= null ) {
+    for (Product p : productList) {
+        if (p.getProductName().toLowerCase().contains(str) || p.getBarcode().contains(str)) {
+            searchList.add(p);
+            searchKeys.add(p.getBarcode());
         }
+    }
 
-        new RecyclerView_config().setConfig(mRecycler,RepresentativeSearchActivity.this,searchList,searchKeys);
+    new RecyclerView_config().setConfig(mRecycler, RepresentativeSearchActivity.this, searchList, searchKeys);
 
-
+}
     }
 }

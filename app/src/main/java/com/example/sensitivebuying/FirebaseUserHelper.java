@@ -41,9 +41,17 @@ public class FirebaseUserHelper {
         mReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                user = (User) dataSnapshot.getValue(User.class);
+                user =  dataSnapshot.getValue(User.class);
+                if(user.getRep()) {
+                RepresentativeUser rep = dataSnapshot.getValue(RepresentativeUser.class);
+                    dataStatus.DataIsLoaded(rep,userKey);
+                }
+                else {
+                    CustomerUser cus  = dataSnapshot.getValue(CustomerUser.class);
+                    dataStatus.DataIsLoaded(cus,userKey);
 
-                dataStatus.DataIsLoaded(user,userKey);
+                }
+
             }
 
             @Override

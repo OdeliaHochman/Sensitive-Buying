@@ -18,11 +18,12 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class RepresentativeHomeActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageView companyProI , statI ,contactI ,logOutI;
-   private ImageView bgapp, clover;
-    private LinearLayout textsplash,menus;
+    private ImageView companyProI, statI, contactI, logOutI;
+    private ImageView bgapp, clover;
+    private LinearLayout textsplash, menus;
     private Animation frombottom;
-   // private TextView companyProT , statT ,contactT ,logOutT;
+    private RepresentativeUser repUser;
+    private TextView nameTextView, companyTextView; //companyProT , statT ,contactT ,logOutT;
 
 
     final String activity = " RepresentativeHomeActivity";
@@ -30,7 +31,7 @@ public class RepresentativeHomeActivity extends AppCompatActivity implements Vie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("debug",activity);
+        Log.d("debug", activity);
         setContentView(R.layout.activity_representative_home);
 
 
@@ -39,6 +40,10 @@ public class RepresentativeHomeActivity extends AppCompatActivity implements Vie
         clover = (ImageView) findViewById(R.id.clover);
         textsplash = (LinearLayout) findViewById(R.id.textsplash);
         menus = (LinearLayout) findViewById(R.id.menus);
+        nameTextView = findViewById(R.id.helloNameT);
+        companyTextView = findViewById(R.id.helloSecondT);
+
+        setRepName();
 
         bgapp.animate().translationY(-1900).setDuration(800).setStartDelay(400);
         clover.animate().alpha(0).setDuration(800).setStartDelay(700);
@@ -74,33 +79,28 @@ public class RepresentativeHomeActivity extends AppCompatActivity implements Vie
 
     }
 
-     @Override
-        public void onClick(View v)
-        {
+    @Override
+    public void onClick(View v) {
 
-            if(logOutI == v)
-            {
-                FirebaseAuth.getInstance().signOut();
-                Intent loginActivity = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(loginActivity);
-                finish();
-           }
+        if (logOutI == v) {
+            FirebaseAuth.getInstance().signOut();
+            Intent loginActivity = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(loginActivity);
+            finish();
+        }
 
-            if(companyProI == v)
-            {
-                Intent intent =new Intent(RepresentativeHomeActivity.this,RepresentativeSearchActivity.class);
-                startActivity(intent);
-            }
-            if(statI == v)
-            {
-                Intent intent =new Intent(RepresentativeHomeActivity.this,RepresentativeStatisticsActivity.class);
-                startActivity(intent);
-            }
-            if(contactI == v)
-            {
-                Intent intent =new Intent(RepresentativeHomeActivity.this,RepresentativeContactUsActivity.class);
-                startActivity(intent);
-            }
+        if (companyProI == v) {
+            Intent intent = new Intent(RepresentativeHomeActivity.this, RepresentativeSearchActivity.class);
+            startActivity(intent);
+        }
+        if (statI == v) {
+            Intent intent = new Intent(RepresentativeHomeActivity.this, RepresentativeStatisticsActivity.class);
+            startActivity(intent);
+        }
+        if (contactI == v) {
+            Intent intent = new Intent(RepresentativeHomeActivity.this, RepresentativeContactUsActivity.class);
+            startActivity(intent);
+        }
 
 //            if(companyProT == v)
 //            {
@@ -118,5 +118,23 @@ public class RepresentativeHomeActivity extends AppCompatActivity implements Vie
 //                startActivity(intent);
 //            }
 
-        }
+    }
+
+
+    private void setRepName() {
+
+        new FirebaseUserHelper().readUser(new FirebaseUserHelper.DataStatusUser() {
+            @Override
+            public void DataIsLoaded(User userHelper, String key) {
+                repUser = (RepresentativeUser) userHelper;
+                String name = repUser.getName();
+                String companyName = repUser.getCompanyName();
+                String helloTxt = getString(R.string.hello);
+                String companyTxt = getString(R.string.company);
+
+                nameTextView.setText(helloTxt + " " + name);
+                companyTextView.setText(companyTxt + " " + companyName);
+            }
+        });
+    }
 }

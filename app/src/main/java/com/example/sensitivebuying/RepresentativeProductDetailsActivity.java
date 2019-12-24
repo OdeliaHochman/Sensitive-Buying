@@ -1,5 +1,6 @@
 package com.example.sensitivebuying;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RepresentativeProductDetailsActivity extends AppCompatActivity {
@@ -46,6 +48,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
         barcode = (TextView) findViewById(R.id.barcode_Adetails);
         barcode.setText(barcodeS);
 
+
         productImage = (ImageView)findViewById(R.id.product_image_Adetails);
         btnUpdate = (Button)findViewById(R.id.btnUpdateProDet);
         btnDelete = (Button)findViewById(R.id.btnDeleteProDet);
@@ -53,37 +56,41 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Product product = new Product();
-                product.setBarcode(barcode.getText().toString());
-                product.setCompanyName(companyName.getText().toString());
-                product.setProductDescription(productDetalis.getText().toString());
-                product.setProductName(productName.getText().toString());
-                //product.setSensitiveList(listOfSensitiveTrue);
-               // product.setUrlImage(urlImage.getText().toString());
-                product.setWeightAndType(weight.getText().toString());
-
-                new FirebaseProductsHelper().updateProduct(barcodeS, product, new FirebaseProductsHelper.DataStatus() {
-                    @Override
-                    public void DataIsLoaded(List<Product> productsList, List<String> keys) {
-
-                    }
-
-                    @Override
-                    public void DataIsInserted() {
-
-                    }
-
-                    @Override
-                    public void DataIsUpdated() {
-                        Toast.makeText(RepresentativeProductDetailsActivity.this,"המוצר התעדכן בהצלחה" , Toast.LENGTH_LONG).show();
-                    }
-
-                    @Override
-                    public void DataIsDeleted() {
-
-                    }
-                });
-
+//                Product product = new Product();
+//                product.setBarcode(barcode.getText().toString());
+//                product.setCompanyName(companyName.getText().toString());
+//                product.setProductDescription(productDetalis.getText().toString());
+//                product.setProductName(productName.getText().toString());
+//                //product.setSensitiveList(listOfSensitiveTrue);
+//               // product.setUrlImage(urlImage.getText().toString());
+//                product.setWeightAndType(weight.getText().toString());
+//
+//                new FirebaseProductsHelper().updateProduct(barcodeS, product, new FirebaseProductsHelper.DataStatus() {
+//                    @Override
+//                    public void DataIsLoaded(List<Product> productsList, List<String> keys) {
+//
+//                    }
+//
+//                    @Override
+//                    public void DataIsInserted() {
+//
+//                    }
+//
+//                    @Override
+//                    public void DataIsUpdated() {
+//                        Toast.makeText(RepresentativeProductDetailsActivity.this,"המוצר התעדכן בהצלחה" , Toast.LENGTH_LONG).show();
+//
+//                    }
+//
+//                    @Override
+//                    public void DataIsDeleted() {
+//
+//                    }
+//                });
+                Intent intent = new Intent(RepresentativeProductDetailsActivity.this, RepresentativeAddProductActivity.class);
+                intent.putExtra("barcode",barcodeS);
+                startActivity(intent);
+                finish();
             }
         });
 
