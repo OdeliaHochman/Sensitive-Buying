@@ -1,6 +1,7 @@
 package com.example.sensitivebuying.ui.represntative;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,6 +35,22 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
 
 
+    boolean isfavourite;
+
+
+    public void onToggleStar(View view){
+        TextView favouriteStar = (TextView) view;
+        if(!isfavourite){
+            // if the star is not already selected and you select it
+            isfavourite = true;
+            favouriteStar.setTextColor(Color.parseColor("#FFD600"));
+        }else{
+            // if the star is already selected and you unselect it
+            isfavourite = false;
+            favouriteStar.setTextColor(Color.parseColor("#9E9E9E"));
+        }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

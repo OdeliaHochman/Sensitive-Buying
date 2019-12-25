@@ -17,10 +17,8 @@ import java.util.List;
 
 public class FirebaseCompaniesHelper
 {
-    private FirebaseDatabase mDatabase;
     private FirebaseDatabase cDatabase;
     private DatabaseReference cReference;
-    private DatabaseReference mReference;
     private RepresentativeUser user;
     private List<Product> productsList = new ArrayList<>();
 
@@ -34,13 +32,12 @@ public class FirebaseCompaniesHelper
 
     public FirebaseCompaniesHelper()
     {
-        cDatabase =FirebaseDatabase.getInstance();
-        cReference=cDatabase.getReference("Companies");
-
+        //cDatabase =FirebaseDatabase.getInstance();
+        //cReference=cDatabase.getReference("Companies");
+        cReference=FirebaseDatabase.getInstance().getReference().child("Companies");
     }
 
-
-    public void readProductsOfCompanie(final FirebaseProductsHelper.DataStatus dataStatus)
+    public void readProductsOfCompanie(final DataStatus dataStatus)
     {
         cReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -64,19 +61,17 @@ public class FirebaseCompaniesHelper
             }
         });
     }
-
-    public void addProductOfCompanies(Product product,final FirebaseProductsHelper.DataStatus dataStatus)
+    public void addProductOfCompanies(Product product,final DataStatus dataStatus)
     {
-        String  barcode = product.getBarcode();
-
-        cReference.child(product.getCompanyName()).child("barcode").setValue(barcode).addOnSuccessListener(new OnSuccessListener<Void>() {
+        String  barcodeCompany = product.getBarcode();
+        cReference.child(product.getCompanyName()).push().setValue(barcodeCompany).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 dataStatus.DataIsInserted();
             }
         });
     }
-    public void deleteProduct(String key , final FirebaseProductsHelper.DataStatus dataStatus)
+    public void deleteProduct(String key , final DataStatus dataStatus)
     {
         cReference.child(key).setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

@@ -117,7 +117,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
                     product.setUrlImage(urlImage.getText().toString());
                     product.setWeightAndType(weightSen.getText().toString());
 
-                    new FirebaseCompaniesHelper().addProductOfCompanies(product, new FirebaseProductsHelper.DataStatus() {
+                    new FirebaseCompaniesHelper().addProductOfCompanies(product, new FirebaseCompaniesHelper.DataStatus() {
                         @Override
                         public void DataIsLoaded(List<Product> productsList, List<String> keys) {
 
