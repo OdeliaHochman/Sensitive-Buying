@@ -1,4 +1,4 @@
-package com.example.sensitivebuying.ui.represntative;
+package com.example.sensitivebuying.ui.customer;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.sensitivebuying.dataObject.CustomerUser;
 import com.example.sensitivebuying.ui.LoginActivity;
 import com.example.sensitivebuying.R;
-import com.example.sensitivebuying.ui.customer.SensitiveRegisterActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;

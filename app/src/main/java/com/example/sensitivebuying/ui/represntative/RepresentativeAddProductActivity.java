@@ -14,12 +14,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sensitivebuying.AddProduct_SensitivesCheckBoxSpinner;
+import com.example.sensitivebuying.RepresentativeUser;
+import com.example.sensitivebuying.dataObject.User;
 import com.example.sensitivebuying.firebaseHelper.FirebaseCompaniesHelper;
 import com.example.sensitivebuying.firebaseHelper.FirebaseProductsHelper;
 import com.example.sensitivebuying.dataObject.Product;
 import com.example.sensitivebuying.R;
 import com.example.sensitivebuying.dataObject.Sensitive;
 import com.example.sensitivebuying.Sensitive_Checkbox;
+import com.example.sensitivebuying.firebaseHelper.FirebaseUserHelper;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -61,6 +64,8 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
         weightSen = findViewById(R.id.weight_editTxt);
         btnSave = findViewById(R.id.save_button);
         mProgressBar= findViewById(R.id.progressBar_add_product);
+        setCompanyName();
+
         if (barcode != null) { // if you get from update page
             isAdd=false;
             btnSave.setText("עדכן"); // change the txt button
@@ -275,5 +280,19 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
         }
 
         return false;
+    }
+
+    private void setCompanyName () {
+        new FirebaseUserHelper().readUser(new FirebaseUserHelper.DataStatusUser() {
+            @Override
+            public void DataIsLoaded(User userHelper, String key) {
+                RepresentativeUser repUser = (RepresentativeUser) userHelper;
+                String companyName = repUser.getCompanyName();
+                nameCompany.setText(companyName);
+                nameCompany.setFocusable(false); // unable change the company name
+
+
+            }
+        });
     }
 }

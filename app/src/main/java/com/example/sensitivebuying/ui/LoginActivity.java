@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sensitivebuying.R;
 import com.example.sensitivebuying.ui.customer.HostNavigationActivity;
-import com.example.sensitivebuying.ui.represntative.RegisterActivity;
+import com.example.sensitivebuying.ui.customer.RegisterActivity;
 import com.example.sensitivebuying.ui.represntative.RepresentativeHomeActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

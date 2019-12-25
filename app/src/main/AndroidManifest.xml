@@ -22,7 +22,7 @@
         <activity android:name=".ui.customer.HostNavigationActivity" />
         <activity android:name=".ui.customer.CustomerDetailsActivity" />
         <activity android:name=".ui.LoginActivity" />
-        <activity android:name=".ui.represntative.RegisterActivity" />
+        <activity android:name=".ui.customer.RegisterActivity" />
         <activity android:name=".ui.customer.SensitiveRegisterActivity" />
         <activity android:name=".ui.represntative.RepresentativeStatisticsActivity" />
         <activity android:name=".ui.represntative.RepresentativeProductDetailsActivity" />
