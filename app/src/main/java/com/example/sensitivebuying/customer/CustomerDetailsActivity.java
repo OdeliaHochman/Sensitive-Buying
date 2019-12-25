@@ -1,4 +1,4 @@
-package com.example.sensitivebuying;
+package com.example.sensitivebuying.customer;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.sensitivebuying.R;
+import com.example.sensitivebuying.represntative.RepresentativeContactUsActivity;
 
 public class CustomerDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -41,7 +44,7 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
     @Override
     public void onClick(View v) {
         if(v==btn_contact) {
-            Intent intent =new Intent(CustomerDetailsActivity.this,RepresentativeContactUsActivity.class);
+            Intent intent =new Intent(CustomerDetailsActivity.this, RepresentativeContactUsActivity.class);
             startActivity(intent);
     }
 }

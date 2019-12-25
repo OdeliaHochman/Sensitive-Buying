@@ -1,4 +1,4 @@
-package com.example.sensitivebuying;
+package com.example.sensitivebuying.represntative;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sensitivebuying.firebaseHelper.FirebaseProductsHelper;
+import com.example.sensitivebuying.dataObject.Product;
+import com.example.sensitivebuying.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

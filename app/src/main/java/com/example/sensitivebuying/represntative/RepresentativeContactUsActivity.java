@@ -1,9 +1,11 @@
-package com.example.sensitivebuying;
+package com.example.sensitivebuying.represntative;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+
+import com.example.sensitivebuying.R;
 
 public class RepresentativeContactUsActivity extends AppCompatActivity {
 

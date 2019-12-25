@@ -1,14 +1,15 @@
-package com.example.sensitivebuying;
+package com.example.sensitivebuying.firebaseHelper;
 
 import androidx.annotation.NonNull;
 
+import com.example.sensitivebuying.dataObject.Product;
+import com.example.sensitivebuying.RepresentativeUser;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.DataSnapshot;
 
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class FirebaseCompaniesHelper
     private FirebaseDatabase cDatabase;
     private DatabaseReference cReference;
     private DatabaseReference mReference;
-    private  RepresentativeUser user;
+    private RepresentativeUser user;
     private List<Product> productsList = new ArrayList<>();
 
     public interface DataStatus

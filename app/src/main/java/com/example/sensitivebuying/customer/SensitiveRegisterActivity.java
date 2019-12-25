@@ -1,4 +1,4 @@
-package com.example.sensitivebuying;
+package com.example.sensitivebuying.customer;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sensitivebuying.dataObject.CustomerUser;
+import com.example.sensitivebuying.firebaseHelper.FirebaseSenstiveUserHelper;
+import com.example.sensitivebuying.R;
+import com.example.sensitivebuying.dataObject.Sensitive;
+import com.example.sensitivebuying.dataObject.SenstivieListFinal;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -52,7 +57,7 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
     public void onClick(View v) {
         if(v==ButtonSave) {
             for (Sensitive s:updateSensitive ) {
-                new  FirebaseSenstiveUserHelper().addSensitive(s, new FirebaseSenstiveUserHelper.DataStatus() {
+                new FirebaseSenstiveUserHelper().addSensitive(s, new FirebaseSenstiveUserHelper.DataStatus() {
                     @Override
                     public void DataIsLoaded(ArrayList<Sensitive> sensitives, ArrayList<String> keys) {
 
@@ -88,7 +93,7 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
 
     }
     private  void moveToHost () {
-        Intent intent =new Intent(SensitiveRegisterActivity.this,HostNavigationActivity.class);
+        Intent intent =new Intent(SensitiveRegisterActivity.this, HostNavigationActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         finish();

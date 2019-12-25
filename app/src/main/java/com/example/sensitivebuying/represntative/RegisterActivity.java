@@ -1,4 +1,4 @@
-package com.example.sensitivebuying;
+package com.example.sensitivebuying.represntative;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sensitivebuying.dataObject.CustomerUser;
+import com.example.sensitivebuying.ui.LoginActivity;
+import com.example.sensitivebuying.R;
+import com.example.sensitivebuying.customer.SensitiveRegisterActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -83,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 Toast.makeText(RegisterActivity.this,"ההרשמה הצליחה", Toast.LENGTH_LONG).show();
                 CustomerUser user = new CustomerUser(name, email,null,null);
                 usersReference.child(firebaseAuth.getCurrentUser().getUid()).setValue(user);
-                Intent intent = new Intent(RegisterActivity.this,SensitiveRegisterActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, SensitiveRegisterActivity.class);
                 intent.putExtra("CustomerUser", user);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);

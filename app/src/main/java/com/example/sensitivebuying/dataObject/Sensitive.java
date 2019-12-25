@@ -1,4 +1,4 @@
-package com.example.sensitivebuying;
+package com.example.sensitivebuying.dataObject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

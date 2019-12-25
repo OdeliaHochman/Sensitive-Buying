@@ -1,4 +1,4 @@
-package com.example.sensitivebuying;
+package com.example.sensitivebuying.represntative;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,6 +13,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sensitivebuying.AddProduct_SensitivesCheckBoxSpinner;
+import com.example.sensitivebuying.firebaseHelper.FirebaseCompaniesHelper;
+import com.example.sensitivebuying.firebaseHelper.FirebaseProductsHelper;
+import com.example.sensitivebuying.dataObject.Product;
+import com.example.sensitivebuying.R;
+import com.example.sensitivebuying.dataObject.Sensitive;
+import com.example.sensitivebuying.Sensitive_Checkbox;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

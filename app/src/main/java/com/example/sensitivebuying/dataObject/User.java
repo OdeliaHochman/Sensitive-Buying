@@ -1,4 +1,4 @@
-package com.example.sensitivebuying;
+package com.example.sensitivebuying.dataObject;
 
 import java.io.Serializable;
 

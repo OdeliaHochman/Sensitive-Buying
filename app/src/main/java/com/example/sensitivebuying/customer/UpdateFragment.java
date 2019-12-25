@@ -1,4 +1,4 @@
-package com.example.sensitivebuying;
+package com.example.sensitivebuying.customer;
 
 
 import android.os.Bundle;
@@ -9,21 +9,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.sensitivebuying.dataObject.CustomerUser;
+import com.example.sensitivebuying.firebaseHelper.FirebaseSenstiveUserHelper;
+import com.example.sensitivebuying.R;
+import com.example.sensitivebuying.dataObject.Sensitive;
+import com.example.sensitivebuying.dataObject.SenstivieListFinal;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
 /**

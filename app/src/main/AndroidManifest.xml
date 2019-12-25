@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".OpenActivity">
+        <activity android:name=".ui.OpenActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,18 +19,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HostNavigationActivity" />
-        <activity android:name=".CustomerDetailsActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".SensitiveRegisterActivity" />
-        <activity android:name=".RepresentativeStatisticsActivity" />
-        <activity android:name=".RepresentativeProductDetailsActivity" />
-        <activity android:name=".RepresentativeAddProductActivity" />
-        <activity android:name=".RepresentativeSearchActivity" />
-        <activity android:name=".RepresentativeHomeActivity">
+        <activity android:name=".customer.HostNavigationActivity" />
+        <activity android:name=".customer.CustomerDetailsActivity" />
+        <activity android:name=".ui.LoginActivity" />
+        <activity android:name=".represntative.RegisterActivity" />
+        <activity android:name=".customer.SensitiveRegisterActivity" />
+        <activity android:name=".represntative.RepresentativeStatisticsActivity" />
+        <activity android:name=".represntative.RepresentativeProductDetailsActivity" />
+        <activity android:name=".represntative.RepresentativeAddProductActivity" />
+        <activity android:name=".represntative.RepresentativeSearchActivity" />
+        <activity android:name=".represntative.RepresentativeHomeActivity">
         </activity>
-        <activity android:name=".RepresentativeContactUsActivity" />
+        <activity android:name=".represntative.RepresentativeContactUsActivity" />
     </application>
 
 </manifest>

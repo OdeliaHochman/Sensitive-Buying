@@ -1,4 +1,4 @@
-package com.example.sensitivebuying;
+package com.example.sensitivebuying.customer;
 
 
 import android.os.Bundle;
@@ -10,6 +10,11 @@ import android.widget.SearchView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.sensitivebuying.firebaseHelper.FirebaseProductsHelper;
+import com.example.sensitivebuying.dataObject.Product;
+import com.example.sensitivebuying.R;
+import com.example.sensitivebuying.RecyclerView_config;
 
 import java.util.ArrayList;
 import java.util.List;

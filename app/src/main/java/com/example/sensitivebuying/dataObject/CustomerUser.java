@@ -1,8 +1,7 @@
-package com.example.sensitivebuying;
+package com.example.sensitivebuying.dataObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class CustomerUser extends User implements Serializable {
 

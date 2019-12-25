@@ -1,6 +1,5 @@
-package com.example.sensitivebuying;
+package com.example.sensitivebuying.represntative;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 //import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,12 +7,16 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sensitivebuying.firebaseHelper.FirebaseUserHelper;
+import com.example.sensitivebuying.ui.LoginActivity;
+import com.example.sensitivebuying.R;
+import com.example.sensitivebuying.RepresentativeUser;
+import com.example.sensitivebuying.dataObject.User;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class RepresentativeHomeActivity extends AppCompatActivity implements View.OnClickListener {

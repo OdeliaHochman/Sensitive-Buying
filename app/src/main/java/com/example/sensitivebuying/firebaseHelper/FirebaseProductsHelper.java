@@ -1,7 +1,8 @@
-package com.example.sensitivebuying;
+package com.example.sensitivebuying.firebaseHelper;
 
 import androidx.annotation.NonNull;
 
+import com.example.sensitivebuying.dataObject.Product;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

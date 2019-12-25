@@ -1,5 +1,8 @@
 package com.example.sensitivebuying;
 
+import com.example.sensitivebuying.dataObject.Product;
+import com.example.sensitivebuying.dataObject.User;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 

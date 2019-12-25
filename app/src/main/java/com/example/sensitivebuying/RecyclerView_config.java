@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.sensitivebuying.dataObject.Product;
+import com.example.sensitivebuying.represntative.RepresentativeProductDetailsActivity;
 import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
@@ -23,7 +25,7 @@ public class RecyclerView_config implements Serializable {
     private Context mContext;
     private ProductsAdapter mproductsAdapter;
 
-    public void setConfig(RecyclerView recyclerView,Context context, List<Product> products ,List<String> keys)
+    public void setConfig(RecyclerView recyclerView, Context context, List<Product> products , List<String> keys)
     {
         mContext=context;
         mproductsAdapter= new ProductsAdapter(products,keys);
@@ -55,7 +57,7 @@ public class RecyclerView_config implements Serializable {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext,RepresentativeProductDetailsActivity.class);
+                    Intent intent = new Intent(mContext, RepresentativeProductDetailsActivity.class);
                    // intent.putExtra("key",key);
                     intent.putExtra("product name",mNamePro.getText().toString());
                     intent.putExtra("weight",mWeight.getText().toString());
