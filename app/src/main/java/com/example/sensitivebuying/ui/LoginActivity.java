@@ -15,9 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sensitivebuying.R;
-import com.example.sensitivebuying.customer.HostNavigationActivity;
-import com.example.sensitivebuying.represntative.RegisterActivity;
-import com.example.sensitivebuying.represntative.RepresentativeHomeActivity;
+import com.example.sensitivebuying.ui.customer.HostNavigationActivity;
+import com.example.sensitivebuying.ui.represntative.RegisterActivity;
+import com.example.sensitivebuying.ui.represntative.RepresentativeHomeActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;

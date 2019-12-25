@@ -1,4 +1,4 @@
-package com.example.sensitivebuying.customer;
+package com.example.sensitivebuying.ui.customer;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sensitivebuying.R;
-import com.example.sensitivebuying.represntative.RepresentativeContactUsActivity;
+import com.example.sensitivebuying.ui.represntative.RepresentativeContactUsActivity;
 
 public class CustomerDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 

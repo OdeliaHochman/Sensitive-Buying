@@ -19,18 +19,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".customer.HostNavigationActivity" />
-        <activity android:name=".customer.CustomerDetailsActivity" />
+        <activity android:name=".ui.customer.HostNavigationActivity" />
+        <activity android:name=".ui.customer.CustomerDetailsActivity" />
         <activity android:name=".ui.LoginActivity" />
-        <activity android:name=".represntative.RegisterActivity" />
-        <activity android:name=".customer.SensitiveRegisterActivity" />
-        <activity android:name=".represntative.RepresentativeStatisticsActivity" />
-        <activity android:name=".represntative.RepresentativeProductDetailsActivity" />
-        <activity android:name=".represntative.RepresentativeAddProductActivity" />
-        <activity android:name=".represntative.RepresentativeSearchActivity" />
-        <activity android:name=".represntative.RepresentativeHomeActivity">
+        <activity android:name=".ui.represntative.RegisterActivity" />
+        <activity android:name=".ui.customer.SensitiveRegisterActivity" />
+        <activity android:name=".ui.represntative.RepresentativeStatisticsActivity" />
+        <activity android:name=".ui.represntative.RepresentativeProductDetailsActivity" />
+        <activity android:name=".ui.represntative.RepresentativeAddProductActivity" />
+        <activity android:name=".ui.represntative.RepresentativeSearchActivity" />
+        <activity android:name=".ui.represntative.RepresentativeHomeActivity">
         </activity>
-        <activity android:name=".represntative.RepresentativeContactUsActivity" />
+        <activity android:name=".ui.represntative.RepresentativeContactUsActivity" />
     </application>
 
 </manifest>

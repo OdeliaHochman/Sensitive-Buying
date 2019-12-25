@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".represntative.RepresentativeAddProductActivity">
+    tools:context=".ui.represntative.RepresentativeAddProductActivity">
 
 
     <ImageView

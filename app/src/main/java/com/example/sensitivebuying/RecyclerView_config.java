@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.sensitivebuying.dataObject.Product;
-import com.example.sensitivebuying.represntative.RepresentativeProductDetailsActivity;
+import com.example.sensitivebuying.ui.represntative.RepresentativeProductDetailsActivity;
 import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;

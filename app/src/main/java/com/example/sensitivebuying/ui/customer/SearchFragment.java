@@ -1,4 +1,4 @@
-package com.example.sensitivebuying.customer;
+package com.example.sensitivebuying.ui.customer;
 
 
 import android.os.Bundle;

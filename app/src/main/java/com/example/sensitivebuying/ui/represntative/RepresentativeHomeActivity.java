@@ -1,4 +1,4 @@
-package com.example.sensitivebuying.represntative;
+package com.example.sensitivebuying.ui.represntative;
 
 import android.content.Intent;
 //import android.support.v7.app.AppCompatActivity;
