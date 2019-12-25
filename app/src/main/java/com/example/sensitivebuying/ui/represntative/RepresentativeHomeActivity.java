@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.sensitivebuying.firebaseHelper.FirebaseUserHelper;
 import com.example.sensitivebuying.ui.LoginActivity;
 import com.example.sensitivebuying.R;
-import com.example.sensitivebuying.RepresentativeUser;
+import com.example.sensitivebuying.dataObject.RepresentativeUser;
 import com.example.sensitivebuying.dataObject.User;
 import com.google.firebase.auth.FirebaseAuth;
 

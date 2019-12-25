@@ -3,7 +3,7 @@ package com.example.sensitivebuying.firebaseHelper;
 import androidx.annotation.NonNull;
 
 import com.example.sensitivebuying.dataObject.Product;
-import com.example.sensitivebuying.RepresentativeUser;
+import com.example.sensitivebuying.dataObject.RepresentativeUser;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

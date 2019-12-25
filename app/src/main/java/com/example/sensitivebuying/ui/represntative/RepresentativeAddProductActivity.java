@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sensitivebuying.AddProduct_SensitivesCheckBoxSpinner;
-import com.example.sensitivebuying.RepresentativeUser;
+import com.example.sensitivebuying.dataObject.RepresentativeUser;
 import com.example.sensitivebuying.dataObject.User;
 import com.example.sensitivebuying.firebaseHelper.FirebaseCompaniesHelper;
 import com.example.sensitivebuying.firebaseHelper.FirebaseProductsHelper;

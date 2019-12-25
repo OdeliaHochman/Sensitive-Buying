@@ -2,7 +2,7 @@ package com.example.sensitivebuying.firebaseHelper;
 
 import androidx.annotation.NonNull;
 
-import com.example.sensitivebuying.RepresentativeUser;
+import com.example.sensitivebuying.dataObject.RepresentativeUser;
 import com.example.sensitivebuying.dataObject.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;

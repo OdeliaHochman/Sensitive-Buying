@@ -1,4 +1,4 @@
-package com.example.sensitivebuying;
+package com.example.sensitivebuying.dataObject;
 
 import com.example.sensitivebuying.dataObject.Product;
 import com.example.sensitivebuying.dataObject.User;
