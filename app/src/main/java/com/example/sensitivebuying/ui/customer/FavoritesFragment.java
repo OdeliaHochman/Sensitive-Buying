@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.example.sensitivebuying.R;
+import com.example.sensitivebuying.ui.represntative.RepresentativeProductDetailsActivity;
 
 
 /**
@@ -30,5 +31,7 @@ public class FavoritesFragment extends Fragment {
         Log.d("debug",activity);
         return inflater.inflate(R.layout.fragment_favorites, container, false);
     }
+
+    RepresentativeProductDetailsActivity rep;
 
 }

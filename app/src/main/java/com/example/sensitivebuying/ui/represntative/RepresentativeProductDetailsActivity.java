@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.sensitivebuying.firebaseHelper.FirebaseProductsHelper;
 import com.example.sensitivebuying.dataObject.Product;
 import com.example.sensitivebuying.R;
+import com.example.sensitivebuying.ui.customer.FavoritesFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,24 +34,8 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
     final String activity = " RepresentativeProductDetailsActivity";
     private String productNameS,companyNameS,weightS,barcodeS;
     private FirebaseDatabase firebaseDatabase;
-
-
     boolean isfavourite;
 
-
-    public void onToggleStar(View view){
-        TextView favouriteStar = (TextView) view;
-        if(!isfavourite){
-            // if the star is not already selected and you select it
-            isfavourite = true;
-            favouriteStar.setTextColor(Color.parseColor("#FFD600"));
-        }else{
-            // if the star is already selected and you unselect it
-            isfavourite = false;
-            favouriteStar.setTextColor(Color.parseColor("#9E9E9E"));
-        }
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +105,25 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
 
     }
 
+    public void onToggleStar(View view){
+        TextView favouriteStar = (TextView) view;
+        if(!isfavourite){
+            // if the star is not already selected and you select it
+            isfavourite = true;
+            Intent intent = new Intent(this, FavoritesFragment.class);
+            intent.putExtra("barcode",barcodeS);
+           // startActivity(intent);
+            //finish();
+            favouriteStar.setTextColor(Color.parseColor("#FFD600"));
+
+        }else{
+            // if the star is already selected and you unselect it
+            isfavourite = false;
+            favouriteStar.setTextColor(Color.parseColor("#9E9E9E"));
+        }
+
+    }
+
     private void setDetails (String barcode) {
 
         DatabaseReference reference = firebaseDatabase.getReference("Products").child(barcode);
@@ -127,6 +131,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Product p = dataSnapshot.getValue(Product.class);
+
                 productDetails.setText(p.getProductDescription());
                 Picasso.get().load(p.getUrlImage()).into(productImage);
                 //sensitivelist

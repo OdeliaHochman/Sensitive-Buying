@@ -1,6 +1,7 @@
 package com.example.sensitivebuying.firebaseHelper;
 
 import android.provider.ContactsContract;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 
@@ -23,10 +24,11 @@ public class FirebaseProductsHelper implements Serializable {
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
     private List<Product> productsList = new ArrayList<>();
+    private List<Product> ProductBarcode = new ArrayList<>();
 
     public interface DataStatus
     {
-        void DataIsLoaded(List<Product> productsList , List<String> keys);
+        void DataIsLoaded(List<Product> productsList,List<String> keys);
         void DataIsInserted();
         void DataIsUpdated();
         void DataIsDeleted();
@@ -39,47 +41,53 @@ public class FirebaseProductsHelper implements Serializable {
         mReference=mDatabase.getReference("Products");
     }
 
+    public void readProductByBarcode(final List<String>barcodes,final DataStatus dataStatus)
+    {
+       ProductBarcode.clear();
+        for(int i=0; i<barcodes.size(); i++)
+        {
+            mReference.child(barcodes.get(i)).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Product product = dataSnapshot.getValue(Product.class);
+                    ProductBarcode.add(product);
+                    if (barcodes.size()==ProductBarcode.size())
+                        dataStatus.DataIsLoaded(ProductBarcode,barcodes);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+    });
+
+        }
+
+
+}
+
 
     public void readProducts(final DataStatus dataStatus)
     {
         mReference.addValueEventListener(new ValueEventListener() {
 
-           FirebaseDatabase cDatabase = FirebaseDatabase.getInstance();
-
-//            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//            DatabaseReference cReference=cDatabase.getReference("Users").child(uid);
-
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                productsList.clear();
-//                RepresentativeUser post = dataSnapshot.getValue(RepresentativeUser.class);
+               productsList.clear();
+               RepresentativeUser userPre = dataSnapshot.getValue(RepresentativeUser.class);
+                System.out.println(userPre);
+
                 List<String> keys = new ArrayList<>();
 
                 for (DataSnapshot keyNode : dataSnapshot.getChildren()) {
-                  // if (keyNode.child("companyName").getValue().equals(post.getCompanyName()))
-                    {
-                        keys.add(keyNode.getKey());
-                        Product product = keyNode.getValue(Product.class);
-                      productsList.add(product);
-                    }
-                    dataStatus.DataIsLoaded(productsList,keys);
-                }
 
-                }
-
-                /*
-                List<String> keys = new ArrayList<>();
-                for(DataSnapshot keyNode:dataSnapshot.getChildren())
-
-
-                {
                     keys.add(keyNode.getKey());
                     Product product = keyNode.getValue(Product.class);
                     productsList.add(product);
                 }
-                dataStatus.DataIsLoaded(productsList,keys);
+                    dataStatus.DataIsLoaded(productsList,keys);
+                }
 
-                 */
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -87,7 +95,7 @@ public class FirebaseProductsHelper implements Serializable {
         });
     }
 
-            public void addProduct(Product product , final DataStatus dataStatus)
+            public void addProduct(Product product,final DataStatus dataStatus)
     {
         String  barcode = product.getBarcode();
         mReference.child(barcode).setValue(product).addOnSuccessListener(new OnSuccessListener<Void>() {

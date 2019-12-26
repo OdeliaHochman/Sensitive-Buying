@@ -119,7 +119,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
 
                     new FirebaseCompaniesHelper().addProductOfCompanies(product, new FirebaseCompaniesHelper.DataStatus() {
                         @Override
-                        public void DataIsLoaded(List<Product> productsList, List<String> keys) {
+                        public void DataIsLoaded(List<String> keys) {
 
                         }
 

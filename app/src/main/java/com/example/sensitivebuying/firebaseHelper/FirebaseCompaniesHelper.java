@@ -20,11 +20,11 @@ public class FirebaseCompaniesHelper
     private FirebaseDatabase cDatabase;
     private DatabaseReference cReference;
     private RepresentativeUser user;
-    private List<Product> productsList = new ArrayList<>();
+    private List<Product> companiesList = new ArrayList<>();
 
     public interface DataStatus
     {
-        void DataIsLoaded(List<Product> productsList , List<String> keys);
+        void DataIsLoaded(List<String> barcodesList);
         void DataIsInserted();
         void DataIsUpdated();
         void DataIsDeleted();
@@ -37,21 +37,19 @@ public class FirebaseCompaniesHelper
         cReference=FirebaseDatabase.getInstance().getReference().child("Companies");
     }
 
-    public void readProductsOfCompanie(final DataStatus dataStatus)
+    public void readProductsOfCompanie(String nameComp,final DataStatus dataStatus)
     {
-        cReference.addValueEventListener(new ValueEventListener() {
+        cReference.child(nameComp).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                productsList.clear();
-                List<String> keys = new ArrayList<>();
+                List<String> barcodes = new ArrayList<>();
                 for(DataSnapshot keyNode:dataSnapshot.getChildren())
                 {
-                    keys.add(keyNode.getKey());
-                    Product product = keyNode.getValue(Product.class);
-                    productsList.add(product);
+                    barcodes.add(keyNode.getValue(String.class));
+
                 }
-                dataStatus.DataIsLoaded(productsList,keys);
+                dataStatus.DataIsLoaded(barcodes);
             }
 
             @Override

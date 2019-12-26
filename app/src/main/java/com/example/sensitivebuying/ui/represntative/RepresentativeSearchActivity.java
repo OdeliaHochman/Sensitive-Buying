@@ -9,11 +9,17 @@ import android.widget.SearchView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sensitivebuying.dataObject.RepresentativeUser;
+import com.example.sensitivebuying.dataObject.User;
+import com.example.sensitivebuying.firebaseHelper.FirebaseCompaniesHelper;
 import com.example.sensitivebuying.firebaseHelper.FirebaseProductsHelper;
 import com.example.sensitivebuying.dataObject.Product;
 import com.example.sensitivebuying.R;
 import com.example.sensitivebuying.RecyclerView_config;
+import com.example.sensitivebuying.firebaseHelper.FirebaseUserHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +30,15 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
     private RecyclerView mRecycler;
     private FloatingActionButton floatingButton;
     private List<Product> productList;
+    RepresentativeUser repUser;
+    private FirebaseDatabase pDatabase=FirebaseDatabase.getInstance();
+    private DatabaseReference pReference=pDatabase.getReference("Products");
+    private  String companyName;
 
+    private void DisplayProductsOfComp(String userRep)
+    {
+
+    }
 
     final String activity = "RepresentativeSearchActivity";
 
@@ -42,32 +56,15 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
         floatingButton = (FloatingActionButton)findViewById(R.id.floating_button_search);
         floatingButton.setOnClickListener(this);
 
-        new FirebaseProductsHelper().readProducts(new FirebaseProductsHelper.DataStatus() {
+        new FirebaseUserHelper().readUser(new FirebaseUserHelper.DataStatusUser() {
             @Override
-            public void DataIsLoaded(List<Product> list, List<String> keys) {
-                findViewById(R.id.progressBar).setVisibility(View.GONE);
-
-                productList=list;
-
-                new RecyclerView_config().setConfig(mRecycler,RepresentativeSearchActivity.this,productList,keys);
-
+            public void DataIsLoaded(User userHelper, String key) {
+                repUser = (RepresentativeUser) userHelper;
+                companyName = repUser.getCompanyName();
+                ShowProductsByBarCodes();
             }
+            });
 
-            @Override
-            public void DataIsInserted() {
-
-            }
-
-            @Override
-            public void DataIsUpdated() {
-
-            }
-
-            @Override
-            public void DataIsDeleted() {
-
-            }
-        });
 
         if(mySearchView != null){
             mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -87,9 +84,6 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
                 }
             });
         }
-
-
-
 
     }
 
@@ -118,5 +112,58 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
             new RecyclerView_config().setConfig(mRecycler, RepresentativeSearchActivity.this, searchList, searchKeys);
 
         }
+    }
+
+    private void ShowProductsByBarCodes()
+    {
+        new FirebaseCompaniesHelper().readProductsOfCompanie(companyName,new FirebaseCompaniesHelper.DataStatus()
+        {
+            @Override
+            public void DataIsLoaded(List<String> barcodesList)
+            {
+                new FirebaseProductsHelper().readProductByBarcode(barcodesList, new FirebaseProductsHelper.DataStatus() {
+                    @Override
+                    public void DataIsLoaded(List<Product> ProductBarcode, List<String> keys) {
+                        findViewById(R.id.progressBar).setVisibility(View.GONE);
+
+                        productList=ProductBarcode;
+                        new RecyclerView_config().setConfig(mRecycler,RepresentativeSearchActivity.this,productList,keys);
+
+                    }
+
+                    @Override
+                    public void DataIsInserted() {
+
+                    }
+
+                    @Override
+                    public void DataIsUpdated() {
+
+                    }
+
+                    @Override
+                    public void DataIsDeleted() {
+
+                    }
+                });
+            }
+
+            @Override
+            public void DataIsInserted() {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+        });
+
+
     }
 }
