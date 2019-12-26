@@ -1,7 +1,6 @@
 package com.example.sensitivebuying.ui.customer;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +16,6 @@ import androidx.core.content.ContextCompat;
 
 import com.example.sensitivebuying.R;
 import com.example.sensitivebuying.dataObject.Product;
-import com.example.sensitivebuying.ui.represntative.RepresentativeContactActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

@@ -18,6 +18,7 @@ import com.example.sensitivebuying.ui.LoginActivity;
 import com.example.sensitivebuying.R;
 import com.example.sensitivebuying.dataObject.RepresentativeUser;
 import com.example.sensitivebuying.dataObject.User;
+import com.example.sensitivebuying.ui.customer.RepresentativeContactActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class RepresentativeHomeActivity extends AppCompatActivity implements View.OnClickListener {

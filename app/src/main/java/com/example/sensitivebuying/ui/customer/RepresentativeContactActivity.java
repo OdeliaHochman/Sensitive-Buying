@@ -1,4 +1,4 @@
-package com.example.sensitivebuying.ui.represntative;
+package com.example.sensitivebuying.ui.customer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
