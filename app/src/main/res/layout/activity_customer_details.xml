@@ -155,9 +155,12 @@
         android:id="@+id/btn_contact_rep_customerDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="228dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="216dp"
+        android:layout_marginBottom="32dp"
         android:text="צור קשר עם נציג החברה"
+        android:backgroundTint="#D0FDAD39"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -165,12 +168,14 @@
         android:id="@+id/shareimage"
         android:layout_width="41dp"
         android:layout_height="40dp"
+        android:layout_marginStart="147dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_contact_rep_customerDetails"
         app:srcCompat="?attr/actionModeShareDrawable" />
-    
+
     <ToggleButton
         android:id="@+id/myToggleButton"
         android:layout_width="32dp"
