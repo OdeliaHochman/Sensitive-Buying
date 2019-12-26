@@ -21,17 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <TextView
-        android:id="@+id/tv_star_fav"
-        android:layout_width="43dp"
-        android:layout_height="56dp"
-        android:background="#00ffffff"
-        android:onClick="onToggleStar"
-        android:text="★"
-        android:textSize="50sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="200dp"
-        tools:layout_editor_absoluteY="132dp" />
+
 
     <TextView
         android:id="@+id/title_details"

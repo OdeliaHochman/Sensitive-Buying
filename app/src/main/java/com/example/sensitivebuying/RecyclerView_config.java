@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.sensitivebuying.dataObject.Product;
+import com.example.sensitivebuying.ui.customer.CustomerDetailsActivity;
 import com.example.sensitivebuying.ui.represntative.RepresentativeProductDetailsActivity;
 import com.squareup.picasso.Picasso;
 
@@ -58,6 +59,7 @@ public class RecyclerView_config implements Serializable {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, RepresentativeProductDetailsActivity.class);
+                   // Intent intent = new Intent(mContext, CustomerDetailsActivity.class);
                    // intent.putExtra("key",key);
                     intent.putExtra("product name",mNamePro.getText().toString());
                     intent.putExtra("weight",mWeight.getText().toString());

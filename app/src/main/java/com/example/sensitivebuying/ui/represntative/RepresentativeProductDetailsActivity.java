@@ -34,7 +34,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
     final String activity = " RepresentativeProductDetailsActivity";
     private String productNameS,companyNameS,weightS,barcodeS;
     private FirebaseDatabase firebaseDatabase;
-    boolean isfavourite;
+
 
 
     @Override
@@ -105,24 +105,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
 
     }
 
-    public void onToggleStar(View view){
-        TextView favouriteStar = (TextView) view;
-        if(!isfavourite){
-            // if the star is not already selected and you select it
-            isfavourite = true;
-            Intent intent = new Intent(this, FavoritesFragment.class);
-            intent.putExtra("barcode",barcodeS);
-           // startActivity(intent);
-            //finish();
-            favouriteStar.setTextColor(Color.parseColor("#FFD600"));
 
-        }else{
-            // if the star is already selected and you unselect it
-            isfavourite = false;
-            favouriteStar.setTextColor(Color.parseColor("#9E9E9E"));
-        }
-
-    }
 
     private void setDetails (String barcode) {
 

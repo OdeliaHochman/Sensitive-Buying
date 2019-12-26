@@ -1,13 +1,18 @@
 package com.example.sensitivebuying.ui.customer;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.sensitivebuying.R;
 import com.example.sensitivebuying.ui.represntative.RepresentativeContactUsActivity;
@@ -17,6 +22,8 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
     final String activity = " CustomerDetailsActivity";
     private Button btn_contact;
     private ImageView shareImage;
+    private ToggleButton toggleButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,19 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
 //                startActivity(shareIntent);
 //            }
 //        });
+
+        toggleButton = (ToggleButton) findViewById(R.id.myToggleButton);
+        toggleButton.setChecked(false);
+        toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.img_star_grey));
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.img_star_yellow));
+                else
+                    toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.img_star_grey));
+            }
+        });
     }
 
     @Override
@@ -48,4 +68,6 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
             startActivity(intent);
     }
 }
+
+
 }

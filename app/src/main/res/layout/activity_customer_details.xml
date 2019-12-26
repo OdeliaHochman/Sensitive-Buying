@@ -170,16 +170,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="?attr/actionModeShareDrawable" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="107dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="48dp"
-        android:text="שתף עם חברים"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2" />
+    
+    <ToggleButton
+        android:id="@+id/myToggleButton"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="31dp"
+        android:textOff=""
+        android:textOn=""
+        app:layout_constraintEnd_toStartOf="@+id/product_name_Adetails_customer"
+        app:layout_constraintStart_toEndOf="@+id/product_image_Adetails_customer"
+        app:layout_constraintTop_toBottomOf="@+id/bgapp1_detailsCustomer" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
