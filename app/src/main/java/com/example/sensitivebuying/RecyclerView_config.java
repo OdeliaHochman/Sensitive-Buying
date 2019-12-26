@@ -43,7 +43,7 @@ public class RecyclerView_config implements Serializable {
     }
 
 
-    class ProductItemView extends RecyclerView.ViewHolder {
+    class ProductItemView extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView mNamePro;
         private TextView mWeight;
@@ -52,7 +52,6 @@ public class RecyclerView_config implements Serializable {
         private String key;
         private ImageView productIm;
         private boolean isRep;
-        private boolean flag;
 
 
 
@@ -67,38 +66,8 @@ public class RecyclerView_config implements Serializable {
             mBarcode =(TextView)itemView.findViewById(R.id.barcode);
             productIm = (ImageView)itemView.findViewById(R.id.imageView_productsList);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            checkIfIsRep();
 
-                    isRep=false;
-                    flag=false;
-                    checkIfIsRep();
-                    Intent intent;
-                  while(flag)
-                  {
-                      if(isRep)
-                      {
-                          intent = new Intent(mContext, RepresentativeProductDetailsActivity.class);
-                          flag=false;
-                      }
-                      else
-                      {
-                          intent = new Intent(mContext, CustomerDetailsActivity.class);
-                          flag=false;
-                      }
-
-                      intent.putExtra("product name",mNamePro.getText().toString());
-                      intent.putExtra("weight",mWeight.getText().toString());
-                      intent.putExtra("company name",mCompanyName.getText().toString());
-                      intent.putExtra("barcode",mBarcode.getText().toString());
-
-                      mContext.startActivity(intent);
-                  }
-
-
-                }
-            });
 
         }
 
@@ -125,18 +94,42 @@ public class RecyclerView_config implements Serializable {
                     if(dataSnapshot.child("rep").getValue(Boolean.class).equals(true))
                     {isRep=true; }
                     else
-                        { isRep=false;}
-                    flag=true;
+                    { isRep=false;}
+                    itemView.setOnClickListener(ProductItemView.this);
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
             };
-            uidRef.addListenerForSingleValueEvent(valueEventListener);
+            uidRef.addListenerForSingleValueEvent(valueEventListener); //?
 
         }
 
+        @Override
+        public void onClick(View v) {
+
+            if ( v== itemView){
+                Intent intent;
+                if(isRep)
+                {
+                    intent = new Intent(mContext, RepresentativeProductDetailsActivity.class);
+                }
+                else
+                {
+                    intent = new Intent(mContext, CustomerDetailsActivity.class);
+                }
+
+                // intent.putExtra("key",key);
+                intent.putExtra("product name",mNamePro.getText().toString());
+                intent.putExtra("weight",mWeight.getText().toString());
+                intent.putExtra("company name",mCompanyName.getText().toString());
+                intent.putExtra("barcode",mBarcode.getText().toString());
+
+                mContext.startActivity(intent);
+
+            }
+        }
     }
 
     class ProductsAdapter extends  RecyclerView.Adapter<ProductItemView>

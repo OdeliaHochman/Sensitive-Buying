@@ -111,7 +111,7 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
                 Product p = dataSnapshot.getValue(Product.class);
 
                 productDetails.setText(p.getProductDescription());
-                Picasso.get().load(p.getUrlImage()).into(productImage);
+         //       Picasso.get().load(p.getUrlImage()).into(productImage);
                 //sensitivelist
             }
 
