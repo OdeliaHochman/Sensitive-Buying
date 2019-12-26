@@ -62,7 +62,7 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
         barcode = (TextView) findViewById(R.id.barcode_Adetails_customer);
         barcode.setText(barcodeS);
 
-        productImage = (ImageView)findViewById(R.id.product_image_Adetails);
+        productImage = (ImageView)findViewById(R.id.product_image_Adetails_customer);
 
         setDetails(barcodeS);
 
@@ -111,7 +111,7 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
                 Product p = dataSnapshot.getValue(Product.class);
 
                 productDetails.setText(p.getProductDescription());
-         //       Picasso.get().load(p.getUrlImage()).into(productImage);
+                Picasso.get().load(p.getUrlImage()).into(productImage);
                 //sensitivelist
             }
 

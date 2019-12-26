@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import com.example.sensitivebuying.firebaseHelper.FirebaseUserHelper;
 import com.example.sensitivebuying.ui.LoginActivity;
 import com.example.sensitivebuying.R;
@@ -103,6 +104,7 @@ public class RepresentativeHomeActivity extends AppCompatActivity implements Vie
         if (contactI == v) {
             Intent intent = new Intent(RepresentativeHomeActivity.this, RepresentativeContactUsActivity.class);
             startActivity(intent);
+
         }
 
 //            if(companyProT == v)
