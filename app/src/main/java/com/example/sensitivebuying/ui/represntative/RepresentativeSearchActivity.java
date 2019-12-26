@@ -30,7 +30,7 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
     private RecyclerView mRecycler;
     private FloatingActionButton floatingButton;
     private List<Product> productList;
-    RepresentativeUser repUser;
+    private RepresentativeUser repUser;
     private FirebaseDatabase pDatabase=FirebaseDatabase.getInstance();
     private DatabaseReference pReference=pDatabase.getReference("Products");
     private  String companyName;

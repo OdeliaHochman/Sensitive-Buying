@@ -2,6 +2,7 @@ package com.example.sensitivebuying;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sensitivebuying.dataObject.Product;
 import com.example.sensitivebuying.ui.customer.CustomerDetailsActivity;
 import com.example.sensitivebuying.ui.represntative.RepresentativeProductDetailsActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
@@ -25,6 +32,7 @@ public class RecyclerView_config implements Serializable {
 
     private Context mContext;
     private ProductsAdapter mproductsAdapter;
+
 
     public void setConfig(RecyclerView recyclerView, Context context, List<Product> products , List<String> keys)
     {
@@ -43,11 +51,14 @@ public class RecyclerView_config implements Serializable {
         private TextView mBarcode;
         private String key;
         private ImageView productIm;
+        private boolean isRep;
+
 
 
         public ProductItemView (ViewGroup parent)
         {
             super(LayoutInflater.from(mContext).inflate(R.layout.products_list_item,parent,false));
+
 
             mNamePro =(TextView)itemView.findViewById(R.id.productName);
             mWeight =(TextView)itemView.findViewById(R.id.weight);
@@ -58,17 +69,26 @@ public class RecyclerView_config implements Serializable {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, RepresentativeProductDetailsActivity.class);
-                   // Intent intent = new Intent(mContext, CustomerDetailsActivity.class);
+
+                    isRep=false;
+                    checkIfIsRep();
+                    Intent intent;
+                   if(isRep)
+                   {
+                       intent = new Intent(mContext, RepresentativeProductDetailsActivity.class);
+                   }
+                   else
+                   {
+                      intent = new Intent(mContext, CustomerDetailsActivity.class);
+                   }
+
                    // intent.putExtra("key",key);
                     intent.putExtra("product name",mNamePro.getText().toString());
                     intent.putExtra("weight",mWeight.getText().toString());
                     intent.putExtra("company name",mCompanyName.getText().toString());
                     intent.putExtra("barcode",mBarcode.getText().toString());
 
-
                     mContext.startActivity(intent);
-
                 }
             });
 
@@ -83,6 +103,28 @@ public class RecyclerView_config implements Serializable {
             //mBarcode.setText(product.getBarcode());
             Picasso.get().load(product.getUrlImage()).into(productIm);
 
+
+        }
+
+        private void checkIfIsRep()
+        {
+            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference uidRef = rootRef.child("Users").child(uid);
+            ValueEventListener valueEventListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.child("rep").getValue(Boolean.class).equals(true))
+                    {isRep=true; }
+                    else
+                        { isRep=false;}
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            };
+            uidRef.addListenerForSingleValueEvent(valueEventListener); //?
 
         }
 
