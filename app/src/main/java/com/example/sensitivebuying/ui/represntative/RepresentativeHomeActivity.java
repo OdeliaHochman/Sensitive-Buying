@@ -101,8 +101,8 @@ public class RepresentativeHomeActivity extends AppCompatActivity implements Vie
             Intent intent = new Intent(RepresentativeHomeActivity.this, RepresentativeStatisticsActivity.class);
             startActivity(intent);
         }
-        if (contactI == v) {
-            Intent intent = new Intent(RepresentativeHomeActivity.this, RepresentativeContactUsActivity.class);
+        if (contactI == v) { ///change activity to fragment
+            Intent intent = new Intent(RepresentativeHomeActivity.this, RepresentativeContactActivity.class);
             startActivity(intent);
 
         }

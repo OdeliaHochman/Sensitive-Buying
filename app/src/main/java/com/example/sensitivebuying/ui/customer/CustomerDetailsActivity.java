@@ -17,7 +17,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.sensitivebuying.R;
 import com.example.sensitivebuying.dataObject.Product;
-import com.example.sensitivebuying.ui.represntative.RepresentativeContactUsActivity;
+import com.example.sensitivebuying.ui.represntative.RepresentativeContactActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -95,7 +95,7 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
     @Override
     public void onClick(View v) {
         if(v==btn_contact) {
-            Intent intent =new Intent(CustomerDetailsActivity.this, RepresentativeContactUsActivity.class);
+            Intent intent =new Intent(CustomerDetailsActivity.this, RepresentativeContactActivity.class);
             startActivity(intent);
     }
 }
