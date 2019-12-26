@@ -2,6 +2,7 @@ package com.example.sensitivebuying.ui.represntative;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sensitivebuying.dataObject.Sensitive;
 import com.example.sensitivebuying.firebaseHelper.FirebaseProductsHelper;
 import com.example.sensitivebuying.dataObject.Product;
 import com.example.sensitivebuying.R;
@@ -22,11 +24,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RepresentativeProductDetailsActivity extends AppCompatActivity {
 
-    private TextView productName,companyName,weight, productDetails,barcode;
+    private TextView productName,companyName,weight, productDetails,barcode,SensitiveStr;
     private ImageView productImage;
     private Button btnUpdate,btnDelete;
     final String activity = " RepresentativeProductDetailsActivity";
@@ -56,6 +59,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
         productDetails = (TextView) findViewById(R.id.product_details_name_Adetails);
         barcode = (TextView) findViewById(R.id.barcode_Adetails);
         barcode.setText(barcodeS);
+        SensitiveStr=(TextView) findViewById(R.id.sensitiveList_details);
 
         productImage = (ImageView)findViewById(R.id.product_image_Adetails);
         btnUpdate = (Button)findViewById(R.id.btnUpdateProDet);
@@ -112,10 +116,16 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Product p = dataSnapshot.getValue(Product.class);
-
+                String [] strSensitive=new String[p.getSensitiveList().size()];
                 productDetails.setText(p.getProductDescription());
                 Picasso.get().load(p.getUrlImage()).into(productImage);
-                //sensitivelist
+                for(int i=0; i<p.getSensitiveList().size(); i++)
+                {
+                    strSensitive[i]=p.getSensitiveList().get(i).getSensitiveType();
+                }
+                String sensitives = TextUtils.join(",",strSensitive);
+                SensitiveStr.setText(sensitives);
+
             }
 
             @Override

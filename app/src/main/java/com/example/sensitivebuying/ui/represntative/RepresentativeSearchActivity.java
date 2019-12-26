@@ -97,7 +97,7 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
         }
     }
 
-    private void search (String str) {
+    private void search(String str) {
 
         ArrayList<Product>searchList = new ArrayList<>();
         ArrayList<String> searchKeys = new ArrayList<>();
