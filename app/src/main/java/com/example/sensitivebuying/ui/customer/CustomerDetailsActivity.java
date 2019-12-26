@@ -67,17 +67,16 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
         setDetails(barcodeS);
 
         shareImage=(ImageView)findViewById(R.id.shareimage);
-//        shareImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent shareIntent = new Intent();
-//                shareIntent.setAction(Intent.ACTION_SEND);
-//                shareIntent.putExtra(Intent.EXTRA_SUBJECT,"Android Development Tutorials");
-//                shareIntent.putExtra(Intent.EXTRA_TEXT, "www.technxt.net");
-//                shareIntent.setType("text/plain");
-//                startActivity(shareIntent);
-//            }
-//        });
+        shareImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "www.technxt.net");
+                shareIntent.setType("text/plain");
+                startActivity(shareIntent);
+            }
+        });
 
         toggleButton = (ToggleButton) findViewById(R.id.myToggleButton);
         toggleButton.setChecked(false);

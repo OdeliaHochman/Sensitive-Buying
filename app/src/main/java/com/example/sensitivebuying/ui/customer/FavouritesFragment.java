@@ -16,10 +16,10 @@ import com.example.sensitivebuying.ui.represntative.RepresentativeProductDetails
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FavoritesFragment extends Fragment {
+public class FavouritesFragment extends Fragment {
 
-    final String activity = " FavoritesFragment";
-    public FavoritesFragment() {
+    final String activity = " FavouritesFragment";
+    public FavouritesFragment() {
         // Required empty public constructor
     }
 
@@ -29,7 +29,7 @@ public class FavoritesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         Log.d("debug",activity);
-        return inflater.inflate(R.layout.fragment_favorites, container, false);
+        return inflater.inflate(R.layout.fragment_favourites, container, false);
     }
 
     RepresentativeProductDetailsActivity rep;

@@ -12,9 +12,9 @@
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/favorites"
-        android:name="com.example.sensitivebuying.ui.customer.FavoritesFragment"
+        android:name="com.example.sensitivebuying.ui.customer.FavouritesFragment"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favourites" />
     <fragment
         android:id="@+id/contact_us"
         android:name="com.example.sensitivebuying.ui.customer.ContactFragment"
