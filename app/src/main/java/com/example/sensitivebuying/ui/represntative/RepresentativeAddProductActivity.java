@@ -76,7 +76,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
 
 
 
-        final String[] select_qualification = {"    בחר רגישויות  ", "בוטנים", "אגוזים", "שקדים", "גלוטן", "לקטוז", "סויה", "שומשום"};
+        final String[] select_qualification = {"    בחר רגישויות  ", "ביצים", "בוטנים", "גלוטן", "אגוזים", "סויה", "לקטוז", "שומשום", "צנובר" , "חרדל" ,"סלרי"};
         spinner = (Spinner) findViewById(R.id.sensitives_spinner);
 
         final ArrayList<Sensitive> listOfSensitive = new ArrayList<>();
@@ -88,6 +88,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
             final Sensitive sensitive = new Sensitive();
             final Sensitive_Checkbox senbox= new Sensitive_Checkbox();
             sensitive.setSensitiveType(select_qualification[i]);
+            sensitive.setKey(Integer.toString(i-1));
             senbox.setSensitiveTypebox(select_qualification[i]);
             listOfSensitive.add(sensitive);
             listbox.add(senbox);
@@ -116,6 +117,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
                     product.setSensitiveList(listOfSensitiveTrue);
                     product.setUrlImage(urlImage.getText().toString());
                     product.setWeightAndType(weightSen.getText().toString());
+                    if (isAdd) {
 
                     new FirebaseCompaniesHelper().addProductOfCompanies(product, new FirebaseCompaniesHelper.DataStatus() {
                         @Override
@@ -138,7 +140,6 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
 
                         }
                     });
-                    if (isAdd) {
                         new FirebaseProductsHelper().addProduct(product, new FirebaseProductsHelper.DataStatus() {
                             @Override
                             public void DataIsLoaded(List<Product> productsList, List<String> keys) {
