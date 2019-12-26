@@ -2,6 +2,7 @@ package com.example.sensitivebuying.ui.customer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -30,7 +31,7 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
     private ImageView shareImage;
     private ToggleButton toggleButton;
     private FirebaseDatabase firebaseDatabase;
-    private TextView productName,companyName,weight, productDetails,barcode;
+    private TextView productName,companyName,weight, productDetails,barcode,SensitiveStr;
     private ImageView productImage;
     private String productNameS,companyNameS,weightS,barcodeS;
 
@@ -59,6 +60,7 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
         productDetails = (TextView) findViewById(R.id.product_details_name_Adetails_customer);
         barcode = (TextView) findViewById(R.id.barcode_Adetails_customer);
         barcode.setText(barcodeS);
+        SensitiveStr=(TextView) findViewById(R.id.sensitiveList_details_customer);
 
         productImage = (ImageView)findViewById(R.id.product_image_Adetails_customer);
 
@@ -106,10 +108,16 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Product p = dataSnapshot.getValue(Product.class);
-
+                String [] strSensitive=new String[p.getSensitiveList().size()];
                 productDetails.setText(p.getProductDescription());
                 Picasso.get().load(p.getUrlImage()).into(productImage);
-                //sensitivelist
+                for(int i=0; i<p.getSensitiveList().size(); i++)
+                {
+                    strSensitive[i]=p.getSensitiveList().get(i).getSensitiveType();
+                }
+                String sensitives = TextUtils.join(",",strSensitive);
+                SensitiveStr.setText(sensitives);
+
             }
 
             @Override

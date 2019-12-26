@@ -124,7 +124,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
                     strSensitive[i]=p.getSensitiveList().get(i).getSensitiveType();
                 }
                 String sensitives = TextUtils.join(",",strSensitive);
-                SensitiveStr.setText(sensitives);
+                    SensitiveStr.setText(sensitives);
 
             }
 
