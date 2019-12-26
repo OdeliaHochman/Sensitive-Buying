@@ -52,6 +52,7 @@ public class RecyclerView_config implements Serializable {
         private String key;
         private ImageView productIm;
         private boolean isRep;
+        private boolean flag;
 
 
 
@@ -71,24 +72,31 @@ public class RecyclerView_config implements Serializable {
                 public void onClick(View v) {
 
                     isRep=false;
+                    flag=false;
                     checkIfIsRep();
                     Intent intent;
-                   if(isRep)
-                   {
-                       intent = new Intent(mContext, RepresentativeProductDetailsActivity.class);
-                   }
-                   else
-                   {
-                      intent = new Intent(mContext, CustomerDetailsActivity.class);
-                   }
+                  while(flag)
+                  {
+                      if(isRep)
+                      {
+                          intent = new Intent(mContext, RepresentativeProductDetailsActivity.class);
+                          flag=false;
+                      }
+                      else
+                      {
+                          intent = new Intent(mContext, CustomerDetailsActivity.class);
+                          flag=false;
+                      }
 
-                   // intent.putExtra("key",key);
-                    intent.putExtra("product name",mNamePro.getText().toString());
-                    intent.putExtra("weight",mWeight.getText().toString());
-                    intent.putExtra("company name",mCompanyName.getText().toString());
-                    intent.putExtra("barcode",mBarcode.getText().toString());
+                      intent.putExtra("product name",mNamePro.getText().toString());
+                      intent.putExtra("weight",mWeight.getText().toString());
+                      intent.putExtra("company name",mCompanyName.getText().toString());
+                      intent.putExtra("barcode",mBarcode.getText().toString());
 
-                    mContext.startActivity(intent);
+                      mContext.startActivity(intent);
+                  }
+
+
                 }
             });
 
@@ -118,13 +126,14 @@ public class RecyclerView_config implements Serializable {
                     {isRep=true; }
                     else
                         { isRep=false;}
+                    flag=true;
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
             };
-            uidRef.addListenerForSingleValueEvent(valueEventListener); //?
+            uidRef.addListenerForSingleValueEvent(valueEventListener);
 
         }
 
