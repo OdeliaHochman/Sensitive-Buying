@@ -81,8 +81,12 @@ public class SearchFragment extends Fragment implements  View.OnClickListener {
 
                 @Override
                 public boolean onQueryTextChange(String newText) {
-                    search(newText);
-                    return true;
+                    if (mySearchView!= null ) {
+                        Log.d("debug_search",""+newText);
+                        search(newText);
+                        return true;
+                    }
+                    return false;
                 }
             });
         }
@@ -104,16 +108,16 @@ public class SearchFragment extends Fragment implements  View.OnClickListener {
 
         ArrayList<Product> searchList = new ArrayList<>();
         ArrayList<String> searchKeys = new ArrayList<>();
-
-        for ( Product p : productList) {
-            if (p.getProductName().toLowerCase().contains(str) || p.getBarcode().contains(str))  {
-                searchList.add(p);
-                searchKeys.add(p.getBarcode());
+        if (productList!= null ) {
+            for (Product p : productList) {
+                if (p.getProductName().toLowerCase().contains(str) || p.getBarcode().contains(str)) {
+                    searchList.add(p);
+                    searchKeys.add(p.getBarcode());
+                }
             }
+
+            new RecyclerView_config().setConfig(mRecycler, getActivity(), searchList, searchKeys);
         }
-
-        new RecyclerView_config().setConfig(mRecycler,getActivity(),searchList,searchKeys);
-
 
     }
 }
