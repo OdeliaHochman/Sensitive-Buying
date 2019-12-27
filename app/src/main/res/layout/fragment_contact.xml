@@ -40,10 +40,11 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="397dp"
-        android:layout_height="458dp"
+        android:layout_height="350dp"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="30dp"
         android:gravity="right"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/btn_send"
@@ -53,9 +54,9 @@
         app:layout_constraintTop_toBottomOf="@+id/bgapp1_fragmentContact">
 
         <EditText
-            android:id="@+id/fullname_representative"
+            android:id="@+id/fullname_contactUs"
             android:layout_width="359dp"
-            android:layout_height="37dp"
+            android:layout_height="45dp"
             android:layout_marginTop="10dp"
             android:ems="10"
             android:hint="שם מלא"
@@ -64,36 +65,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_fragmentContact" />
 
-        <EditText
-            android:id="@+id/companyname_representative"
-            android:layout_width="359dp"
-            android:layout_height="37dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="8dp"
-            android:ems="10"
-            android:hint="שם חברה"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fullname_representative"
-            tools:layout_editor_absoluteX="28dp" />
 
         <EditText
-            android:id="@+id/mailaddress_representative"
-            android:layout_width="359dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="8dp"
-            android:ems="10"
-            android:hint="כתובת מייל"
-            android:inputType="textEmailAddress"
-            app:layout_constraintBottom_toTopOf="@+id/phonenumber_representative"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/companyname_representative"
-            tools:layout_editor_absoluteX="28dp" />
-
-        <EditText
-            android:id="@+id/phonenumber_representative"
+            android:id="@+id/phonenumber_contactUs"
             android:layout_width="358dp"
             android:layout_height="43dp"
             android:layout_marginTop="10dp"
@@ -102,11 +76,11 @@
             android:inputType="phone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mailaddress_representative"
+            app:layout_constraintTop_toBottomOf="@+id/fullname_contactUs"
             tools:layout_editor_absoluteX="28dp" />
 
         <EditText
-            android:id="@+id/subject_representative"
+            android:id="@+id/subject_contactUs"
             android:layout_width="360dp"
             android:layout_height="40dp"
             android:layout_marginTop="50dp"
@@ -114,27 +88,27 @@
             android:hint="נושא הפנייה"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phonenumber_representative"
+            app:layout_constraintTop_toBottomOf="@+id/phonenumber_contactUs"
             tools:layout_editor_absoluteX="25dp" />
 
         <EditText
-            android:id="@+id/cont_representative"
+            android:id="@+id/content_contactUs"
             android:layout_width="352dp"
-            android:layout_height="100dp"
+            android:layout_height="70dp"
             android:layout_margin="8dp"
             android:ems="10"
             android:hint="תוכן הפנייה"
             android:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/subject_representative"
+            app:layout_constraintTop_toBottomOf="@+id/subject_contactUs"
             tools:layout_editor_absoluteX="27dp"
             tools:layout_editor_absoluteY="468dp" />
 
     </LinearLayout>
 
         <Button
-            android:id="@+id/btn_send"
+            android:id="@+id/btn_send_contactUs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -147,7 +121,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
         <ImageButton
-            android:id="@+id/contactImage_representative"
+            android:id="@+id/contactImage_contactUs"
             android:layout_width="110dp"
             android:layout_height="106dp"
             app:layout_constraintEnd_toEndOf="parent"
