@@ -78,11 +78,11 @@
         android:id="@+id/product_details_name_Adetails_customer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="368dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
         android:text="product details"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/allergens_details_customer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Component_details_customer" />
 
@@ -112,29 +112,26 @@
         app:srcCompat="@android:drawable/sym_def_app_icon" />
 
 
-
-
-
     <TextView
         android:id="@+id/Component_details_customer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="90dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="10dp"
         android:text="רכיבים:"
         app:layout_constraintBottom_toTopOf="@+id/product_details_name_Adetails_customer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/product_image_Adetails_customer"
+        app:layout_constraintTop_toBottomOf="@+id/product_weight_name_Adetails_customer"
         app:layout_constraintVertical_bias="0.921" />
 
     <TextView
         android:id="@+id/allergens_details_customer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="62dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="10dp"
         android:text="אלרגנים:"
         app:layout_constraintBottom_toTopOf="@+id/sensitiveList_details_customer"
         app:layout_constraintEnd_toEndOf="parent"
@@ -144,10 +141,11 @@
         android:id="@+id/sensitiveList_details_customer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="129dp"
+        android:layout_marginBottom="80dp"
         android:text="sensitiveList"
+        app:layout_constraintBottom_toTopOf="@+id/shareimage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/allergens_details_customer" />
 
@@ -155,41 +153,43 @@
         android:id="@+id/btn_contact_rep_customerDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="216dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="48dp"
         android:layout_marginBottom="32dp"
-        android:text="צור קשר עם נציג החברה"
         android:backgroundTint="#D0FDAD39"
+        android:text="צור קשר עם נציג החברה"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/myToggleButton"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/shareimage"
         android:layout_width="41dp"
         android:layout_height="40dp"
-        android:layout_marginStart="147dp"
+        android:layout_marginStart="51dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_contact_rep_customerDetails"
+        app:layout_constraintStart_toEndOf="@+id/myToggleButton"
         app:srcCompat="?attr/actionModeShareDrawable" />
 
     <ToggleButton
         android:id="@+id/myToggleButton"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="48dp"
+        android:layout_height="45dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="34dp"
-        android:layout_marginEnd="31dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="35dp"
         android:textOff=""
         android:textOn=""
-        app:layout_constraintEnd_toStartOf="@+id/product_name_Adetails_customer"
-        app:layout_constraintStart_toEndOf="@+id/product_image_Adetails_customer"
-        app:layout_constraintTop_toBottomOf="@+id/bgapp1_detailsCustomer" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/shareimage"
+        app:layout_constraintStart_toEndOf="@+id/btn_contact_rep_customerDetails" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
