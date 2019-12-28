@@ -21,12 +21,12 @@
         android:layout_gravity="center"
         android:layout_marginLeft="155dp"
         android:layout_marginTop="-3dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="70dp"
         android:background="#00DA1818"
         android:contentDescription="@string/nav_header_desc"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingTop="7dp"
-        app:srcCompat="@drawable/myspace" />
+        app:srcCompat="@drawable/couple" />
 
     <TextView
         android:id="@+id/text_view_header"

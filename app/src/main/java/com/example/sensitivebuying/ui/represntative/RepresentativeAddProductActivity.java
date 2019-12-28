@@ -76,7 +76,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
 
 
 
-        final String[] select_qualification = {"    בחר רגישויות  ", "ביצים", "בוטנים", "גלוטן", "אגוזים", "סויה", "לקטוז", "שומשום", "צנובר" , "חרדל" ,"סלרי"};
+        final String[] select_qualification = {"    בחר רגישויות  ", "ביצים", "בוטנים", "גלוטן", "אגוזים", "סויה", "לקטוז", "שומשום", "צנובר" , "חרדל" ,"סלרי","שקדים","חלב"};
         spinner = (Spinner) findViewById(R.id.sensitives_spinner);
 
         final ArrayList<Sensitive> listOfSensitive = new ArrayList<>();

@@ -39,18 +39,9 @@ public class UpdateFragment extends Fragment  {
     private CheckBox peantsCheckBox,nutsCheckBox,lactoseCheckBox,glutenCheckBox;
     private CheckBox eggsCheckBox,sesameCheckBox,soyaCheckBox;
     private CheckBox pine_nutCheckBox,sinapisCheckBox,celeryCheckBox ;
+    private CheckBox milkCheckBox,tonsilsCheckBox;
 
     private ProgressBar progressBarUpdate;
-//    final Sensitive eggs = new Sensitive("ביצים","0");
-//    final Sensitive peants = new Sensitive("בוטנים","1");
-//    final Sensitive gluten = new Sensitive("גלוטן","2");
-//    final Sensitive nuts = new Sensitive("אגוזים","3");
-//    final Sensitive soya = new Sensitive("סויה","4");
-//    final Sensitive lactose = new Sensitive("לקטוז","5");
-//    final Sensitive sesame = new Sensitive("שומשום","6");
-//    final Sensitive pine_nut = new Sensitive("צנובר","7");
-//    final Sensitive sinapis = new Sensitive("חרדל","8");
-//    final Sensitive celery = new Sensitive("סלרי","9");
 
     final SenstivieListFinal senList= new SenstivieListFinal();
 
@@ -80,6 +71,8 @@ public class UpdateFragment extends Fragment  {
         pine_nutCheckBox=(CheckBox)v.findViewById(R.id.checkBox_pine_nut_menu);
         sinapisCheckBox=(CheckBox)v.findViewById(R.id.checkBox_sinapis_menu);
         celeryCheckBox=(CheckBox)v.findViewById(R.id.checkBox_celery_menu);
+        milkCheckBox=(CheckBox) v.findViewById(R.id.checkBox_milk_menu);
+        tonsilsCheckBox=(CheckBox) v.findViewById(R.id.checkBox_tonsils_menu);
 
 
 
@@ -153,6 +146,16 @@ public class UpdateFragment extends Fragment  {
                     userCheckBoxSensitive.add(senList.celery);
                 } else {
                     userCheckBoxSensitive.remove(senList.celery);
+                }
+                if (milkCheckBox.isChecked()) {
+                    userCheckBoxSensitive.add(senList.milk);
+                } else {
+                    userCheckBoxSensitive.remove(senList.milk);
+                }
+                if (tonsilsCheckBox.isChecked()) {
+                    userCheckBoxSensitive.add(senList.tonsils);
+                } else {
+                    userCheckBoxSensitive.remove(senList.tonsils);
                 }
 
                 deleteUnChecked(userCheckBoxSensitive);
@@ -315,6 +318,15 @@ private void addSensitive( ArrayList<Sensitive> userCheckBoxSensitive)  {
             celeryCheckBox.setChecked(true);
 
             }
+            if (s.equals(senList.milk)) {
+                milkCheckBox.setChecked(true);
+
+            }
+            if (s.equals(senList.tonsils)) {
+                tonsilsCheckBox.setChecked(true);
+
+            }
+
 
     }
 
@@ -358,6 +370,14 @@ private void addSensitive( ArrayList<Sensitive> userCheckBoxSensitive)  {
 
         if (s.equals(senList.celery)) {
             celeryCheckBox.setChecked(false);
+        }
+
+        if (s.equals(senList.milk)) {
+            milkCheckBox.setChecked(false);
+        }
+
+        if (s.equals(senList.tonsils)) {
+            tonsilsCheckBox.setChecked(false);
         }
 
     }
