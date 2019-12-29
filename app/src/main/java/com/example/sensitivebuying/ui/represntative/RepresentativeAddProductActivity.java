@@ -169,6 +169,11 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
                             }
 
                             @Override
+                            public void ProductDataLoaded(Product product) {
+
+                            }
+
+                            @Override
                             public void DataIsInserted() {
 
                                 Toast.makeText(RepresentativeAddProductActivity.this, "המוצר התווסף בהצלחה", Toast.LENGTH_LONG).show();
@@ -192,6 +197,11 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
                         new FirebaseProductsHelper().updateProduct(barcode_new, product, new FirebaseProductsHelper.DataStatus() {
                             @Override
                             public void DataIsLoaded(List<Product> productsList, List<String> keys) {
+
+                            }
+
+                            @Override
+                            public void ProductDataLoaded(Product product) {
 
                             }
 

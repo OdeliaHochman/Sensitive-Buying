@@ -2,9 +2,12 @@ package com.example.sensitivebuying.firebaseHelper;
 
 import android.provider.ContactsContract;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.example.sensitivebuying.R;
 import com.example.sensitivebuying.dataObject.Product;
 import com.example.sensitivebuying.dataObject.RepresentativeUser;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -26,12 +29,17 @@ public class FirebaseProductsHelper implements Serializable {
     private List<Product> productsList = new ArrayList<>();
     private List<Product> ProductBarcode = new ArrayList<>();
 
+
+
     public interface DataStatus
     {
         void DataIsLoaded(List<Product> productsList,List<String> keys);
+        void ProductDataLoaded(Product product);
         void DataIsInserted();
         void DataIsUpdated();
         void DataIsDeleted();
+
+
     }
 
     public FirebaseProductsHelper()
@@ -43,7 +51,7 @@ public class FirebaseProductsHelper implements Serializable {
 
     public void readProductByBarcode(final List<String>barcodes,final DataStatus dataStatus)
     {
-       ProductBarcode.clear();
+        ProductBarcode.clear();
         for(int i=0; i<barcodes.size(); i++)
         {
             mReference.child(barcodes.get(i)).addValueEventListener(new ValueEventListener() {
@@ -59,12 +67,29 @@ public class FirebaseProductsHelper implements Serializable {
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
-    });
+            });
 
         }
 
 
-}
+    }
+
+    public void readOneProduct(String barcode,final DataStatus dataStatus)
+    {
+        mReference.child(barcode).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                Product product = dataSnapshot.getValue(Product.class);
+                dataStatus.ProductDataLoaded(product);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
 
     public void readProducts(final DataStatus dataStatus)
@@ -73,8 +98,8 @@ public class FirebaseProductsHelper implements Serializable {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               productsList.clear();
-               RepresentativeUser userPre = dataSnapshot.getValue(RepresentativeUser.class);
+                productsList.clear();
+                RepresentativeUser userPre = dataSnapshot.getValue(RepresentativeUser.class);
                 System.out.println(userPre);
 
                 List<String> keys = new ArrayList<>();
@@ -85,8 +110,8 @@ public class FirebaseProductsHelper implements Serializable {
                     Product product = keyNode.getValue(Product.class);
                     productsList.add(product);
                 }
-                    dataStatus.DataIsLoaded(productsList,keys);
-                }
+                dataStatus.DataIsLoaded(productsList,keys);
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -95,7 +120,7 @@ public class FirebaseProductsHelper implements Serializable {
         });
     }
 
-            public void addProduct(Product product,final DataStatus dataStatus)
+    public void addProduct(Product product,final DataStatus dataStatus)
     {
         String  barcode = product.getBarcode();
         mReference.child(barcode).setValue(product).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -124,9 +149,6 @@ public class FirebaseProductsHelper implements Serializable {
             }
         });
     }
-
-
-
 
 
 }

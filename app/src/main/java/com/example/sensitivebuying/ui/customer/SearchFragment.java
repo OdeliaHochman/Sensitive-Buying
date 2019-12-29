@@ -71,6 +71,11 @@ public class SearchFragment extends Fragment implements  View.OnClickListener {
             }
 
             @Override
+            public void ProductDataLoaded(Product product) {
+
+            }
+
+            @Override
             public void DataIsInserted() {
 
             }

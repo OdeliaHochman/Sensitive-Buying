@@ -132,6 +132,11 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
                     }
 
                     @Override
+                    public void ProductDataLoaded(Product product) {
+
+                    }
+
+                    @Override
                     public void DataIsInserted() {
 
                     }
