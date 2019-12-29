@@ -17,6 +17,7 @@ import com.example.sensitivebuying.AddProduct_SensitivesCheckBoxSpinner;
 import com.example.sensitivebuying.dataObject.RepresentativeUser;
 import com.example.sensitivebuying.dataObject.User;
 import com.example.sensitivebuying.firebaseHelper.FirebaseCompaniesHelper;
+import com.example.sensitivebuying.firebaseHelper.FirebaseProductsBySensitiveHelper;
 import com.example.sensitivebuying.firebaseHelper.FirebaseProductsHelper;
 import com.example.sensitivebuying.dataObject.Product;
 import com.example.sensitivebuying.R;
@@ -31,7 +32,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Semaphore;
 
 public class RepresentativeAddProductActivity extends AppCompatActivity {
 
@@ -77,12 +77,13 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
 
 
 
-        final String[] select_qualification = {"    בחר רגישויות  ", "ביצים", "בוטנים", "גלוטן", "אגוזים", "סויה", "לקטוז", "שומשום", "צנובר" , "חרדל" ,"סלרי","שקדים"};
+        final String[] select_qualification = {"    בחר רגישויות  ", "ביצים", "בוטנים", "גלוטן", "אגוזים", "סויה", "לקטוז", "שומשום", "צנובר" , "חרדל" ,"סלרי"};
         spinner = (Spinner) findViewById(R.id.sensitives_spinner);
 
         final ArrayList<Sensitive> listOfSensitive = new ArrayList<>();
         final ArrayList<Sensitive_Checkbox> listbox=new ArrayList<>();
         final ArrayList<Sensitive> listOfSensitiveTrue = new ArrayList<>();
+
 
         for (int i = 0; i < select_qualification.length; i++) {
             final Sensitive sensitive = new Sensitive();
@@ -102,6 +103,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if (isEmpty()) // if one of the text view is empty
                         return;
+
                     for (int j = 0; j < listbox.size(); j++) {
                         if (listbox.get(j).getSelectedbox() == true) {
                             listOfSensitiveTrue.add(listOfSensitive.get(j));
@@ -113,36 +115,54 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
                     product.setCompanyName(nameCompany.getText().toString());
                     product.setProductDescription(infoProduct.getText().toString());
                     product.setProductName(nameProduct.getText().toString());
-                    if(listOfSensitiveTrue.isEmpty())
-                    {
-                        product.setSensitiveList(listOfSensitiveTrue);
-                    }
                     product.setSensitiveList(listOfSensitiveTrue);
                     product.setUrlImage(urlImage.getText().toString());
                     product.setWeightAndType(weightSen.getText().toString());
                     if (isAdd) {
 
-                    new FirebaseCompaniesHelper().addProductOfCompanies(product, new FirebaseCompaniesHelper.DataStatus() {
-                        @Override
-                        public void DataIsLoaded(List<String> keys) {
+                        new FirebaseProductsBySensitiveHelper().addProductOfCompanies(product, new FirebaseProductsBySensitiveHelper.DataStatus() {
+                            @Override
+                            public void DataIsLoaded(ArrayList<String> barcodes) {
 
-                        }
+                            }
 
-                        @Override
-                        public void DataIsInserted() {
+                            @Override
+                            public void DataIsInserted() {
 
-                        }
+                            }
 
-                        @Override
-                        public void DataIsUpdated() {
+                            @Override
+                            public void DataIsUpdated() {
 
-                        }
+                            }
 
-                        @Override
-                        public void DataIsDeleted() {
+                            @Override
+                            public void DataIsDeleted() {
 
-                        }
-                    });
+                            }
+                        });
+
+                        new FirebaseCompaniesHelper().addProductOfCompanies(product, new FirebaseCompaniesHelper.DataStatus() {
+                            @Override
+                            public void DataIsLoaded(List<String> keys) {
+
+                            }
+
+                            @Override
+                            public void DataIsInserted() {
+
+                            }
+
+                            @Override
+                            public void DataIsUpdated() {
+
+                            }
+
+                            @Override
+                            public void DataIsDeleted() {
+
+                            }
+                        });
                         new FirebaseProductsHelper().addProduct(product, new FirebaseProductsHelper.DataStatus() {
                             @Override
                             public void DataIsLoaded(List<Product> productsList, List<String> keys) {

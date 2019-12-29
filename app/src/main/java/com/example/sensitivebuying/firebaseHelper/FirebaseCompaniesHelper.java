@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.example.sensitivebuying.dataObject.Product;
 import com.example.sensitivebuying.dataObject.RepresentativeUser;
+import com.example.sensitivebuying.dataObject.Sensitive;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -62,16 +63,18 @@ public class FirebaseCompaniesHelper
     public void addProductOfCompanies(Product product,final DataStatus dataStatus)
     {
         String  barcodeCompany = product.getBarcode();
-        cReference.child(product.getCompanyName()).push().setValue(barcodeCompany).addOnSuccessListener(new OnSuccessListener<Void>() {
+        cReference.child(product.getCompanyName()).child(barcodeCompany).setValue(barcodeCompany).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 dataStatus.DataIsInserted();
             }
         });
     }
-    public void deleteProduct(String key , final DataStatus dataStatus)
+    public void deleteProduct(Product p , final DataStatus dataStatus)
     {
-        cReference.child(key).setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
+        String companyName = p.getCompanyName();
+        String barcode = p.getBarcode();
+        cReference.child(companyName).child(barcode).setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 dataStatus.DataIsDeleted();

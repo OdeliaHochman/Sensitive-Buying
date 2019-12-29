@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sensitivebuying.dataObject.Sensitive;
+import com.example.sensitivebuying.firebaseHelper.FirebaseCompaniesHelper;
 import com.example.sensitivebuying.firebaseHelper.FirebaseProductsHelper;
 import com.example.sensitivebuying.dataObject.Product;
 import com.example.sensitivebuying.R;
@@ -49,7 +50,6 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
         companyNameS = getIntent().getStringExtra("company name");
         weightS = getIntent().getStringExtra("weight");
         barcodeS = getIntent().getStringExtra("barcode");
-
         productName = (TextView) findViewById(R.id.product_name_Adetails);
         productName.setText(productNameS);
         companyName = (TextView) findViewById(R.id.company_name_Adetails);
@@ -80,6 +80,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // delete from product tree
                 new FirebaseProductsHelper().deleteProduct(barcodeS, new FirebaseProductsHelper.DataStatus() {
                     @Override
                     public void DataIsLoaded(List<Product> productsList, List<String> keys) {
@@ -105,6 +106,10 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
             }
         });
 
+        //delete from company tree
+
+
+        // delete from senstive tree
     }
 
 
@@ -129,6 +134,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
                 }
                 String sensitives = TextUtils.join(",",strSensitive);
                 SensitiveStr.setText(sensitives);
+
 
             }
 
