@@ -73,13 +73,13 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
                 weight.setText(product.getWeightAndType());
                 productDetails.setText(product.getProductDescription());
                 Picasso.get().load(product.getUrlImage()).into(productImage);
-                String [] strSensitive=new String[product.getSensitiveList().size()];
                 if(product.getSensitiveList()==null)
                 {
                     String str="אין רגישיות";
                     sensitiveStr.setText(str);
                 }
                 else {
+                    String [] strSensitive=new String[product.getSensitiveList().size()];
                     for (int i = 0; i < product.getSensitiveList().size(); i++) {
                         strSensitive[i] = product.getSensitiveList().get(i).getSensitiveType();
                     }
