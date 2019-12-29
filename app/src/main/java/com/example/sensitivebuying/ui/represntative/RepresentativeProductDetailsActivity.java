@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sensitivebuying.dataObject.Sensitive;
 import com.example.sensitivebuying.firebaseHelper.FirebaseCompaniesHelper;
+import com.example.sensitivebuying.firebaseHelper.FirebaseProductsBySensitiveHelper;
 import com.example.sensitivebuying.firebaseHelper.FirebaseProductsHelper;
 import com.example.sensitivebuying.dataObject.Product;
 import com.example.sensitivebuying.R;
@@ -38,6 +39,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
     final String activity = " RepresentativeProductDetailsActivity";
     private String barcodeS;
     private FirebaseDatabase firebaseDatabase;
+    private Product product;
 
 
 
@@ -47,7 +49,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
         Log.d("debug",activity);
         setContentView(R.layout.activity_representative_product_details);
         firebaseDatabase = FirebaseDatabase.getInstance();
-        barcodeS = getIntent().getStringExtra("barcode");
+        barcodeS = getIntent().getStringExtra("barcode"); // get barcode from listview
         companyName = (TextView) findViewById(R.id.company_name_Adetails);
         productName = (TextView) findViewById(R.id.product_name_Adetails);
         barcode= (TextView) findViewById(R.id.barcode_Adetails);
@@ -64,22 +66,22 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void ProductDataLoaded(Product product)
+            public void ProductDataLoaded(Product p)
             {
-
+                product=p;
                 companyName.setText(product.getCompanyName());
                 productName.setText(product.getProductName());
                 barcode.setText(product.getBarcode());
                 weight.setText(product.getWeightAndType());
                 productDetails.setText(product.getProductDescription());
                 Picasso.get().load(product.getUrlImage()).into(productImage);
-                String [] strSensitive=new String[product.getSensitiveList().size()];
                 if(product.getSensitiveList()==null)
                 {
                     String str="אין רגישיות";
                     sensitiveStr.setText(str);
                 }
                 else {
+                    String [] strSensitive=new String[product.getSensitiveList().size()];
                     for (int i = 0; i < product.getSensitiveList().size(); i++) {
                         strSensitive[i] = product.getSensitiveList().get(i).getSensitiveType();
                     }
@@ -147,17 +149,64 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
 
                     @Override
                     public void DataIsDeleted() {
-                        Toast.makeText(RepresentativeProductDetailsActivity.this,"המוצר הוסר בהצלחה" , Toast.LENGTH_LONG).show();
-                        finish();return;
+
                     }
                 });
+
+                new FirebaseCompaniesHelper().deleteProduct(product, new FirebaseCompaniesHelper.DataStatus() {
+                    @Override
+                    public void DataIsLoaded(List<String> barcodesList) {
+
+                    }
+
+                    @Override
+                    public void DataIsInserted() {
+
+                    }
+
+                    @Override
+                    public void DataIsUpdated() {
+
+                    }
+
+                    @Override
+                    public void DataIsDeleted() {
+
+                    }
+                });
+
+                // delete from senstive tree
+
+                new FirebaseProductsBySensitiveHelper().deleteProduct(product, new FirebaseProductsBySensitiveHelper.DataStatus() {
+                    @Override
+                    public void DataIsLoaded(ArrayList<String> barcodes) {
+
+                    }
+
+                    @Override
+                    public void DataIsInserted() {
+
+                    }
+
+                    @Override
+                    public void DataIsUpdated() {
+
+                    }
+
+                    @Override
+                    public void DataIsDeleted() {
+
+                        Toast.makeText(RepresentativeProductDetailsActivity.this,"המוצר הוסר בהצלחה" , Toast.LENGTH_LONG).show();
+                        finish();return;
+
+                    }
+                });
+
             }
+
+
         });
 
-        //delete from company tree
-
-
-        // delete from senstive tree
     }
 
 }
