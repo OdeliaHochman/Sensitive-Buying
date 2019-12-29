@@ -67,7 +67,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
             public void ProductDataLoaded(Product product)
             {
 
-                companyName.setText(product.getProductName());
+                companyName.setText(product.getCompanyName());
                 productName.setText(product.getProductName());
                 barcode.setText(product.getBarcode());
                 weight.setText(product.getWeightAndType());
