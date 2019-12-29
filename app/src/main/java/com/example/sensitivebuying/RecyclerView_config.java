@@ -2,6 +2,7 @@ package com.example.sensitivebuying;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,8 @@ public class RecyclerView_config implements Serializable {
 
     private Context mContext;
     private ProductsAdapter mproductsAdapter;
+    private ProductsAdapterCus mproductsAdapterCus;
+
 
 
     public void setConfig(RecyclerView recyclerView, Context context, List<Product> products , List<String> keys)
@@ -40,6 +43,14 @@ public class RecyclerView_config implements Serializable {
         mproductsAdapter= new ProductsAdapter(products,keys);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(mproductsAdapter);
+    }
+
+    public void setConfigCus(RecyclerView recyclerView, Context context, List<Product> products , List<String> keys,List<String> barcodeRed )
+    {
+        mContext=context;
+        mproductsAdapterCus= new ProductsAdapterCus(products,keys, barcodeRed);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(mproductsAdapterCus);
     }
 
 
@@ -154,6 +165,48 @@ public class RecyclerView_config implements Serializable {
         public void onBindViewHolder(@NonNull ProductItemView holder, int position)
         {
             holder.bind(mproductsList.get(position), barcodes.get(position));
+
+        }
+
+        @Override
+        public int getItemCount()
+        {
+            return mproductsList.size();
+        }
+    }
+
+
+
+    class ProductsAdapterCus extends  RecyclerView.Adapter<ProductItemView>
+    {
+        private List<Product> mproductsList;
+        private List<String> barcodes;
+
+        private List<String> barcodesRed;
+
+        public ProductsAdapterCus(List<Product> mproductsList, List<String> barcodes, List<String> barcodesRed) {
+            this.mproductsList = mproductsList;
+            this.barcodes = barcodes;
+            this.barcodesRed = barcodesRed;
+        }
+
+        @NonNull
+        @Override
+        public ProductItemView onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+        {
+            return new ProductItemView(parent);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull ProductItemView holder, int position)
+        {
+            holder.bind(mproductsList.get(position), barcodes.get(position));
+            if (barcodesRed.contains(barcodes.get(position))){
+                holder.mNamePro.setTextColor(Color.RED);
+            }
+            else
+                holder.mNamePro.setTextColor(Color.GREEN);
+
 
         }
 

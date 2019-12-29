@@ -11,10 +11,13 @@ import android.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sensitivebuying.dataObject.Sensitive;
+import com.example.sensitivebuying.firebaseHelper.FirebaseProductsBySensitiveHelper;
 import com.example.sensitivebuying.firebaseHelper.FirebaseProductsHelper;
 import com.example.sensitivebuying.dataObject.Product;
 import com.example.sensitivebuying.R;
 import com.example.sensitivebuying.RecyclerView_config;
+import com.example.sensitivebuying.firebaseHelper.FirebaseSenstiveUserHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +32,12 @@ public class SearchFragment extends Fragment implements  View.OnClickListener {
     private SearchView mySearchView;
     private RecyclerView mRecycler;
     private List<Product> productList;
+    List<String> barcodes;
+    private List<String> forbiddenBarcode= new ArrayList<>();
+    ArrayList<Sensitive> senstiveOfUser ;
+    private int num;
+
+
     private  View v;
 
 
@@ -52,7 +61,13 @@ public class SearchFragment extends Fragment implements  View.OnClickListener {
             public void DataIsLoaded(List<Product> list, List<String> keys) {
                 v.findViewById(R.id.progressBar_customer).setVisibility(View.GONE);
                 productList=list;
-                new RecyclerView_config().setConfig(mRecycler,getActivity(),productList,keys);
+                barcodes=keys;
+                ///
+                //Product p = new Product("11","22","7290000066318","fd","des","pic",null);
+                //public Product(String companyName, String productName, String barcode, String weightAndType, String productDescription, String urlImage, ArrayList<Sensitive> sensitiveList)
+               // List<Product> products = new ArrayList<>();
+               // products.add(p);
+                forbiddenSen();
             }
 
             @Override
@@ -96,6 +111,69 @@ public class SearchFragment extends Fragment implements  View.OnClickListener {
     }
 
 
+    private void forbiddenSen () {
+
+        new FirebaseSenstiveUserHelper().readSensitive(new FirebaseSenstiveUserHelper.DataStatus() {
+
+
+            @Override
+            public void DataIsLoaded(ArrayList<Sensitive> sensitives, ArrayList<String> keys) {
+                senstiveOfUser=sensitives;
+                forbiddenBarcode.clear();
+                getBarcodesFromSen(senstiveOfUser);
+            }
+
+            @Override
+            public void DataIsInserted() {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+        });
+
+
+    }
+
+    private void getBarcodesFromSen (final ArrayList <Sensitive> sensitives) {
+        for ( Sensitive s : sensitives) {
+            new FirebaseProductsBySensitiveHelper().readProductsOfSen(s, new FirebaseProductsBySensitiveHelper.DataStatus() {
+                @Override
+                public void DataIsLoaded(ArrayList<String> CurBarcodes) {
+                    num++;
+                    if (CurBarcodes != null)
+                        forbiddenBarcode.addAll(CurBarcodes);
+                    if (num==sensitives.size()) {
+                        num=0;
+                        new RecyclerView_config().setConfigCus(mRecycler, getActivity(), productList, barcodes, forbiddenBarcode);
+                    }
+                }
+
+
+                @Override
+                public void DataIsInserted() {
+
+                }
+
+                @Override
+                public void DataIsUpdated() {
+
+                }
+
+                @Override
+                public void DataIsDeleted() {
+
+                }
+            });
+        }
+    }
 
 
     @Override
@@ -116,7 +194,9 @@ public class SearchFragment extends Fragment implements  View.OnClickListener {
                 }
             }
 
-            new RecyclerView_config().setConfig(mRecycler, getActivity(), searchList, searchKeys);
+
+            new RecyclerView_config().setConfigCus(mRecycler, getActivity(), searchList, searchKeys, forbiddenBarcode);
+
         }
 
     }
