@@ -61,8 +61,8 @@
 
     <ScrollView
         android:id="@+id/scrollView_update"
-        android:layout_width="356dp"
-        android:layout_height="528dp"
+        android:layout_width="338dp"
+        android:layout_height="476dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="3dp"
         android:layout_marginEnd="8dp"
@@ -231,22 +231,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/checkBox_sinapis_menu" />
 
             <CheckBox
-                android:id="@+id/checkBox_milk_menu"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="10dp"
-                android:checked="false"
-                android:text="@string/milk"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox_celery_menu" />
-
-
-            <CheckBox
                 android:id="@+id/checkBox_tonsils_menu"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -259,7 +243,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox_milk_menu" />
+                app:layout_constraintTop_toBottomOf="@+id/checkBox_celery_menu" />
 
 
         </LinearLayout>
@@ -274,7 +258,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="2dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="270dp"
         android:text="שמור"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

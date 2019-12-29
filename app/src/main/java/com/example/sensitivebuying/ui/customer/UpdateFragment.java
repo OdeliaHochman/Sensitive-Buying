@@ -38,8 +38,7 @@ public class UpdateFragment extends Fragment  {
     final String activity = "  UpdateFragment";
     private CheckBox peantsCheckBox,nutsCheckBox,lactoseCheckBox,glutenCheckBox;
     private CheckBox eggsCheckBox,sesameCheckBox,soyaCheckBox;
-    private CheckBox pine_nutCheckBox,sinapisCheckBox,celeryCheckBox ;
-    private CheckBox milkCheckBox,tonsilsCheckBox;
+    private CheckBox pine_nutCheckBox,sinapisCheckBox,celeryCheckBox,tonsilsCheckBox;
 
     private ProgressBar progressBarUpdate;
 
@@ -71,7 +70,6 @@ public class UpdateFragment extends Fragment  {
         pine_nutCheckBox=(CheckBox)v.findViewById(R.id.checkBox_pine_nut_menu);
         sinapisCheckBox=(CheckBox)v.findViewById(R.id.checkBox_sinapis_menu);
         celeryCheckBox=(CheckBox)v.findViewById(R.id.checkBox_celery_menu);
-        milkCheckBox=(CheckBox) v.findViewById(R.id.checkBox_milk_menu);
         tonsilsCheckBox=(CheckBox) v.findViewById(R.id.checkBox_tonsils_menu);
 
 
@@ -146,11 +144,6 @@ public class UpdateFragment extends Fragment  {
                     userCheckBoxSensitive.add(senList.celery);
                 } else {
                     userCheckBoxSensitive.remove(senList.celery);
-                }
-                if (milkCheckBox.isChecked()) {
-                    userCheckBoxSensitive.add(senList.milk);
-                } else {
-                    userCheckBoxSensitive.remove(senList.milk);
                 }
                 if (tonsilsCheckBox.isChecked()) {
                     userCheckBoxSensitive.add(senList.tonsils);
@@ -316,12 +309,8 @@ private void addSensitive( ArrayList<Sensitive> userCheckBoxSensitive)  {
             }
             if (s.equals(senList.celery)) {
             celeryCheckBox.setChecked(true);
-
             }
-            if (s.equals(senList.milk)) {
-                milkCheckBox.setChecked(true);
 
-            }
             if (s.equals(senList.tonsils)) {
                 tonsilsCheckBox.setChecked(true);
 
@@ -370,10 +359,6 @@ private void addSensitive( ArrayList<Sensitive> userCheckBoxSensitive)  {
 
         if (s.equals(senList.celery)) {
             celeryCheckBox.setChecked(false);
-        }
-
-        if (s.equals(senList.milk)) {
-            milkCheckBox.setChecked(false);
         }
 
         if (s.equals(senList.tonsils)) {

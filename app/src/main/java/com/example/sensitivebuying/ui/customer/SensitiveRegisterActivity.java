@@ -209,17 +209,6 @@ public class SensitiveRegisterActivity extends AppCompatActivity implements View
                 break;
             }
 
-            case R.id.checkBox_milk_registersens: {
-
-                if (checked) {
-                    updateSensitive.add(sensList.milk); }
-                else {
-                    Log.d("in milk ",activity);
-                    updateSensitive.remove(sensList.milk);
-                }
-                break;
-            }
-
             case R.id.checkBox_tonsils_registersens: {
 
                 if (checked) {

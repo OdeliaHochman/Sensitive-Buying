@@ -36,8 +36,8 @@
 
     <TextView
         android:id="@+id/marker_registersens"
-        android:layout_width="313dp"
-        android:layout_height="24dp"
+        android:layout_width="371dp"
+        android:layout_height="23dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="8dp"
         android:text="נא סמן את הרגישויות אותן תרצה לבדוק:"
@@ -51,7 +51,6 @@
         android:layout_width="379dp"
         android:layout_height="560dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="12dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="90dp"
         app:layout_constraintBottom_toTopOf="@+id/bgapp4"
@@ -227,21 +226,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox_sinapis_registersens" />
 
-            <CheckBox
-                android:id="@+id/checkBox_milk_registersens"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="10dp"
-                android:checked="false"
-                android:onClick="onCheckboxClicked"
-                android:text="@string/milk"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox_celery_registersens" />
 
             <CheckBox
                 android:id="@+id/checkBox_tonsils_registersens"
@@ -257,7 +241,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox_milk_registersens" />
+                app:layout_constraintTop_toBottomOf="@+id/checkBox_celery_registersens" />
 
         </LinearLayout>
     </ScrollView>
@@ -270,8 +254,8 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginStart="160dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="83dp"
+        android:layout_marginTop="-20dp"
+        android:layout_marginBottom="150dp"
         android:text="שמור"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -284,8 +268,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="-60dp"
+        android:layout_marginBottom="100dp"
         android:text="דלג"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

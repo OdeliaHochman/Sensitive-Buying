@@ -116,6 +116,10 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Product p = dataSnapshot.getValue(Product.class);
+                if(p.getSensitiveList().isEmpty())
+                {
+                  String str="hello";
+                }
                 String [] strSensitive=new String[p.getSensitiveList().size()];
                 productDetails.setText(p.getProductDescription());
                 Picasso.get().load(p.getUrlImage()).into(productImage);
@@ -124,7 +128,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
                     strSensitive[i]=p.getSensitiveList().get(i).getSensitiveType();
                 }
                 String sensitives = TextUtils.join(",",strSensitive);
-                    SensitiveStr.setText(sensitives);
+                SensitiveStr.setText(sensitives);
 
             }
 

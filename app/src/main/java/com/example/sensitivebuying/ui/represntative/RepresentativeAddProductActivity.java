@@ -31,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Semaphore;
 
 public class RepresentativeAddProductActivity extends AppCompatActivity {
 
@@ -76,13 +77,12 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
 
 
 
-        final String[] select_qualification = {"    בחר רגישויות  ", "ביצים", "בוטנים", "גלוטן", "אגוזים", "סויה", "לקטוז", "שומשום", "צנובר" , "חרדל" ,"סלרי","שקדים","חלב"};
+        final String[] select_qualification = {"    בחר רגישויות  ", "ביצים", "בוטנים", "גלוטן", "אגוזים", "סויה", "לקטוז", "שומשום", "צנובר" , "חרדל" ,"סלרי","שקדים"};
         spinner = (Spinner) findViewById(R.id.sensitives_spinner);
 
         final ArrayList<Sensitive> listOfSensitive = new ArrayList<>();
         final ArrayList<Sensitive_Checkbox> listbox=new ArrayList<>();
         final ArrayList<Sensitive> listOfSensitiveTrue = new ArrayList<>();
-
 
         for (int i = 0; i < select_qualification.length; i++) {
             final Sensitive sensitive = new Sensitive();
@@ -102,7 +102,6 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if (isEmpty()) // if one of the text view is empty
                         return;
-
                     for (int j = 0; j < listbox.size(); j++) {
                         if (listbox.get(j).getSelectedbox() == true) {
                             listOfSensitiveTrue.add(listOfSensitive.get(j));
@@ -114,6 +113,10 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
                     product.setCompanyName(nameCompany.getText().toString());
                     product.setProductDescription(infoProduct.getText().toString());
                     product.setProductName(nameProduct.getText().toString());
+                    if(listOfSensitiveTrue.isEmpty())
+                    {
+                        product.setSensitiveList(listOfSensitiveTrue);
+                    }
                     product.setSensitiveList(listOfSensitiveTrue);
                     product.setUrlImage(urlImage.getText().toString());
                     product.setWeightAndType(weightSen.getText().toString());

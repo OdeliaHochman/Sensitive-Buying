@@ -13,8 +13,7 @@ public class SenstivieListFinal {
     public final Sensitive pine_nut = new Sensitive("צנובר","7");
     public final Sensitive sinapis = new Sensitive("חרדל","8");
     public final Sensitive celery = new Sensitive("סלרי","9");
-    public final Sensitive milk = new Sensitive("חלב","10");
-    public final Sensitive tonsils = new Sensitive("שקדים","11");
+    public final Sensitive tonsils = new Sensitive("שקדים","10");
 
 
 
