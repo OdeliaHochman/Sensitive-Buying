@@ -14,6 +14,7 @@ import com.google.firebase.database.ValueEventListener;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class FirebaseCompaniesHelper
@@ -22,6 +23,7 @@ public class FirebaseCompaniesHelper
     private DatabaseReference cReference;
     private RepresentativeUser user;
     private List<Product> companiesList = new ArrayList<>();
+
 
     public interface DataStatus
     {
@@ -38,7 +40,7 @@ public class FirebaseCompaniesHelper
         cReference=FirebaseDatabase.getInstance().getReference().child("Companies");
     }
 
-    public void readProductsOfCompanie(String nameComp,final DataStatus dataStatus)
+    public void readProductsOfCompanie(final String nameComp, final DataStatus dataStatus)
     {
         cReference.child(nameComp).addValueEventListener(new ValueEventListener() {
             @Override
@@ -51,6 +53,7 @@ public class FirebaseCompaniesHelper
 
                 }
                 dataStatus.DataIsLoaded(barcodes);
+
             }
 
             @Override
@@ -81,5 +84,6 @@ public class FirebaseCompaniesHelper
             }
         });
     }
+
 
 }
