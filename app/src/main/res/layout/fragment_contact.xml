@@ -8,7 +8,7 @@
 
 
         <ImageView
-            android:id="@+id/bgapp1_fragmentContact"
+            android:id="@+id/bgapp1_fragmentContact_customer"
             android:layout_width="505dp"
             android:layout_height="113dp"
             android:layout_marginStart="8dp"
@@ -22,7 +22,7 @@
 
 
     <TextView
-        android:id="@+id/title_fragmentContact"
+        android:id="@+id/title_fragmentContact_customer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -47,14 +47,14 @@
         android:layout_marginBottom="30dp"
         android:gravity="right"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/btn_send"
+        app:layout_constraintBottom_toTopOf="@+id/btn_send_customer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bgapp1_fragmentContact">
+        app:layout_constraintTop_toBottomOf="@+id/bgapp1_fragmentContact_customer">
 
         <EditText
-            android:id="@+id/fullname_contactUs"
+            android:id="@+id/fullname_contactUs_customer"
             android:layout_width="359dp"
             android:layout_height="45dp"
             android:layout_marginTop="10dp"
@@ -63,11 +63,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.551"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_fragmentContact" />
+            app:layout_constraintTop_toBottomOf="@+id/title_fragmentContact_customer" />
 
 
         <EditText
-            android:id="@+id/phonenumber_contactUs"
+            android:id="@+id/phonenumber_contactUs_customer"
             android:layout_width="358dp"
             android:layout_height="43dp"
             android:layout_marginTop="10dp"
@@ -76,11 +76,11 @@
             android:inputType="phone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fullname_contactUs"
+            app:layout_constraintTop_toBottomOf="@+id/fullname_contactUs_customer"
             tools:layout_editor_absoluteX="28dp" />
 
         <EditText
-            android:id="@+id/subject_contactUs"
+            android:id="@+id/subject_contactUs_customer"
             android:layout_width="360dp"
             android:layout_height="40dp"
             android:layout_marginTop="50dp"
@@ -88,11 +88,11 @@
             android:hint="נושא הפנייה"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phonenumber_contactUs"
+            app:layout_constraintTop_toBottomOf="@+id/phonenumber_contactUs_customer"
             tools:layout_editor_absoluteX="25dp" />
 
         <EditText
-            android:id="@+id/content_contactUs"
+            android:id="@+id/content_contactUs_customer"
             android:layout_width="352dp"
             android:layout_height="70dp"
             android:layout_margin="8dp"
@@ -101,14 +101,14 @@
             android:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/subject_contactUs"
+            app:layout_constraintTop_toBottomOf="@+id/subject_contactUs_customer"
             tools:layout_editor_absoluteX="27dp"
             tools:layout_editor_absoluteY="468dp" />
 
     </LinearLayout>
 
         <Button
-            android:id="@+id/btn_send_contactUs"
+            android:id="@+id/btn_send_contactUs_customer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -121,7 +121,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
         <ImageButton
-            android:id="@+id/contactImage_contactUs"
+            android:id="@+id/contactImage_contactUs_customer"
             android:layout_width="110dp"
             android:layout_height="106dp"
             app:layout_constraintEnd_toEndOf="parent"

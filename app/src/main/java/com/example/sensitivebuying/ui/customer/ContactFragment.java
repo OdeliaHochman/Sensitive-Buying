@@ -48,13 +48,13 @@ public class ContactFragment extends Fragment implements  View.OnClickListener {
         Log.d("debug",activity);
         v= inflater.inflate(R.layout.fragment_contact, container, false);
 
-        fullName=(EditText)v.findViewById(R.id.fullname_contactUs);
-        phoneNumber=(EditText)v.findViewById(R.id.phonenumber_contactUs);;
-        subject=(EditText)v.findViewById(R.id.subject_contactUs);;
-        content=(EditText)v.findViewById(R.id.content_contactUs);;
+        fullName=(EditText)v.findViewById(R.id.fullname_contactUs_customer);
+        phoneNumber=(EditText)v.findViewById(R.id.phonenumber_contactUs_customer);;
+        subject=(EditText)v.findViewById(R.id.subject_contactUs_customer);;
+        content=(EditText)v.findViewById(R.id.content_contactUs_customer);;
 
 
-        send = (Button)v.findViewById(R.id.btn_send_contactUs);
+        send = (Button)v.findViewById(R.id.btn_send_contactUs_customer);
         send.setOnClickListener(this);
 
         return v;
@@ -80,7 +80,7 @@ public class ContactFragment extends Fragment implements  View.OnClickListener {
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
         emailIntent.putExtra(Intent.EXTRA_CC, CC);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, subjectS);
-        emailIntent.putExtra(Intent.EXTRA_TEXT, fullNametS+"\n"+phoneNumberS+"\n"+contentS);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, fullNametS+"\n"+phoneNumberS+customerMail+"\n"+contentS);
 
         try {
             startActivity(Intent.createChooser(emailIntent, "Send mail..."));

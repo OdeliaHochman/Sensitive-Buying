@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".ui.represntative.RepresentativeContactUsActivity"></activity>
         <activity android:name=".ui.OpenActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,9 +28,7 @@
         <activity android:name=".ui.represntative.RepresentativeProductDetailsActivity" />
         <activity android:name=".ui.represntative.RepresentativeAddProductActivity" />
         <activity android:name=".ui.represntative.RepresentativeSearchActivity" />
-        <activity android:name=".ui.represntative.RepresentativeHomeActivity">
-        </activity>
-        <activity android:name=".ui.represntative.RepresentativeContactUsActivity" />
+        <activity android:name=".ui.represntative.RepresentativeHomeActivity"></activity>
     </application>
 
 </manifest>

@@ -54,6 +54,7 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         cReference=firebaseDatabase.getReference().child("Companies");
+
         cReference.child(compName).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
