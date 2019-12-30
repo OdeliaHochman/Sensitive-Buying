@@ -1,8 +1,12 @@
 package com.example.sensitivebuying.ui.customer;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -11,20 +15,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.sensitivebuying.R;
 import com.example.sensitivebuying.dataObject.Product;
+import com.example.sensitivebuying.dataObject.Sensitive;
 import com.example.sensitivebuying.firebaseHelper.FirebaseProductsHelper;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
+import com.example.sensitivebuying.firebaseHelper.FirebaseSenstiveUserHelper;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDetailsActivity extends AppCompatActivity implements View.OnClickListener {
@@ -37,6 +39,9 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
     private TextView productName,companyName,weight, productDetails,barcode,sensitiveStr;
     private ImageView productImage;
     private String barcodeS;
+    private ArrayList<Sensitive> userSen = new ArrayList<>();
+    private Product product;
+
 
 
     @Override
@@ -57,6 +62,7 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
         sensitiveStr=(TextView) findViewById(R.id.sensitiveList_details_customer);
         productImage = (ImageView)findViewById(R.id.product_image_Adetails_customer);
 
+
         new FirebaseProductsHelper().readOneProduct(barcodeS, new FirebaseProductsHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<Product> productsList, List<String> keys) {
@@ -64,27 +70,70 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
             }
 
             @Override
-            public void ProductDataLoaded(Product product)
+            public void ProductDataLoaded(Product p)
             {
-
-                companyName.setText(product.getCompanyName());
-                productName.setText(product.getProductName());
-                barcode.setText(product.getBarcode());
-                weight.setText(product.getWeightAndType());
-                productDetails.setText(product.getProductDescription());
-                Picasso.get().load(product.getUrlImage()).into(productImage);
-                if(product.getSensitiveList()==null)
+                product =p;
+                companyName.setText(p.getCompanyName());
+                productName.setText(p.getProductName());
+                barcode.setText(p.getBarcode());
+                weight.setText(p.getWeightAndType());
+                productDetails.setText(p.getProductDescription());
+                Picasso.get().load(p.getUrlImage()).into(productImage);
+                if(p.getSensitiveList()==null)
                 {
                     String str="אין רגישיות";
                     sensitiveStr.setText(str);
                 }
                 else {
-                    String [] strSensitive=new String[product.getSensitiveList().size()];
-                    for (int i = 0; i < product.getSensitiveList().size(); i++) {
-                        strSensitive[i] = product.getSensitiveList().get(i).getSensitiveType();
-                    }
-                    String sensitives = TextUtils.join(",", strSensitive);
-                    sensitiveStr.setText(sensitives);
+                    new FirebaseSenstiveUserHelper().readSensitive(new FirebaseSenstiveUserHelper.DataStatus() {
+                        @Override
+                        public void DataIsLoaded(ArrayList<Sensitive> sensitives, ArrayList<String> keys) {
+                            userSen=sensitives;
+
+                            String [] strSensitive=new String[product.getSensitiveList().size()];
+                            int [] sizeOfBegining=new int[product.getSensitiveList().size()];
+                            int sizeOfCurrSen=0;
+                            for (int i = 0; i < product.getSensitiveList().size(); i++) {
+
+                                sizeOfBegining[i]=sizeOfCurrSen;
+                                sizeOfCurrSen+= product.getSensitiveList().get(i).getSensitiveType().length()+1;
+                                strSensitive[i] = product.getSensitiveList().get(i).getSensitiveType();
+                            }
+                            String sensitivesTxt = TextUtils.join(",", strSensitive);
+                            SpannableString ss = new SpannableString(sensitivesTxt);
+                            ForegroundColorSpan fcsRed ;
+
+
+                            for (int i = 0; i < product.getSensitiveList().size(); i++) {
+                                if ( userSen.contains( product.getSensitiveList().get(i)) ) {
+                                    fcsRed =  new ForegroundColorSpan(Color.RED);
+                                    if ((i + 1) == product.getSensitiveList().size()) // end
+                                        ss.setSpan(fcsRed, sizeOfBegining[i], sensitivesTxt.length() , Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                    else
+                                        ss.setSpan(fcsRed, sizeOfBegining[i], sizeOfBegining[i + 1] - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                }
+                            }
+
+                            sensitiveStr.setText(ss);
+
+                        }
+
+                        @Override
+                        public void DataIsInserted() {
+
+                        }
+
+                        @Override
+                        public void DataIsUpdated() {
+
+                        }
+
+                        @Override
+                        public void DataIsDeleted() {
+
+                        }
+                    });
+
 
                 }
 
@@ -141,6 +190,7 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
             startActivity(intent);
         }
     }
+
 
 }
 
