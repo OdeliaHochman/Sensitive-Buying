@@ -79,9 +79,16 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
 //                yAxisRight.setAxisMinValue(0f);
 //                yAxisRight.setAxisMaxValue(16f);
 
+                barchart.getAxisLeft().setAxisMinValue(0f);
+                barchart.getAxisRight().setAxisMinValue(0f);
+                barchart.getAxisLeft().setAxisMaxValue(10f);
+                barchart.getAxisRight().setAxisMaxValue(10f);
+
+
+
                 barchart.setTouchEnabled(true);
                 barchart.setDragEnabled(true);
-                barchart.setScaleEnabled(true);
+              //  barchart.setScaleEnabled(true);
 
                 barchart.invalidate();
 
