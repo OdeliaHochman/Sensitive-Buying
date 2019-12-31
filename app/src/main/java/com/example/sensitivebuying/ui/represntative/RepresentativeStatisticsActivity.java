@@ -32,12 +32,8 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
     final String activity = "RepresentativeStatisticsActivity";
     private FirebaseDatabase firebaseDatabase;
     private BarChart barchart;
-    private HashMap<String,Integer> compPro;
-    private FirebaseCompaniesHelper firebaseCompaniesHelper;
     private DatabaseReference cReference;
-    private int  numOfChild;
-    private String compName;
-    private int numOfCompany;
+    private int numOfChild;
     private ArrayList<BarEntry> barEnteries = new ArrayList<>();
     private ArrayList<String> theCompany = new ArrayList<>();
 
@@ -50,8 +46,7 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_representative_statistics);
 
         barchart=(BarChart)findViewById(R.id.barchart_stat);
-        numOfCompany=0;
-        numOfChild=0;
+
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         cReference=firebaseDatabase.getReference().child("Companies");
