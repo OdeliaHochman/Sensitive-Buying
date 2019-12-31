@@ -55,20 +55,27 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         cReference=firebaseDatabase.getReference().child("Companies");
 
-        cReference.child(compName).addValueEventListener(new ValueEventListener() {
+        cReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists())
-                {
-                    numOfChild = (int)dataSnapshot.getChildrenCount();
+                int index=0;
+                for (DataSnapshot keyNode : dataSnapshot.getChildren()) {
+                    String companyName = keyNode.getKey();
+                    theCompany.add(companyName);
+                    numOfChild = (int)keyNode.getChildrenCount();
+                    barEnteries.add(new BarEntry(numOfChild,index));
+                    index++;
                 }
-                else
-                {
-                    numOfChild=0;
-                }
-                numOfCompany++; //???????????????????????????????????????
-                theCompany.add(compName);
 
+                BarDataSet barDataSet = new BarDataSet(barEnteries,"מספר מוצרים לפי חברה");
+                BarData barData = new BarData(theCompany,barDataSet);
+
+                barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                barchart.setData(barData);
+
+                barchart.setTouchEnabled(true);
+                barchart.setDragEnabled(true);
+                barchart.setScaleEnabled(true);
 
             }
 
@@ -80,31 +87,6 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-        for(int i=0 ; i< numOfCompany ;i++)
-        {
-            barEnteries.add(new BarEntry(numOfChild,i));
-        }
-
-       // barEnteries.add(new BarEntry(44f,0));
-      //  barEnteries.add(new BarEntry(88f,1));
-
-        // theCompany.add("strauss");
-        //   theCompany.add("osem");
-
-        BarDataSet barDataSet = new BarDataSet(barEnteries,"מספר מוצרים לפי חברה");
-
-
-        BarData barData = new BarData(theCompany,barDataSet);
-        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-        barchart.setData(barData);
-
-        barchart.setTouchEnabled(true);
-        barchart.setDragEnabled(true);
-        barchart.setScaleEnabled(true);
 
     }
 
