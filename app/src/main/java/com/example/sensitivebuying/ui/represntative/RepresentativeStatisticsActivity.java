@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.sensitivebuying.R;
 import com.example.sensitivebuying.firebaseHelper.FirebaseCompaniesHelper;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -69,13 +70,26 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
 
                 BarDataSet barDataSet = new BarDataSet(barEnteries,"מספר מוצרים לפי חברה");
                 BarData barData = new BarData(theCompany,barDataSet);
-
                 barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                barchart.animateY(1500);
+                barchart.setDescription("");
                 barchart.setData(barData);
+
+
+//                YAxis yAxisLeft = barchart.getAxisLeft();
+//                yAxisLeft.setAxisMinValue(0f);
+//                yAxisLeft.setAxisMaxValue(16f);
+
+//                YAxis yAxisRight = barchart.getAxisRight();
+//                yAxisRight.setAxisMinValue(0f);
+//                yAxisRight.setAxisMaxValue(16f);
 
                 barchart.setTouchEnabled(true);
                 barchart.setDragEnabled(true);
                 barchart.setScaleEnabled(true);
+
+                barchart.invalidate();
+
 
             }
 
