@@ -47,9 +47,6 @@ public class HostNavigationActivity extends AppCompatActivity  {
         usersReference= FirebaseDatabase.getInstance().getReference("Users");
         firebaseAuth = FirebaseAuth.getInstance();
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
 
         drawer = findViewById(R.id.nav_main);
         navigationView = findViewById(R.id.nav_view);
@@ -67,7 +64,6 @@ public class HostNavigationActivity extends AppCompatActivity  {
 
         navController = Navigation.findNavController(this, R.id.fragment);
         NavigationUI.setupWithNavController(navigationView,navController);
-        NavigationUI.setupActionBarWithNavController(this, navController,drawer);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

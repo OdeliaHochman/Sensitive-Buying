@@ -8,22 +8,22 @@
     <fragment
         android:id="@+id/search_page"
         android:name="com.example.sensitivebuying.ui.customer.SearchFragment"
-        android:label="fragment_search"
+        android:label="חיפוש מוצר"
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/favorites"
         android:name="com.example.sensitivebuying.ui.customer.FavouritesFragment"
-        android:label="fragment_favorites"
+        android:label="מועדפים"
         tools:layout="@layout/fragment_favourites" />
     <fragment
         android:id="@+id/contact_us"
         android:name="com.example.sensitivebuying.ui.customer.ContactFragment"
-        android:label="fragment_contact"
+        android:label="צור קשר"
         tools:layout="@layout/fragment_contact" />
     <fragment
         android:id="@+id/sensitive_update"
         android:name="com.example.sensitivebuying.ui.customer.UpdateFragment"
-        android:label="fragment_update"
+        android:label="עדכון רגישיות"
         tools:layout="@layout/fragment_update" />
 
 </navigation>
