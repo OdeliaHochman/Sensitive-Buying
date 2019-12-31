@@ -1,5 +1,6 @@
 package com.example.sensitivebuying.ui.represntative;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -7,13 +8,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sensitivebuying.R;
-import com.example.sensitivebuying.firebaseHelper.FirebaseCompaniesHelper;
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,20 +25,26 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 
 
 public class RepresentativeStatisticsActivity extends AppCompatActivity {
 
     final String activity = "RepresentativeStatisticsActivity";
+
     private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference companyReference;
+    private DatabaseReference sensitiveReference;
+
     private BarChart barchart;
-    private DatabaseReference cReference;
     private int numOfChild;
     private ArrayList<BarEntry> barEnteries = new ArrayList<>();
     private ArrayList<String> theCompany = new ArrayList<>();
+
+    private  ArrayList <Entry> proBySensPie = new ArrayList<>();
+    private PieChart pieChart;
+    private int numOfPro;
+    private  ArrayList <String> sensitiveList = new ArrayList<>();
 
 
 
@@ -46,12 +55,14 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_representative_statistics);
 
         barchart=(BarChart)findViewById(R.id.barchart_stat);
+        pieChart = findViewById(R.id.piechart_senspro_stat);
+        pieChart.setUsePercentValues(true);
 
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        cReference=firebaseDatabase.getReference().child("Companies");
+        companyReference=firebaseDatabase.getReference().child("Companies");
 
-        cReference.addValueEventListener(new ValueEventListener() {
+        companyReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int index=0;
@@ -71,28 +82,6 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
                 barchart.setData(barData);
 
 
-//                YAxis yAxisLeft = barchart.getAxisLeft();
-//                yAxisLeft.setAxisMinValue(0f);
-//                yAxisLeft.setAxisMaxValue(16f);
-
-//                YAxis yAxisRight = barchart.getAxisRight();
-//                yAxisRight.setAxisMinValue(0f);
-//                yAxisRight.setAxisMaxValue(16f);
-
-                barchart.getAxisLeft().setAxisMinValue(0f);
-                barchart.getAxisRight().setAxisMinValue(0f);
-                barchart.getAxisLeft().setAxisMaxValue(10f);
-                barchart.getAxisRight().setAxisMaxValue(10f);
-
-
-
-                barchart.setTouchEnabled(true);
-                barchart.setDragEnabled(true);
-              //  barchart.setScaleEnabled(true);
-
-                barchart.invalidate();
-
-
             }
 
             @Override
@@ -100,6 +89,55 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
 
             }
         });
+
+
+        barchart.getAxisLeft().setAxisMinValue(0f);
+        barchart.getAxisRight().setAxisMinValue(0f);
+        barchart.getAxisLeft().setAxisMaxValue(10f);
+        barchart.getAxisRight().setAxisMaxValue(10f);
+
+        barchart.setTouchEnabled(true);
+        barchart.setDragEnabled(true);
+        //  barchart.setScaleEnabled(true);
+
+        barchart.invalidate();
+
+
+
+                    sensitiveReference = firebaseDatabase.getReference().child("ProductsBysensitive");
+
+                    sensitiveReference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int index=0;
+                            for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                String sens = child.getKey();
+                                sensitiveList.add(sens);
+                                numOfPro=(int) child.getChildrenCount();
+                                proBySensPie.add(new Entry(numOfPro, index));
+                                index++;
+                            }
+
+                            PieDataSet dataSet = new PieDataSet(proBySensPie, "מספר המוצרים המכילים את הרגישות");
+                            PieData data = new PieData(sensitiveList, dataSet);
+                            pieChart.setData(data);
+                            pieChart.setDescription("");
+                            dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                            pieChart.animateXY(5000, 5000);
+
+                            data.setValueFormatter(new PercentFormatter());
+                            pieChart.setDrawHoleEnabled(true);
+                            pieChart.setTransparentCircleRadius(40f);
+                            pieChart.setHoleRadius(40f);
+                            data.setValueTextSize(10f);
+                            data.setValueTextColor(Color.DKGRAY);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
 
 
 

@@ -37,7 +37,7 @@ tools:context=".ui.represntative.RepresentativeStatisticsActivity">
         android:layout_width="411dp"
         android:layout_height="582dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -61,10 +61,25 @@ tools:context=".ui.represntative.RepresentativeStatisticsActivity">
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/barchart_stat"
                 android:layout_width="match_parent"
-                android:layout_marginTop="50dp"
-                android:layout_height="400dp">
+                android:layout_marginTop="30dp"
+                android:layout_height="300dp">
 
             </com.github.mikephil.charting.charts.BarChart>
+
+            <TextView
+                android:id="@+id/senspro_stat"
+                android:layout_width="397dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="50dp"
+                android:hint="כמה מוצרים מכילים רגישות מסויימת"
+                android:textSize="20dp"/>
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/piechart_senspro_stat"
+                android:layout_width="match_parent"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_height="300dp"/>
 
 
         </LinearLayout>
