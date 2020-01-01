@@ -1,5 +1,7 @@
 package com.example.sensitivebuying.ui.represntative;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -125,82 +127,81 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // delete from product tree
-                new FirebaseProductsHelper().deleteProduct(barcodeS, new FirebaseProductsHelper.DataStatus() {
-                    @Override
-                    public void DataIsLoaded(List<Product> productsList, List<String> keys) {
 
-                    }
 
-                    @Override
-                    public void ProductDataLoaded(Product product) {
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(RepresentativeProductDetailsActivity.this);
+                builder1.setMessage("האם אתה בטוח שברצונך למחוק את המוצר ? ");
+                builder1.setCancelable(true);
 
-                    }
+                builder1.setPositiveButton(
+                        "כן",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // delete from product tree
+                                new FirebaseProductsHelper().deleteProduct(barcodeS, new FirebaseProductsHelper.DataStatus() {
+                                    @Override
+                                    public void DataIsLoaded(List<Product> productsList, List<String> keys) {
 
-                    @Override
-                    public void DataIsInserted() {
+                                    }
 
-                    }
+                                    @Override
+                                    public void ProductDataLoaded(Product product) {
 
-                    @Override
-                    public void DataIsUpdated() {
+                                    }
 
-                    }
+                                    @Override
+                                    public void DataIsInserted() {
 
-                    @Override
-                    public void DataIsDeleted() {
+                                    }
 
-                    }
-                });
+                                    @Override
+                                    public void DataIsUpdated() {
 
-                new FirebaseCompaniesHelper().deleteProduct(product, new FirebaseCompaniesHelper.DataStatus() {
-                    @Override
-                    public void DataIsLoaded(List<String> barcodesList) {
+                                    }
 
-                    }
+                                    @Override
+                                    public void DataIsDeleted() {
 
-                    @Override
-                    public void DataIsInserted() {
+                                    }
+                                });
 
-                    }
+                                new FirebaseCompaniesHelper().deleteProduct(product, new FirebaseCompaniesHelper.DataStatus() {
+                                    @Override
+                                    public void DataIsLoaded(List<String> barcodesList) {
 
-                    @Override
-                    public void DataIsUpdated() {
+                                    }
 
-                    }
+                                    @Override
+                                    public void DataIsInserted() {
 
-                    @Override
-                    public void DataIsDeleted() {
+                                    }
 
-                    }
-                });
+                                    @Override
+                                    public void DataIsUpdated() {
 
-                // delete from senstive tree
+                                    }
 
-                new FirebaseProductsBySensitiveHelper().deleteProduct(product, new FirebaseProductsBySensitiveHelper.DataStatus() {
-                    @Override
-                    public void DataIsLoaded(ArrayList<String> barcodes) {
+                                    @Override
+                                    public void DataIsDeleted() {
 
-                    }
+                                    }
+                                });
 
-                    @Override
-                    public void DataIsInserted() {
+                                dialog.cancel();
+                            }
+                        });
 
-                    }
+                builder1.setNegativeButton(
+                        "לא",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
 
-                    @Override
-                    public void DataIsUpdated() {
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
 
-                    }
-
-                    @Override
-                    public void DataIsDeleted() {
-
-                        Toast.makeText(RepresentativeProductDetailsActivity.this,"המוצר הוסר בהצלחה" , Toast.LENGTH_LONG).show();
-                        finish();return;
-
-                    }
-                });
 
             }
 
