@@ -204,7 +204,7 @@ private void deleteUnChecked (ArrayList<Sensitive> userCheckBoxSensitive) {
     needToDelete.removeAll(userCheckBoxSensitive);
 
     for (final Sensitive del:needToDelete) {
-        new FirebaseSenstiveUserHelper().deleteData(del.getKey(), new FirebaseSenstiveUserHelper.DataStatus() {
+        new FirebaseSenstiveUserHelper().deleteData(del.getsensitiveKey(), new FirebaseSenstiveUserHelper.DataStatus() {
             @Override
             public void DataIsLoaded(ArrayList<Sensitive> sensitives, ArrayList<String> keys) {
 

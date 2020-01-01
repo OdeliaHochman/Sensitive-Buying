@@ -20,11 +20,11 @@ public class Sensitive implements Serializable {
         this.sensitiveKey=sensitiveKey;
     }
 
-    public String getKey() {
+    public String getsensitiveKey() {
         return sensitiveKey;
     }
 
-    public void setKey(String sensitiveKey) {
+    public void setsensitiveKey(String sensitiveKey) {
         this.sensitiveKey = sensitiveKey;
     }
 

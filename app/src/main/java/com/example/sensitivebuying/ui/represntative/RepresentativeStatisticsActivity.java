@@ -11,7 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.sensitivebuying.R;
 import com.example.sensitivebuying.dataObject.Product;
 import com.example.sensitivebuying.dataObject.RepresentativeUser;
+import com.example.sensitivebuying.dataObject.Sensitive;
+import com.example.sensitivebuying.dataObject.SenstivieListFinal;
 import com.example.sensitivebuying.dataObject.User;
+import com.example.sensitivebuying.firebaseHelper.FirebaseCompaniesHelper;
+import com.example.sensitivebuying.firebaseHelper.FirebaseProductsHelper;
 import com.example.sensitivebuying.firebaseHelper.FirebaseUserHelper;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -32,7 +36,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 
 public class RepresentativeStatisticsActivity extends AppCompatActivity {
@@ -50,17 +54,21 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
 
     private  ArrayList <Entry> proBySensPie = new ArrayList<>();
     private PieChart pieChart;
-    private int numOfPro;
     private  ArrayList <String> sensitiveList = new ArrayList<>();
 
     private String companyName;
     private RepresentativeUser repUser;
-    private ArrayList<String> companyBarcodes= new ArrayList<>();
+    private List<String> companyBarcodes= new ArrayList<>();
+    private ArrayList<Sensitive> allSensitives= SenstivieListFinal.getSensitiveListFinal();
+    private int size = allSensitives.size();
+    private int [] arrayFrequencySen = new int[size];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("debug",activity);
+        repUser = (RepresentativeUser) getIntent().getSerializableExtra("RepresentativeUser"); // recive obj from last activity
+
         setContentView(R.layout.activity_representative_statistics);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -69,45 +77,13 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
         pieChart = findViewById(R.id.piechart_senspro_stat);
         pieChart.setUsePercentValues(true);
 
-        new FirebaseUserHelper().readUser(new FirebaseUserHelper.DataStatusUser() {
-            @Override
-            public void DataIsLoaded(User userHelper, String key) {
-                repUser = (RepresentativeUser) userHelper;
-                companyName =repUser.getCompanyName();
-            }
-        });
+        companyName= repUser.getCompanyName();
+
+
 
         companyReference=firebaseDatabase.getReference().child("Companies");
 
-        companyReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot company : dataSnapshot.getChildren())
-                {
-                    if((company.getKey()).equals(companyName))
-                    {
-                        for (DataSnapshot barcodes : company.getChildren())
-                        {
-                            String barcode = barcodes.getKey();
-                            companyBarcodes.add(barcode);
-                        }
-
-                    }
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-
-
-
+// bar chart
         companyReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -148,52 +124,119 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
 
         barchart.invalidate();
 
+        fillStringSensitives();
 
+        new FirebaseCompaniesHelper().readProductsOfCompanie(companyName, new FirebaseCompaniesHelper.DataStatus() {
+            @Override
+            public void DataIsLoaded(List<String> barcodesList) {
 
-                    sensitiveReference = firebaseDatabase.getReference().child("ProductsBysensitive");
+                companyBarcodes=barcodesList;
 
-                    sensitiveReference.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            int index=0;
-                            for (DataSnapshot child : dataSnapshot.getChildren()) {
-                                String sens = child.getKey();
-                                sensitiveList.add(sens);
+                new FirebaseProductsHelper().readProductByBarcode(companyBarcodes, new FirebaseProductsHelper.DataStatus() {
+                    @Override
+                    public void DataIsLoaded(List<Product> productsList, List<String> keys) {
 
-                                for(DataSnapshot grandson : child.getChildren())
-                                {
-                                    if(companyBarcodes.contains(grandson.getKey()))
-                                    {
-                                        numOfPro++;
-                                    }
-                                }
-                                proBySensPie.add(new Entry(numOfPro, index));
-                                index++;
-                            }
+                        for (Product p : productsList) {
 
-                            PieDataSet dataSet = new PieDataSet(proBySensPie, "מספר המוצרים המכילים את הרגישות");
-                            PieData data = new PieData(sensitiveList, dataSet);
-                            pieChart.setData(data);
-                            pieChart.setDescription("");
-                            dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-                            pieChart.animateXY(5000, 5000);
-
-                            data.setValueFormatter(new PercentFormatter());
-                            pieChart.setDrawHoleEnabled(true);
-                            pieChart.setTransparentCircleRadius(40f);
-                            pieChart.setHoleRadius(40f);
-                            data.setValueTextSize(10f);
-                            data.setValueTextColor(Color.DKGRAY);
+                            fillArrayOfSenByProduct(p);
                         }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        for ( int i=0 ; i<arrayFrequencySen.length; i++) {
+                            proBySensPie.add(new Entry(arrayFrequencySen[i], i));
 
                         }
-                    });
+
+                        PieDataSet dataSet = new PieDataSet(proBySensPie, "מספר המוצרים המכילים את הרגישות");
+                        PieData data = new PieData(sensitiveList, dataSet);
+                        pieChart.setData(data);
+                        pieChart.setDescription("");
+                        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                        pieChart.animateXY(5000, 5000);
+
+                        data.setValueFormatter(new PercentFormatter());
+                        pieChart.setDrawHoleEnabled(true);
+                        pieChart.setTransparentCircleRadius(60f);
+                        pieChart.setHoleRadius(40f);
+                        data.setValueTextSize(10f);
+                        data.setValueTextColor(Color.DKGRAY);
+
+
+                    }
+
+                    @Override
+                    public void ProductDataLoaded(Product product) {
+
+                    }
+
+                    @Override
+                    public void DataIsInserted() {
+
+                    }
+
+                    @Override
+                    public void DataIsUpdated() {
+
+                    }
+
+                    @Override
+                    public void DataIsDeleted() {
+
+                    }
+                });
 
 
 
+
+
+            }
+
+            @Override
+            public void DataIsInserted() {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+        });
+
+
+
+
+                        }
+
+
+
+
+
+    private void fillArrayOfSenByProduct (Product p){
+
+
+        ArrayList<Sensitive> senOfProduct= p.getSensitiveList();
+        if ( senOfProduct.isEmpty())
+            arrayFrequencySen[size-1]++; // last elemnt
+        for ( Sensitive sen : senOfProduct ) {
+            int ind = Integer.valueOf(sen.getsensitiveKey());
+            arrayFrequencySen[ind]++;
+        }
+
+    }
+
+
+    private void fillStringSensitives ( ){
+
+        for ( Sensitive sen : allSensitives) {
+            String senName = sen.getSensitiveType();
+            sensitiveList.add(senName);
+        }
+
+        sensitiveList.add("ללא רגישיות");
 
     }
 

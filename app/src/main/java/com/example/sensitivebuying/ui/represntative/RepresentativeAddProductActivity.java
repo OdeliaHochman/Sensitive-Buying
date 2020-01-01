@@ -89,7 +89,7 @@ public class RepresentativeAddProductActivity extends AppCompatActivity {
             final Sensitive sensitive = new Sensitive();
             final Sensitive_Checkbox senbox= new Sensitive_Checkbox();
             sensitive.setSensitiveType(select_qualification[i]);
-            sensitive.setKey(Integer.toString(i-1));
+            sensitive.setsensitiveKey(Integer.toString(i-1));
             senbox.setSensitiveTypebox(select_qualification[i]);
             listOfSensitive.add(sensitive);
             listbox.add(senbox);

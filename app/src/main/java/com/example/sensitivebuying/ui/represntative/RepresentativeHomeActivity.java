@@ -100,6 +100,8 @@ public class RepresentativeHomeActivity extends AppCompatActivity implements Vie
         }
         if (statI == v) {
             Intent intent = new Intent(RepresentativeHomeActivity.this, RepresentativeStatisticsActivity.class);
+            intent.putExtra("RepresentativeUser", repUser);
+
             startActivity(intent);
         }
         if (contactI == v) {

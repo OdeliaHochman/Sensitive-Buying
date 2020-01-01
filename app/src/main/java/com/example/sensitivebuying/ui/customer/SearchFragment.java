@@ -56,17 +56,13 @@ public class SearchFragment extends Fragment implements  View.OnClickListener {
         mySearchView = (SearchView)v.findViewById(R.id.searchLine_customer);
         mRecycler = (RecyclerView)v.findViewById(R.id.recyclerView_products_customer);
 
+        // get all products
         new FirebaseProductsHelper().readProducts(new FirebaseProductsHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<Product> list, List<String> keys) {
                 v.findViewById(R.id.progressBar_customer).setVisibility(View.GONE);
                 productList=list;
                 barcodes=keys;
-                ///
-                //Product p = new Product("11","22","7290000066318","fd","des","pic",null);
-                //public Product(String companyName, String productName, String barcode, String weightAndType, String productDescription, String urlImage, ArrayList<Sensitive> sensitiveList)
-               // List<Product> products = new ArrayList<>();
-               // products.add(p);
                 forbiddenSen();
             }
 
@@ -91,7 +87,7 @@ public class SearchFragment extends Fragment implements  View.OnClickListener {
             }
         });
 
-
+// search view
         if(mySearchView != null){
             mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
@@ -118,6 +114,7 @@ public class SearchFragment extends Fragment implements  View.OnClickListener {
 
     private void forbiddenSen () {
 
+        // read the user sensetive
         new FirebaseSenstiveUserHelper().readSensitive(new FirebaseSenstiveUserHelper.DataStatus() {
 
 
@@ -147,6 +144,7 @@ public class SearchFragment extends Fragment implements  View.OnClickListener {
 
     }
 
+    // get all the barcode of sensitives
     private void getBarcodesFromSen (final ArrayList <Sensitive> sensitives) {
         for ( Sensitive s : sensitives) {
             new FirebaseProductsBySensitiveHelper().readProductsOfSen(s, new FirebaseProductsBySensitiveHelper.DataStatus() {

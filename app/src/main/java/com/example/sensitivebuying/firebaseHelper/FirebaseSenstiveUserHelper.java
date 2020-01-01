@@ -69,7 +69,7 @@ public class FirebaseSenstiveUserHelper {
     }
 
     public void addSensitive (Sensitive sensitive,final DataStatus dataStatus ) {
-        String key = sensitive.getKey();
+        String key = sensitive.getsensitiveKey();
         mReference.child(key).setValue(sensitive).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
