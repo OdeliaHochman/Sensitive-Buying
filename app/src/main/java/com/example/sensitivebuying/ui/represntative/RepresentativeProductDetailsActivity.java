@@ -136,7 +136,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
                 builder1.setPositiveButton(
                         "כן",
                         new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
+                            public void onClick( final DialogInterface dialog, int id) {
                                 // delete from product tree
                                 new FirebaseProductsHelper().deleteProduct(barcodeS, new FirebaseProductsHelper.DataStatus() {
                                     @Override
@@ -187,7 +187,33 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
                                     }
                                 });
 
-                                dialog.cancel();
+                                // delete from senstive tree
+
+                                new FirebaseProductsBySensitiveHelper().deleteProduct(product, new FirebaseProductsBySensitiveHelper.DataStatus() {
+                                    @Override
+                                    public void DataIsLoaded(ArrayList<String> barcodes) {
+
+                                    }
+
+                                    @Override
+                                    public void DataIsInserted() {
+
+                                    }
+
+                                    @Override
+                                    public void DataIsUpdated() {
+
+                                    }
+
+                                    @Override
+                                    public void DataIsDeleted() {
+                                        dialog.cancel();
+                                        Toast.makeText(RepresentativeProductDetailsActivity.this,"המוצר הוסר בהצלחה" , Toast.LENGTH_LONG).show();
+                                        finish();return;
+
+                                    }
+                                });
+
                             }
                         });
 
