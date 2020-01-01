@@ -66,6 +66,11 @@ public class OpenActivity extends AppCompatActivity {
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()){
+                    firebaseAuth.signOut();
+                    startActivity(new Intent(OpenActivity.this, LoginActivity.class));
+                    finish(); return;
+                }
                 if(dataSnapshot.child("rep").getValue(Boolean.class).equals(true)) {
                     startActivity(new Intent(OpenActivity.this, RepresentativeHomeActivity.class));
                     finish(); return;

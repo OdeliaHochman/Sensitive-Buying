@@ -37,6 +37,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference usersReference;
+    private DatabaseReference userByRoleRefernce;
+
     final String activity = "RegisterActivity";
 
     @Override
@@ -45,6 +47,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         Log.d("debug",activity);
         setContentView(R.layout.activity_register);
         usersReference= FirebaseDatabase.getInstance().getReference("Users");
+        userByRoleRefernce= FirebaseDatabase.getInstance().getReference("UserByRole");
         firebaseAuth = FirebaseAuth.getInstance();
         EditTextEmail = (EditText) findViewById(R.id.emailRegister_editTxt);
         EditTextPassword = (EditText) findViewById(R.id.passwordRegister_editTxt);
@@ -86,12 +89,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 Toast.makeText(RegisterActivity.this,"ההרשמה הצליחה", Toast.LENGTH_LONG).show();
                 CustomerUser user = new CustomerUser(name, email,null,null);
                 usersReference.child(firebaseAuth.getCurrentUser().getUid()).setValue(user);
+                userByRoleRefernce.child("customers").child(firebaseAuth.getCurrentUser().getUid()).setValue(firebaseAuth.getCurrentUser().getUid());
                 Intent intent = new Intent(RegisterActivity.this, SensitiveRegisterActivity.class);
                 intent.putExtra("CustomerUser", user);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+              //  intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 inProgress(false);
-                finish();
+//                finish();
 
             }
         }).addOnFailureListener(new OnFailureListener() {
