@@ -15,7 +15,7 @@ public class FirebaseUserHelper {
 
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
-    String userKey;
+    private String userKey;
     private User user;
 
     public interface DataStatusUser

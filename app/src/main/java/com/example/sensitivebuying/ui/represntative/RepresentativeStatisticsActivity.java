@@ -5,9 +5,14 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sensitivebuying.R;
+import com.example.sensitivebuying.dataObject.Product;
+import com.example.sensitivebuying.dataObject.RepresentativeUser;
+import com.example.sensitivebuying.dataObject.User;
+import com.example.sensitivebuying.firebaseHelper.FirebaseUserHelper;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.BarData;
@@ -18,6 +23,8 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,7 +53,9 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
     private int numOfPro;
     private  ArrayList <String> sensitiveList = new ArrayList<>();
 
-
+    private String companyName;
+    private RepresentativeUser repUser;
+    private ArrayList<String> companyBarcodes= new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +63,50 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
         Log.d("debug",activity);
         setContentView(R.layout.activity_representative_statistics);
 
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
         barchart=(BarChart)findViewById(R.id.barchart_stat);
         pieChart = findViewById(R.id.piechart_senspro_stat);
         pieChart.setUsePercentValues(true);
 
+        new FirebaseUserHelper().readUser(new FirebaseUserHelper.DataStatusUser() {
+            @Override
+            public void DataIsLoaded(User userHelper, String key) {
+                repUser = (RepresentativeUser) userHelper;
+                companyName =repUser.getCompanyName();
+            }
+        });
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
         companyReference=firebaseDatabase.getReference().child("Companies");
+
+        companyReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot company : dataSnapshot.getChildren())
+                {
+                    if((company.getKey()).equals(companyName))
+                    {
+                        for (DataSnapshot barcodes : company.getChildren())
+                        {
+                            String barcode = barcodes.getKey();
+                            companyBarcodes.add(barcode);
+                        }
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
 
         companyReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -113,7 +159,14 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
                             for (DataSnapshot child : dataSnapshot.getChildren()) {
                                 String sens = child.getKey();
                                 sensitiveList.add(sens);
-                                numOfPro=(int) child.getChildrenCount();
+
+                                for(DataSnapshot grandson : child.getChildren())
+                                {
+                                    if(companyBarcodes.contains(grandson.getKey()))
+                                    {
+                                        numOfPro++;
+                                    }
+                                }
                                 proBySensPie.add(new Entry(numOfPro, index));
                                 index++;
                             }
@@ -143,6 +196,7 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
 
 
     }
+
 
 
 }

@@ -61,7 +61,7 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
             public void DataIsLoaded(User userHelper, String key) {
                 repUser = (RepresentativeUser) userHelper;
                 companyName = repUser.getCompanyName();
-                ShowProductsByBarCodes();
+                ShowProductsByBarcodes();
             }
             });
 
@@ -114,7 +114,7 @@ public class RepresentativeSearchActivity extends AppCompatActivity implements V
         }
     }
 
-    private void ShowProductsByBarCodes()
+    private void ShowProductsByBarcodes()
     {
         new FirebaseCompaniesHelper().readProductsOfCompanie(companyName,new FirebaseCompaniesHelper.DataStatus()
         {
