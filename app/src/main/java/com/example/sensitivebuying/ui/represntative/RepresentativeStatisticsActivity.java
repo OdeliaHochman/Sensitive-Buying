@@ -219,11 +219,13 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
 
 
         ArrayList<Sensitive> senOfProduct= p.getSensitiveList();
-        if ( senOfProduct.isEmpty())
+        if ( senOfProduct==null)
             arrayFrequencySen[size-1]++; // last elemnt
-        for ( Sensitive sen : senOfProduct ) {
-            int ind = Integer.valueOf(sen.getsensitiveKey());
-            arrayFrequencySen[ind]++;
+        else {
+            for (Sensitive sen : senOfProduct) {
+                int ind = Integer.valueOf(sen.getsensitiveKey());
+                arrayFrequencySen[ind]++;
+            }
         }
 
     }
