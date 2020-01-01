@@ -60,7 +60,7 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
     private RepresentativeUser repUser;
     private List<String> companyBarcodes= new ArrayList<>();
     private ArrayList<Sensitive> allSensitives= SenstivieListFinal.getSensitiveListFinal();
-    private int size = allSensitives.size();
+    private int size = allSensitives.size() +1;
     private int [] arrayFrequencySen = new int[size];
 
     @Override
