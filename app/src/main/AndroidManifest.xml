@@ -28,6 +28,7 @@
         <activity android:name=".ui.represntative.RepresentativeProductDetailsActivity" />
         <activity android:name=".ui.represntative.RepresentativeAddProductActivity" />
         <activity android:name=".ui.represntative.RepresentativeSearchActivity" />
+        <activity android:name=".ui.represntative.RepresentativeUpdateProductActivity" />
         <activity android:name=".ui.represntative.RepresentativeHomeActivity"></activity>
     </application>
 

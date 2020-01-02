@@ -117,7 +117,7 @@ public class RepresentativeProductDetailsActivity extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RepresentativeProductDetailsActivity.this, RepresentativeAddProductActivity.class);
+                Intent intent = new Intent(RepresentativeProductDetailsActivity.this, RepresentativeUpdateProductActivity.class);
                 intent.putExtra("barcode",barcodeS);
                 startActivity(intent);
                 finish();
