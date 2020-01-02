@@ -1,6 +1,11 @@
 package com.example.sensitivebuying.dataObject;
 
+import android.text.SpannableString;
+import android.text.TextUtils;
+
 import androidx.annotation.Nullable;
+
+import com.example.sensitivebuying.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -112,6 +117,40 @@ public class Product implements Serializable  {
 
 
         return false;
+    }
+
+    public String toString()
+    {
+        String s= "";
+        String title_companyName = "שם חברה: ";
+        String title_productName = "שם מוצר: ";
+        String title_barcode = "ברקוד: ";
+        String title_weightAndType = "משקל: ";
+        String title_productDescription= "תיאור: ";
+
+        String title_sensitiveList= "רשימת רגשיות: ";
+
+
+//        private String companyName;
+//        private String productName;
+//        private String barcode;
+//        private String weightAndType;
+//        private String productDescription;
+//        private String urlImage;
+//        private ArrayList<Sensitive> sensitiveList;
+        String sensitivesTxt="אין רגישיות";
+        if (sensitiveList!= null)
+         sensitivesTxt = TextUtils.join(",", sensitiveList);
+
+        s+=   title_companyName+ companyName+"\n"+
+               title_productName+productName+"\n"+
+                title_barcode+barcode+"\n"+
+               title_weightAndType+weightAndType+"\n"+
+                title_productDescription+productDescription+"\n"+
+                title_sensitiveList+sensitivesTxt;
+
+
+        return s;
     }
 
 

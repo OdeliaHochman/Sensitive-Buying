@@ -163,7 +163,8 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
             public void onClick(View v) {
                 Intent shareIntent = new Intent();
                 shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.putExtra(Intent.EXTRA_TEXT, "www.technxt.net");
+                String title_sharing = "המוצר שותף דרך אפליקציית Sensitive Buying"+"\n";
+                shareIntent.putExtra(Intent.EXTRA_TEXT,title_sharing+ product.toString());
                 shareIntent.setType("text/plain");
                 startActivity(shareIntent);
             }
