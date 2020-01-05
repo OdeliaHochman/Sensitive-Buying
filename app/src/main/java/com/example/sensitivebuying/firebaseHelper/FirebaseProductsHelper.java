@@ -76,7 +76,7 @@ public class FirebaseProductsHelper implements Serializable {
 
     public void readOneProduct(String barcode,final DataStatus dataStatus)
     {
-        mReference.child(barcode).addValueEventListener(new ValueEventListener() {
+        mReference.child(barcode).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
