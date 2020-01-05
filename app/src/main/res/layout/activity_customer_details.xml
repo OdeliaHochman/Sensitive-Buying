@@ -78,12 +78,14 @@
         android:id="@+id/product_details_name_Adetails_customer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="100dp"
         android:layout_marginBottom="20dp"
         android:text="product details"
         app:layout_constraintBottom_toTopOf="@+id/allergens_details_customer"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Component_details_customer" />
 
     <TextView

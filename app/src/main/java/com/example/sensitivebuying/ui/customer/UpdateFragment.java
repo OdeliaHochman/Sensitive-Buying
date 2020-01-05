@@ -24,9 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class UpdateFragment extends Fragment  {
 
     private ArrayList<Sensitive> updateSensitive= new ArrayList<Sensitive>();
@@ -52,7 +49,7 @@ public class UpdateFragment extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         Log.d("debug",activity);
         v = inflater.inflate(R.layout.fragment_update, container, false);
 

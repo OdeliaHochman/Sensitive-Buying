@@ -56,7 +56,7 @@ private EditText fullName,phoneNumber,subject,content;
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
         emailIntent.putExtra(Intent.EXTRA_CC, CC);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, subjectS);
-        emailIntent.putExtra(Intent.EXTRA_TEXT, fullNametS+"\n"+phoneNumberS+repMail+"\n"+contentS);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "full name: "+fullNametS+"\n"+"phone number: "+phoneNumberS+"\n"+"mail: "+repMail+"\n"+"content: "+contentS);
 
         try {
         startActivity(Intent.createChooser(emailIntent, "Send mail..."));

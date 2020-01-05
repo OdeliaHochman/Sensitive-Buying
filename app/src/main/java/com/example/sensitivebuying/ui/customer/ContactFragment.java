@@ -79,8 +79,8 @@ public class ContactFragment extends Fragment implements  View.OnClickListener {
 
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
         emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, subjectS);
-        emailIntent.putExtra(Intent.EXTRA_TEXT, fullNametS+"\n"+phoneNumberS+customerMail+"\n"+contentS);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "sensitive buying app : "+subjectS);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "full name: "+fullNametS+"\n"+"phone number: "+phoneNumberS+"\n"+"mail: "+customerMail+"\n"+"content: "+contentS);
 
         try {
             startActivity(Intent.createChooser(emailIntent, "Send mail..."));
