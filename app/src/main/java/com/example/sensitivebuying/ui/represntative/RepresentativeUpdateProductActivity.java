@@ -25,6 +25,7 @@ import com.example.sensitivebuying.R;
 import com.example.sensitivebuying.dataObject.Sensitive;
 import com.example.sensitivebuying.Sensitive_Checkbox;
 import com.example.sensitivebuying.firebaseHelper.FirebaseUserHelper;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -59,7 +60,6 @@ public class RepresentativeUpdateProductActivity extends AppCompatActivity {
     Sensitive sensitiveUpdate;
     private boolean update=false;
 
-
     final String activity = " RepresentativeUpdateProductActivity";
 
     @Override
@@ -68,7 +68,11 @@ public class RepresentativeUpdateProductActivity extends AppCompatActivity {
         Log.d("debug", activity);
         setContentView(R.layout.activity_representative_update_product);
         firebaseDatabase = FirebaseDatabase.getInstance();
-        FirebaseDatabase creference=FirebaseDatabase.getInstance();
+        FirebaseDatabase cDatabase;
+        final DatabaseReference cReference;
+        cDatabase =FirebaseDatabase.getInstance();
+        cReference=cDatabase.getReference("ProductsBysensitive");
+        final FirebaseDatabase creference=FirebaseDatabase.getInstance();
         final String barcode = getIntent().getStringExtra("barcode");
         codebar = findViewById(R.id.updateBarcode_editTxt);
 
@@ -115,11 +119,11 @@ public class RepresentativeUpdateProductActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                        for (int j = 0; j < listboxUpdate.size(); j++) {
-                            if (listboxUpdate.get(j).getSelectedbox() == true) {
+                    for (int j = 0; j < listboxUpdate.size(); j++) {
+                        if (listboxUpdate.get(j).getSelectedbox() == true) {
 
-                                NewlistOfSensitiveTrue.add(listUpdateSensitive.get(j));
-                            }
+                            NewlistOfSensitiveTrue.add(listUpdateSensitive.get(j));
+                        }
                     }
 
 
@@ -129,72 +133,86 @@ public class RepresentativeUpdateProductActivity extends AppCompatActivity {
                     product.setProductDescription(infoProduct.getText().toString());
                     product.setProductName(nameProduct.getText().toString());
                     product.setSensitiveList(NewlistOfSensitiveTrue);
-
-
                     product.setUrlImage(urlImage.getText().toString());
                     product.setWeightAndType(weightSen.getText().toString());
 
-                        String barcode_new = codebar.getText().toString();
-                        new FirebaseProductsHelper().updateProduct(barcode_new, product, new FirebaseProductsHelper.DataStatus() {
-                            @Override
-                            public void DataIsLoaded(List<Product> productsList, List<String> keys) {
+                    new FirebaseProductsBySensitiveHelper().updateSensitiveProduct(product, new FirebaseProductsBySensitiveHelper.DataStatus() {
+                        @Override
+                        public void DataIsLoaded(ArrayList<String> barcodes) {
 
-                            }
+                        }
 
-                            @Override
-                            public void ProductDataLoaded(Product product) {
+                        @Override
+                        public void DataIsInserted() {
 
-                            }
+                        }
 
-                            @Override
-                            public void DataIsInserted() {
+                        @Override
+                        public void DataIsUpdated() {
 
-                            }
+                        }
 
-                            @Override
-                            public void DataIsUpdated() {
-                                Toast.makeText(RepresentativeUpdateProductActivity.this, "המוצר התעדכן בהצלחה", Toast.LENGTH_LONG).show();
-                                finish();
-                                return;
-                            }
+                        @Override
+                        public void DataIsDeleted() {
 
-                            @Override
-                            public void DataIsDeleted() {
+                        }
+                    });
 
-                            }
-                        });
-                    }
+
+                    String barcode_new = codebar.getText().toString();
+                    new FirebaseProductsHelper().updateProduct(barcode_new, product, new FirebaseProductsHelper.DataStatus() {
+                        @Override
+                        public void DataIsLoaded(List<Product> productsList, List<String> keys) {
+
+                        }
+
+                        @Override
+                        public void ProductDataLoaded(Product product) {
+
+                        }
+
+                        @Override
+                        public void DataIsInserted() {
+
+                        }
+
+                        @Override
+                        public void DataIsUpdated() {
+                            Toast.makeText(RepresentativeUpdateProductActivity.this, "המוצר התעדכן בהצלחה", Toast.LENGTH_LONG).show();
+                            finish();
+                            return;
+                        }
+
+                        @Override
+                        public void DataIsDeleted() {
+
+//                            for(int i=0; i<listboxUpdate.size();i++)
+//                            {
+//                                final ArrayList<Sensitive> sensitives = product.getSensitiveList();
+//                                for (Sensitive s : sensitives){
+//                                    String senName =s.getSensitiveType();
+//                                    if(listboxUpdate.get(i).getSensitiveTypebox().equals(false))
+//                                        cReference.child(senName).child(barcode).setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                            @Override
+//                                            public void onSuccess(Void aVoid) {
+//
+//                                            }
+//                                        });
+//                                }
+//
+//                            }
+
+
+                        }
+                    });
+                }
             });
         }//for
 
+
     }
 
-    private void updateSensitive(final Sensitive sensitive, String barcode)
-    {
-        DatabaseReference reference = firebaseDatabase.getReference("Products").child(barcode);
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                Product p = dataSnapshot.getValue(Product.class);
-                for(int i=1; i<p.getSensitiveList().size(); i++)
-                {
-                    if(p.getSensitiveList().get(i).getSensitiveType().equals(sensitive.getSensitiveType()))
-                    {
-                        listboxUpdate.get(i).setSelectedbox(true);
-                    }
 
-
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
     private void setDetails (String barcode) {
 
         DatabaseReference reference = firebaseDatabase.getReference("Products").child(barcode);
