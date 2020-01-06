@@ -22,6 +22,8 @@ public class FirebaseSenstiveUserHelper {
 
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
+    private DatabaseReference userReference;
+
     ArrayList<Sensitive> sensitives = new ArrayList<>();
     String userKey;
 
@@ -38,7 +40,9 @@ public class FirebaseSenstiveUserHelper {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
         userKey = firebaseAuth.getCurrentUser().getUid();
+        userReference= mDatabase.getReference("Users");
         mReference=mDatabase.getReference("Users").child(userKey).child("sensitiveList");
+
         Log.d("FirebaseUserHelper",""+userKey );
     }
 
@@ -97,5 +101,31 @@ public class FirebaseSenstiveUserHelper {
                         dataStatus.DataIsDeleted();
                     }
                 });
+    }
+
+
+    public void readSensitiveSpecUser (String uid, final DataStatus dataStatus)
+    {
+        userReference.child(uid).child("sensitiveList").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                sensitives.clear();
+                ArrayList<String> keys = new ArrayList<>();
+                for(DataSnapshot keyNode:dataSnapshot.getChildren())
+                {
+                    keys.add(keyNode.getKey());
+                    Sensitive sensitive = keyNode.getValue(Sensitive.class);
+                    sensitives.add(sensitive);
+                }
+                dataStatus.DataIsLoaded(sensitives,keys);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
+
+            }
+        });
     }
 }

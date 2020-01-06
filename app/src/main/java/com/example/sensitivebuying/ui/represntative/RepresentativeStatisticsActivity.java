@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sensitivebuying.R;
+import com.example.sensitivebuying.dataObject.CustomerUser;
 import com.example.sensitivebuying.dataObject.Product;
 import com.example.sensitivebuying.dataObject.RepresentativeUser;
 import com.example.sensitivebuying.dataObject.Sensitive;
@@ -16,6 +16,7 @@ import com.example.sensitivebuying.dataObject.SenstivieListFinal;
 import com.example.sensitivebuying.dataObject.User;
 import com.example.sensitivebuying.firebaseHelper.FirebaseCompaniesHelper;
 import com.example.sensitivebuying.firebaseHelper.FirebaseProductsHelper;
+import com.example.sensitivebuying.firebaseHelper.FirebaseSenstiveUserHelper;
 import com.example.sensitivebuying.firebaseHelper.FirebaseUserHelper;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -27,8 +28,6 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -59,9 +58,20 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
     private String companyName;
     private RepresentativeUser repUser;
     private List<String> companyBarcodes= new ArrayList<>();
+    List<String> uids = new ArrayList<>();
+
     private ArrayList<Sensitive> allSensitives= SenstivieListFinal.getSensitiveListFinal();
     private int size = allSensitives.size() +1;
-    private int [] arrayFrequencySen = new int[size];
+    private int [] arrayFrequencySenProducts = new int[size];
+    private int [] arrayFrequencySenUsers = new int[size];
+    private ArrayList<Sensitive> userSenstive;
+
+    private PieChart pieChartUserSen;
+    private  ArrayList <Entry> userBySensPieEntry = new ArrayList<>();
+    private int num;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +86,9 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
         barchart=(BarChart)findViewById(R.id.barchart_stat);
         pieChart = findViewById(R.id.piechart_senspro_stat);
         pieChart.setUsePercentValues(true);
+        pieChartUserSen = findViewById(R.id.user_senstivies_piechart);
+        pieChartUserSen.setUsePercentValues(true);
+
 
         companyName= repUser.getCompanyName();
 
@@ -141,8 +154,8 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
                             fillArrayOfSenByProduct(p);
                         }
 
-                        for ( int i=0 ; i<arrayFrequencySen.length; i++) {
-                            proBySensPie.add(new Entry(arrayFrequencySen[i], i));
+                        for (int i = 0; i< arrayFrequencySenProducts.length; i++) {
+                            proBySensPie.add(new Entry(arrayFrequencySenProducts[i], i));
 
                         }
 
@@ -160,6 +173,9 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
                         pieChart.setHoleRadius(5f);
                         data.setValueTextSize(15f);
                         data.setValueTextColor(Color.DKGRAY);
+
+
+
 
 
                     }
@@ -187,8 +203,6 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
 
 
 
-
-
             }
 
             @Override
@@ -208,9 +222,78 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
         });
 
 
+        DatabaseReference customersUsers = firebaseDatabase.getReference("UserByRole").child("customers");
 
+        customersUsers.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                num =0;
+                for (DataSnapshot keyNode : dataSnapshot.getChildren()) {
+                    String uid = keyNode.getValue(String.class);
+                    uids.add(uid);
+                }
+
+                for ( String uid : uids) {
+                    new FirebaseSenstiveUserHelper().readSensitiveSpecUser(uid, new FirebaseSenstiveUserHelper.DataStatus() {
+                        @Override
+                        public void DataIsLoaded(ArrayList<Sensitive> sensitives, ArrayList<String> keys) {
+                            fillArrayOfSenByUser(sensitives);
+                            num++;
+                            if ( num == uids.size()) {
+                                for (int i = 0; i < arrayFrequencySenUsers.length; i++) {
+                                    userBySensPieEntry.add(new Entry(arrayFrequencySenUsers[i], i));
+
+                                }
+                                PieDataSet dataSetUser = new PieDataSet(userBySensPieEntry, "מספר המשתמשים הרשומים עם הרגישות");
+                                dataSetUser.setSliceSpace(5f);
+                                PieData dataUser = new PieData(sensitiveList, dataSetUser);
+                                pieChartUserSen.setData(dataUser);
+                                pieChartUserSen.setDescription("");
+                                dataSetUser.setColors(MY_COLOR);
+                                pieChartUserSen.animateXY(5000, 5000);
+
+                                dataUser.setValueFormatter(new PercentFormatter());
+                                pieChartUserSen.setDrawHoleEnabled(false);
+                                pieChartUserSen.setTransparentCircleRadius(100f);
+                                pieChartUserSen.setHoleRadius(5f);
+                                dataUser.setValueTextSize(15f);
+                                dataUser.setValueTextColor(Color.DKGRAY);
+                                num=0;
+                            }
 
                         }
+
+                        @Override
+                        public void DataIsInserted() {
+
+                        }
+
+                        @Override
+                        public void DataIsUpdated() {
+
+                        }
+
+                        @Override
+                        public void DataIsDeleted() {
+
+                        }
+                    });
+
+                }
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
 
 
 
@@ -221,11 +304,26 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
 
         ArrayList<Sensitive> senOfProduct= p.getSensitiveList();
         if ( senOfProduct==null)
-            arrayFrequencySen[size-1]++; // last elemnt
+            arrayFrequencySenProducts[size-1]++; // last element "אין רגישיות"
         else {
             for (Sensitive sen : senOfProduct) {
                 int ind = Integer.valueOf(sen.getsensitiveKey());
-                arrayFrequencySen[ind]++;
+                arrayFrequencySenProducts[ind]++;
+            }
+        }
+
+    }
+
+
+    private void fillArrayOfSenByUser ( ArrayList<Sensitive> senOfProduct){
+
+
+        if ( senOfProduct==null)
+            arrayFrequencySenUsers[size-1]++; // last element "אין רגישיות"
+        else {
+            for (Sensitive sen : senOfProduct) {
+                int ind = Integer.valueOf(sen.getsensitiveKey());
+                arrayFrequencySenUsers[ind]++;
             }
         }
 

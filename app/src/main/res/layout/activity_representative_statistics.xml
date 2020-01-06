@@ -81,6 +81,21 @@ tools:context=".ui.represntative.RepresentativeStatisticsActivity">
                 android:layout_marginBottom="50dp"
                 android:layout_height="300dp"/>
 
+            <TextView
+                android:id="@+id/user_senstivies_text"
+                android:layout_width="397dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="50dp"
+                android:hint="כמה משתמשים רשומים עם רגישות מסויימת"
+                android:textSize="20dp"/>
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/user_senstivies_piechart"
+                android:layout_width="match_parent"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="50dp"
+                android:layout_height="300dp"/>
+
 
         </LinearLayout>
 
