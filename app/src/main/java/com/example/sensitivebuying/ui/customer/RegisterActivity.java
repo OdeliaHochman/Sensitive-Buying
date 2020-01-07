@@ -92,10 +92,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 userByRoleRefernce.child("customers").child(firebaseAuth.getCurrentUser().getUid()).setValue(firebaseAuth.getCurrentUser().getUid());
                 Intent intent = new Intent(RegisterActivity.this, SensitiveRegisterActivity.class);
                 intent.putExtra("CustomerUser", user);
-              //  intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 inProgress(false);
-//                finish();
+                finish();
 
             }
         }).addOnFailureListener(new OnFailureListener() {

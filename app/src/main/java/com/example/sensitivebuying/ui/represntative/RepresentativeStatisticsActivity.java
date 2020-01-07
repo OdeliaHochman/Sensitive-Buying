@@ -312,7 +312,7 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
                                 dataUser.setValueTextColor(Color.DKGRAY);
                                 num=0;
 
-                                pieChart.invalidate();
+                                pieChartUserSen.invalidate();
 
 
                             }
