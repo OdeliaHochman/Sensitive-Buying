@@ -20,6 +20,7 @@ import com.example.sensitivebuying.firebaseHelper.FirebaseSenstiveUserHelper;
 import com.example.sensitivebuying.firebaseHelper.FirebaseUserHelper;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -54,6 +55,8 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
     private  ArrayList <Entry> proBySensPie = new ArrayList<>();
     private PieChart pieChart;
     private  ArrayList <String> sensitiveList = new ArrayList<>();
+    private  ArrayList <String> sensitiveList1 = new ArrayList<>();
+
 
     private String companyName;
     private RepresentativeUser repUser;
@@ -153,16 +156,40 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
 
                             fillArrayOfSenByProduct(p);
                         }
+                        ArrayList<String> toDelete = new ArrayList<>();
 
                         for (int i = 0; i< arrayFrequencySenProducts.length; i++) {
+                            if ( arrayFrequencySenProducts[i] != 0)
                             proBySensPie.add(new Entry(arrayFrequencySenProducts[i], i));
+                            else {
+                                String delete = sensitiveList.get(i);
+                                toDelete.add(delete);
+                            }
 
                         }
+                        sensitiveList.removeAll(toDelete);
 
-                        PieDataSet dataSet = new PieDataSet(proBySensPie, "מספר המוצרים המכילים את הרגישות");
+
+                        PieDataSet dataSet = new PieDataSet(proBySensPie, "");
                         dataSet.setSliceSpace(5f);
+                        dataSet.setColors(MY_COLOR);
                         PieData data = new PieData(sensitiveList, dataSet);
                         pieChart.setData(data);
+
+                        Legend l = pieChart.getLegend();
+                        l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT );
+                        l.setWordWrapEnabled(true);
+
+                        l.setFormSize(6f); // set the size of the legend forms/shapes
+                        l.setForm(Legend.LegendForm.CIRCLE); // set what type of form/shape should be used
+                        l.setTextSize(12f);
+                        l.setTextColor(Color.BLACK);
+//                        l.setXEntrySpace(5f); // set the space between the legend entries on the x-axis
+//                        l.setYEntrySpace(5f); // set the space between the legend entries on the y-axis
+
+
+
+
                         pieChart.setDescription("");
                         dataSet.setColors(MY_COLOR);
                         pieChart.animateXY(5000, 5000);
@@ -175,8 +202,10 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
                         data.setValueTextColor(Color.DKGRAY);
 
 
+                        pieChart.invalidate();
 
 
+//                       pieChart.setDrawEntryLabels(false);
 
                     }
 
@@ -241,16 +270,38 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
                             fillArrayOfSenByUser(sensitives);
                             num++;
                             if ( num == uids.size()) {
+                                ArrayList<String> toDelete = new ArrayList<>();
+
                                 for (int i = 0; i < arrayFrequencySenUsers.length; i++) {
+                                    if (arrayFrequencySenUsers[i]!=0)
                                     userBySensPieEntry.add(new Entry(arrayFrequencySenUsers[i], i));
+                                    else {
+                                        String delete = sensitiveList1.get(i);
+                                        toDelete.add(delete);
+                                    }
 
                                 }
-                                PieDataSet dataSetUser = new PieDataSet(userBySensPieEntry, "מספר המשתמשים הרשומים עם הרגישות");
+
+                                sensitiveList1.removeAll(toDelete);
+
+                                PieDataSet dataSetUser = new PieDataSet(userBySensPieEntry, "");
                                 dataSetUser.setSliceSpace(5f);
-                                PieData dataUser = new PieData(sensitiveList, dataSetUser);
-                                pieChartUserSen.setData(dataUser);
-                                pieChartUserSen.setDescription("");
                                 dataSetUser.setColors(MY_COLOR);
+
+
+                                PieData dataUser = new PieData(sensitiveList1, dataSetUser);
+                                pieChartUserSen.setData(dataUser);
+
+                                Legend l = pieChart.getLegend();
+                                l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT );
+                                l.setWordWrapEnabled(true);
+
+                                l.setFormSize(6f); // set the size of the legend forms/shapes
+                                l.setForm(Legend.LegendForm.CIRCLE); // set what type of form/shape should be used
+                                l.setTextSize(12f);
+                                l.setTextColor(Color.BLACK);
+
+                                pieChartUserSen.setDescription("");
                                 pieChartUserSen.animateXY(5000, 5000);
 
                                 dataUser.setValueFormatter(new PercentFormatter());
@@ -260,6 +311,10 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
                                 dataUser.setValueTextSize(15f);
                                 dataUser.setValueTextColor(Color.DKGRAY);
                                 num=0;
+
+                                pieChart.invalidate();
+
+
                             }
 
                         }
@@ -338,6 +393,9 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
         }
 
         sensitiveList.add("ללא רגישיות");
+
+         sensitiveList1 = new ArrayList<>(sensitiveList);
+
 
     }
 
