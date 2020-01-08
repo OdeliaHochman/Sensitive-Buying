@@ -22,6 +22,7 @@ final String activity = "RepresentativeContactUsActivity";
 private Button send;
 private EditText fullName,phoneNumber,subject,content;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("debug",activity);

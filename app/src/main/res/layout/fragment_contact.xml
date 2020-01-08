@@ -125,6 +125,7 @@
             android:id="@+id/contactImage_contactUs_customer"
             android:layout_width="110dp"
             android:layout_height="106dp"
+            android:background="#0000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.053"
             app:layout_constraintStart_toStartOf="parent"
