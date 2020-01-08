@@ -9,8 +9,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.sensitivebuying.dataObject.CustomerUser;
 import com.example.sensitivebuying.firebaseHelper.FirebaseSenstiveUserHelper;
@@ -36,6 +39,8 @@ public class UpdateFragment extends Fragment  {
     private CheckBox peantsCheckBox,nutsCheckBox,lactoseCheckBox,glutenCheckBox;
     private CheckBox eggsCheckBox,sesameCheckBox,soyaCheckBox;
     private CheckBox pine_nutCheckBox,sinapisCheckBox,celeryCheckBox,tonsilsCheckBox;
+    private int num;
+    private  ArrayList<Sensitive> needToDelete;
 
     private ProgressBar progressBarUpdate;
 
@@ -149,10 +154,9 @@ public class UpdateFragment extends Fragment  {
                 }
 
                 deleteUnChecked(userCheckBoxSensitive);
-                addSensitive(userCheckBoxSensitive);
 
-                inProgress(false);
-                userCheckBoxSensitive.clear();
+//                inProgress(false);
+//                userCheckBoxSensitive.clear();
             }
 
         });
@@ -164,46 +168,17 @@ public class UpdateFragment extends Fragment  {
     }
 
 
-private void readData() {
-    inProgress(true);
+    private void readData() {
+        inProgress(true);
 
-    new FirebaseSenstiveUserHelper().readSensitive(new FirebaseSenstiveUserHelper.DataStatus() {
-        @Override
-        public void DataIsLoaded(ArrayList<Sensitive> sensitives, ArrayList<String> keys) {
-            updateSensitive = new ArrayList<>(sensitives);
-            for (Sensitive s: updateSensitive){
-                check(s);
-            }
-            inProgress(false);
-
-        }
-
-        @Override
-        public void DataIsInserted() {
-
-        }
-
-        @Override
-        public void DataIsUpdated() {
-
-        }
-
-        @Override
-        public void DataIsDeleted() {
-
-        }
-    }); inProgress(true);
-}
-
-private void deleteUnChecked (ArrayList<Sensitive> userCheckBoxSensitive) {
-
-    ArrayList<Sensitive> needToDelete = new ArrayList<>(updateSensitive);
-    needToDelete.removeAll(userCheckBoxSensitive);
-
-    for (final Sensitive del:needToDelete) {
-        new FirebaseSenstiveUserHelper().deleteData(del.getsensitiveKey(), new FirebaseSenstiveUserHelper.DataStatus() {
+        new FirebaseSenstiveUserHelper().readSensitive(new FirebaseSenstiveUserHelper.DataStatus() {
             @Override
             public void DataIsLoaded(ArrayList<Sensitive> sensitives, ArrayList<String> keys) {
+                updateSensitive = new ArrayList<>(sensitives);
+                for (Sensitive s: updateSensitive){
+                    check(s);
+                }
+                inProgress(false);
 
             }
 
@@ -219,39 +194,98 @@ private void deleteUnChecked (ArrayList<Sensitive> userCheckBoxSensitive) {
 
             @Override
             public void DataIsDeleted() {
-                unCheck(del);
+
             }
-        });
+        }); inProgress(true);
     }
 
+    private void deleteUnChecked (final ArrayList<Sensitive> userCheckBoxSensitive) {
 
-}
+        needToDelete = new ArrayList<>(updateSensitive);
+        needToDelete.removeAll(userCheckBoxSensitive);
+        if (num ==needToDelete.size()) {
+            num = 0;
+            addSensitive(userCheckBoxSensitive);
+        }
 
-private void addSensitive( ArrayList<Sensitive> userCheckBoxSensitive)  {
-    for (final Sensitive s:userCheckBoxSensitive ) {
-        new  FirebaseSenstiveUserHelper().addSensitive(s, new FirebaseSenstiveUserHelper.DataStatus() {
-            @Override
-            public void DataIsLoaded(ArrayList<Sensitive> sensitives, ArrayList<String> keys) {
+        for (final Sensitive del:needToDelete) {
+            new FirebaseSenstiveUserHelper().deleteData(del.getsensitiveKey(), new FirebaseSenstiveUserHelper.DataStatus() {
+                @Override
+                public void DataIsLoaded(ArrayList<Sensitive> sensitives, ArrayList<String> keys) {
 
-            }
+                }
 
-            @Override
-            public void DataIsInserted() {
-                check(s);
+                @Override
+                public void DataIsInserted() {
 
-            }
+                }
 
-            @Override
-            public void DataIsUpdated() {
-            }
+                @Override
+                public void DataIsUpdated() {
 
-            @Override
-            public void DataIsDeleted() {
+                }
 
-            }
-        });
+                @Override
+                public void DataIsDeleted() {
+                    unCheck(del);
+                    num++;
+                    if (num ==needToDelete.size()) {
+                        num=0;
+                        addSensitive(userCheckBoxSensitive);
+                    }
+                }
+            });
+        }
+
+
     }
-}
+
+    private void addSensitive( final ArrayList<Sensitive> userCheckBoxSensitive)  {
+        if ( num== userCheckBoxSensitive.size()) {
+            Toast.makeText(getActivity(), "הרגישיות עודכנו בהצלחה", Toast.LENGTH_SHORT).show();
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            SearchFragment llf = new SearchFragment();
+            ft.replace(R.id.fragment, llf);
+            ft.commit();
+        }
+
+            for (final Sensitive s:userCheckBoxSensitive ) {
+            new  FirebaseSenstiveUserHelper().addSensitive(s, new FirebaseSenstiveUserHelper.DataStatus() {
+                @Override
+                public void DataIsLoaded(ArrayList<Sensitive> sensitives, ArrayList<String> keys) {
+
+                }
+
+                @Override
+                public void DataIsInserted() {
+                    check(s);
+                    num++;
+                    if ( num== userCheckBoxSensitive.size()) {
+                        num=0;
+                        userCheckBoxSensitive.clear();
+                        Toast.makeText(getActivity(), "הרגישיות עודכנו בהצלחה", Toast.LENGTH_SHORT).show();
+                        FragmentManager fm = getFragmentManager();
+                        FragmentTransaction ft = fm.beginTransaction();
+                        SearchFragment llf = new SearchFragment();
+                        ft.replace(R.id.fragment, llf);
+                        ft.commit();
+
+                    }
+
+                }
+
+                @Override
+                public void DataIsUpdated() {
+                }
+
+                @Override
+                public void DataIsDeleted() {
+
+                }
+            });
+        }
+    }
 
     private void  inProgress ( boolean flag) {
 
@@ -267,51 +301,51 @@ private void addSensitive( ArrayList<Sensitive> userCheckBoxSensitive)  {
     }
 
     private void check (Sensitive s) {
-            if (s.equals(senList.eggs)) {
-                eggsCheckBox.setChecked(true);
-            }
+        if (s.equals(senList.eggs)) {
+            eggsCheckBox.setChecked(true);
+        }
 
-            if (s.equals(senList.peants)) {
-                peantsCheckBox.setChecked(true);
-            }
+        if (s.equals(senList.peants)) {
+            peantsCheckBox.setChecked(true);
+        }
 
-            if (s.equals(senList.gluten)) {
-                glutenCheckBox.setChecked(true);
-            }
+        if (s.equals(senList.gluten)) {
+            glutenCheckBox.setChecked(true);
+        }
 
-            if (s.equals(senList.nuts)) {
-                nutsCheckBox.setChecked(true);
-            }
+        if (s.equals(senList.nuts)) {
+            nutsCheckBox.setChecked(true);
+        }
 
-            if (s.equals(senList.lactose)) {
-                lactoseCheckBox.setChecked(true);
-            }
+        if (s.equals(senList.lactose)) {
+            lactoseCheckBox.setChecked(true);
+        }
 
-            if (s.equals(senList.soya)) {
-                soyaCheckBox.setChecked(true);
-            }
+        if (s.equals(senList.soya)) {
+            soyaCheckBox.setChecked(true);
+        }
 
-            if (s.equals(senList.sesame)) {
-                sesameCheckBox.setChecked(true);
-            }
+        if (s.equals(senList.sesame)) {
+            sesameCheckBox.setChecked(true);
+        }
 
-            if (s.equals(senList.pine_nut)) {
+        if (s.equals(senList.pine_nut)) {
             pine_nutCheckBox.setChecked(true);
 
-            }
+        }
 
-            if (s.equals(senList.sinapis)) {
+        if (s.equals(senList.sinapis)) {
             sinapisCheckBox.setChecked(true);
 
-            }
-            if (s.equals(senList.celery)) {
+        }
+        if (s.equals(senList.celery)) {
             celeryCheckBox.setChecked(true);
-            }
+        }
 
-            if (s.equals(senList.tonsils)) {
-                tonsilsCheckBox.setChecked(true);
+        if (s.equals(senList.tonsils)) {
+            tonsilsCheckBox.setChecked(true);
 
-            }
+        }
 
 
     }

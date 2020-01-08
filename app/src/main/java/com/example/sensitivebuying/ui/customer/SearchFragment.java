@@ -146,6 +146,9 @@ public class SearchFragment extends Fragment implements  View.OnClickListener {
 
     // get all the barcode of sensitives
     private void getBarcodesFromSen (final ArrayList <Sensitive> sensitives) {
+        if (sensitives.size()==0)
+            new RecyclerView_config().setConfigCus(mRecycler, getActivity(), productList, barcodes, forbiddenBarcode);
+
         for ( Sensitive s : sensitives) {
             new FirebaseProductsBySensitiveHelper().readProductsOfSen(s, new FirebaseProductsBySensitiveHelper.DataStatus() {
                 @Override
