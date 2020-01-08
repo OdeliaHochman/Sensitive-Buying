@@ -202,10 +202,10 @@ public class RecyclerView_config implements Serializable {
         {
             holder.bind(mproductsList.get(position), barcodes.get(position));
             if (barcodesRed.contains(barcodes.get(position))){
-                holder.mNamePro.setTextColor(Color.RED);
+                holder.mNamePro.setTextColor(Color.rgb(253,5,26));
             }
             else
-                holder.mNamePro.setTextColor(Color.GREEN);
+                holder.mNamePro.setTextColor(Color.rgb(80,196,85));
 
 
         }

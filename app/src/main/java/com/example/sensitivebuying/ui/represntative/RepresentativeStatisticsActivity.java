@@ -131,8 +131,8 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
 
         barchart.getAxisLeft().setAxisMinValue(0f);
         barchart.getAxisRight().setAxisMinValue(0f);
-        barchart.getAxisLeft().setAxisMaxValue(10f);
-        barchart.getAxisRight().setAxisMaxValue(10f);
+        barchart.getAxisLeft().setAxisMaxValue(15f);
+        barchart.getAxisRight().setAxisMaxValue(15f);
 
         barchart.setTouchEnabled(true);
         barchart.setDragEnabled(true);
@@ -392,7 +392,7 @@ public class RepresentativeStatisticsActivity extends AppCompatActivity {
             sensitiveList.add(senName);
         }
 
-        sensitiveList.add("ללא רגישיות");
+        sensitiveList.add("ללא רגישויות");
 
          sensitiveList1 = new ArrayList<>(sensitiveList);
 

@@ -128,7 +128,7 @@ public class Product implements Serializable  {
         String title_weightAndType = "משקל: ";
         String title_productDescription= "תיאור: ";
 
-        String title_sensitiveList= "רשימת רגשיות: ";
+        String title_sensitiveList= "רשימת רגישויות: ";
 
 
 //        private String companyName;
@@ -138,7 +138,7 @@ public class Product implements Serializable  {
 //        private String productDescription;
 //        private String urlImage;
 //        private ArrayList<Sensitive> sensitiveList;
-        String sensitivesTxt="אין רגישיות";
+        String sensitivesTxt="אין רגישויות";
         if (sensitiveList!= null)
          sensitivesTxt = TextUtils.join(",", sensitiveList);
 

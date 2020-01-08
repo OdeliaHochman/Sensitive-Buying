@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorstatusbar">#FCB632</color>
+
+    <color name="greenSearch">#CE50C455</color>
+    <color name="redSearch">#E1FD051A</color>
+
 </resources>
