@@ -108,29 +108,37 @@
 
     </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_send_contactUs_customer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="90dp"
-            android:text="שלח"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+    <Button
+        android:id="@+id/btn_send_contactUs_customer"
+        android:layout_width="111dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="90dp"
+        android:text="שלח"
+        android:backgroundTint="#FFC107"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
-        <ImageButton
-            android:id="@+id/contactImage_contactUs_customer"
-            android:layout_width="110dp"
-            android:layout_height="106dp"
-            android:background="#0000"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.053"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/mail"
-            tools:ignore="MissingConstraints,UnknownId" />
+    <ImageButton
+        android:id="@+id/contactImage_contactUs_customer"
+        android:layout_width="103dp"
+        android:layout_height="88dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="5dp"
+        android:background="#0000"
+        app:layout_constraintBottom_toTopOf="@+id/bgapp1_fragmentContact_customer"
+        app:layout_constraintEnd_toStartOf="@+id/title_fragmentContact_customer"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/mail"
+        tools:ignore="MissingConstraints,UnknownId" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

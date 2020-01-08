@@ -108,18 +108,21 @@
 
 </LinearLayout>
 
-<Button
-    android:id="@+id/btn_send_contactUs_rep"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="90dp"
-    android:text="שלח"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.498"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+    <Button
+        android:id="@+id/btn_send_contactUs_rep"
+        android:layout_width="92dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="90dp"
+        android:backgroundTint="#FFC107"
+        android:text="שלח"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <ImageButton
         android:id="@+id/contactImage_contactUs_rep"
