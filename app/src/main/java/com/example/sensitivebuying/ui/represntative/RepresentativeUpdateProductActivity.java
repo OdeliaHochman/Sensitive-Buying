@@ -178,6 +178,20 @@ public class RepresentativeUpdateProductActivity extends AppCompatActivity {
 
                         @Override
                         public void DataIsUpdated() {
+
+                            for(int i=0; i<listboxUpdate.size();i++)
+                            {
+                                String name=listboxUpdate.get(i).getSensitiveTypebox();
+                                final ArrayList<Sensitive> sensitives = product.getSensitiveList();
+                                if(listboxUpdate.get(i).getSelectedbox()==false)
+                                    cReference.child(name).child(barcode).setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+
+                                        }
+                                    });
+
+                            }
                             Toast.makeText(RepresentativeUpdateProductActivity.this, "המוצר התעדכן בהצלחה", Toast.LENGTH_LONG).show();
                             finish();
                             return;
@@ -186,21 +200,6 @@ public class RepresentativeUpdateProductActivity extends AppCompatActivity {
                         @Override
                         public void DataIsDeleted() {
 
-//                            for(int i=0; i<listboxUpdate.size();i++)
-//                            {
-//                                final ArrayList<Sensitive> sensitives = product.getSensitiveList();
-//                                for (Sensitive s : sensitives){
-//                                    String senName =s.getSensitiveType();
-//                                    if(listboxUpdate.get(i).getSensitiveTypebox().equals(false))
-//                                        cReference.child(senName).child(barcode).setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                            @Override
-//                                            public void onSuccess(Void aVoid) {
-//
-//                                            }
-//                                        });
-//                                }
-//
-//                            }
 
 
                         }
