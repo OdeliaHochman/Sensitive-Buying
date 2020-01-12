@@ -7,7 +7,9 @@
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginLeft="100dp"
+        android:layout_toStartOf="@+id/checkbox"
         android:text="text"
         android:textAlignment="gravity" />
 
