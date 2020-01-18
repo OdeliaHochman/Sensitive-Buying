@@ -16,3 +16,18 @@ In addition, you will display statistics about the company's products and system
 * Raise awareness in food companies for people with sensitivities.
 * Access and make it easier for people with food sensitivities to find products they can consume.
 * Help people who are not knowledgeable about the topic so that they can host people with sensitivity easily and without fear.
+
+## Features
+### customer
+* Display products by color
+* Search product
+* Share products
+* Update sensitivities
+### representative 
+* Add product
+* Update / Delete Product
+* Display product of the company 
+* Display statistics 
+## Screenshots
+![alt text](https://github.com/OdeliaHochman/Sensitive-Buying/blob/master/screenshots/add.png?raw=true)
+![alt text](https://github.com/OdeliaHochman/Sensitive-Buying/blob/master/screenshots/share.png?raw=true)
