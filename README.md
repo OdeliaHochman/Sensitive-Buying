@@ -2,6 +2,14 @@
 
 ![logo](https://i.ibb.co/cJKGKBT/1111111111.png)
 
+**Created by:**
+
+[Odelia Hochman](https://github.com/OdeliaHochman)
+
+[Efrat Cohen](https://github.com/EfratCohen100)
+
+[Carmel Ron](https://github.com/caron1211)
+
 ## Introduction
 Sensitive-Buying is an Android app. The app is designed for people with food sensitivities, people who host people with food sensitivities, etc.
 </br>
